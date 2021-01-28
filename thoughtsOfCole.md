@@ -14,6 +14,8 @@ run the gate.
 Sellers should be able to give away parking spots if they want. This should not 
 be used as a way to get around the fees though.
 
+## Possible parker view
+
 ```
 +-----------------------------+
 |        Select days          |
