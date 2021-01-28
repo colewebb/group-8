@@ -14,6 +14,7 @@ run the gate.
 Sellers should be able to give away parking spots if they want. This should not 
 be used as a way to get around the fees though.
 
+```
 +-----------------------------+
 |        Select days          |
 +-----------------------------+                      
@@ -35,3 +36,4 @@ be used as a way to get around the fees though.
 |     3-4 navigation icons    |
 |   (map, list, reservations) |
 +-----------------------------+
+```
