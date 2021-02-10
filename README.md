@@ -1,6 +1,11 @@
 # Group Project for USU CS3450
 
-This is the start.
+## Setup Instructions
+This project contains the `parking_api` django backend API
+Running/setup instructions found in it's subfolder /parking_api/README.md
+
+This project contains the `parking_client` react frontend client
+Running/setup instructions found in it's subfolder /parking-client/README.md
 
 ## Projects
 
