@@ -25,3 +25,22 @@ There is a GitHub Wiki initialized, but it is currently empty. Perhaps eventuall
  - Phone friendly, no app required
  - Different sizes of parking spots (mobile homes, large sites for tailgating, etc.)
  - QR codes required for authentication on the spot
+
+## Organization
+
+The workspace is organized as follows:
+
+ - Documentation is contained in the ```docs/``` folder
+ - Source code is contained in the ```src/``` folder, and each project (client side, server side, test suites etc.) are in their own folders.
+
+## Version Control
+
+All version control numbers are of the following format:
+
+v0.1.2b
+
+The last digit, 2b, signifies that this version contains the second small feature update (2) and the second iteration (b) of the first major version update (1) of the first major version (0) of the app.
+
+## Testing
+
+Test suites, when they're available, will be run from their own directories under ```src/```.
