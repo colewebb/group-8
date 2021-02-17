@@ -1,0 +1,13 @@
+{
+  "name": "Gr8 Parking",
+  "short_name": "Gr8 Parking for USU",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "description": "",
+  "icons": [{
+    "src": "assets/icon.svg",
+    "sizes": "any",
+    "type": "image/svg+xml"
+  }],
+}
