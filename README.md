@@ -75,10 +75,12 @@ this project begins in earnest, all individual work will be done on seperate
 branches. Merge conflicts will be discussed in Slack and resolved in team
 meetings.
 
-## Testing
+## Unit Testing Instructions
 
 Test suites, when they're available, will be run from their own directories 
-under ```Apps/```.
+under ```Apps/```. The test suites here will automatically check that the database
+will accept new information and CRUD operations, that running the servers works 
+correctly, and so on.
 
 ## System Testing Instructions
 
