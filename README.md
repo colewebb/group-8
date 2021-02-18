@@ -1,19 +1,43 @@
 # Group Project for USU CS3450
 
-## Setup Instructions
-This project contains the `parking_api` django backend API
-Running/setup instructions found in it's subfolder /parking_api/README.md
+## Tool Stack Description and Setup Procedure
 
-This project contains the `parking_client` react frontend client
-Running/setup instructions found in it's subfolder /parking-client/README.md
+This project is built using Django and React. Django provides a backend, serving
+files and providing database services. React runs on the front end, and provides
+more simple and powerful JavaScript extensions. 
+
+Django setup is relatively simple, following the directions given at 
+[https://docs.djangoproject.com/en/3.1/topics/install/#install-the-django-code]
+(https://docs.djangoproject.com/en/3.1/topics/install/#install-the-django-code).
+
+React is similarly simple, with directions at [https://create-react-app.dev/
+docs/getting-started/](https://create-react-app.dev/docs/getting-started/).
+
+## Setup Instructions
+
+This project contains the `parking_api` django backend API. Running/setup 
+instructions found in it's subfolder ```/parking_api/README.md```
+
+This project contains the `parking_client` react frontend client. Running/setup 
+instructions found in it's subfolder ```/parking-client/README.md```
+
+## Build Instructions
+
+For the Django server, from the Django folder, run ```django-admin startproject 
+mysite```.
+
+For the React server, from the React folder, run ```npm start```.
 
 ## Projects
 
-There are three project boards currently, which are not intended to be used simultaneously. They are of three distinct styles, and eventually two of them will be retired.
+There are three project boards currently, which are not intended to be used 
+simultaneously. They are of three distinct styles, and eventually two of them 
+will be retired.
 
 ## Wiki
 
-There is a GitHub Wiki initialized, but it is currently empty. Perhaps eventually it will be used for documentation and other customer-facing information.
+There is a GitHub Wiki initialized, but it is currently empty. Perhaps eventually 
+it will be used for documentation and other customer-facing information.
 
 ## Requirements
 
@@ -31,16 +55,39 @@ There is a GitHub Wiki initialized, but it is currently empty. Perhaps eventuall
 The workspace is organized as follows:
 
  - Documentation is contained in the ```docs/``` folder
- - Source code is contained in the ```src/``` folder, and each project (client side, server side, test suites etc.) are in their own folders.
+ - Source code is contained in the ```Apps/``` folder, and each project (client 
+   side, server side, test suites etc.) are in their own folders.
 
 ## Version Control
+
+### Version Numbering
 
 All version control numbers are of the following format:
 
 v0.1.2b
 
-The last digit, 2b, signifies that this version contains the second small feature update (2) and the second iteration (b) of the first major version update (1) of the first major version (0) of the app.
+The last digit, 2b, signifies that this version contains the second small 
+feature update (2) and the second iteration (b) of the first major version 
+update (1) of the first major version (0) of the app.
+
+### Collaboration
+
+All team members are contributors as far as the GitHub system is concerned. When
+this project begins in earnest, all individual work will be done on seperate
+branches. Merge conflicts will be discussed in Slack and resolved in team
+meetings.
 
 ## Testing
 
-Test suites, when they're available, will be run from their own directories under ```src/```.
+Test suites, when they're available, will be run from their own directories 
+under ```Apps/```.
+
+## System Testing Instructions
+
+ - Testing login: use invalid credentials and make sure you get an error code,
+   use valid login and ensure that the correct user is displayed with the correct
+   privileges
+ - Log in and ensure that deleted information stays deleted, changed information 
+   stays changed, and that untouched information remains the same.
+ - Login as each of the user groups and ensure that the correct interface is shown
+   for each.
