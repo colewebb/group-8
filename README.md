@@ -7,8 +7,8 @@ files and providing database services. React runs on the front end, and provides
 more simple and powerful JavaScript extensions. 
 
 Django setup is relatively simple, following the directions given at 
-[https://docs.djangoproject.com/en/3.1/topics/install/#install-the-django-code]
-(https://docs.djangoproject.com/en/3.1/topics/install/#install-the-django-code).
+[https://docs.djangoproject.com/en/3.1/topics/install/#install-the-django-
+code](https://docs.djangoproject.com/en/3.1/topics/install/#install-the-django-code).
 
 React is similarly simple, with directions at [https://create-react-app.dev/
 docs/getting-started/](https://create-react-app.dev/docs/getting-started/).
