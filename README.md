@@ -13,6 +13,7 @@ React setup Docs:
  [https://create-react-app.dev/docs/getting-started/](https://create-react-app.dev/docs/getting-started/).
 
 ## Setup Instructions
+
 Detailed setup instructions:
 
 This project contains the `parking_api` django backend API. Running/setup
@@ -91,3 +92,23 @@ correctly, and so on.
    stays changed, and that untouched information remains the same.
  - Login as each of the user groups and ensure that the correct interface is shown
    for each.
+
+## Prototypes
+
+Prototype 1, located at [/Apps/prototype1](https://github.com/colewebb/group-8/tree/master/Apps/prototype1),
+is a low-fidelity design rendered by Austin in Adobe XD. This prototype shows a 
+possible customer interface, designed to work equally well on mobile and desktop 
+devices. The root is located at 
+[/Apps/prototype1/Splash.png](https://github.com/colewebb/group-8/tree/master/Apps/prototype1/Splash.png).
+
+Prototype 2, located at [/Apps/prototype2](https://github.com/colewebb/group-8/tree/master/Apps/prototype2),
+is a high-fidelity design rendered by Cole in HTML/CSS. This prototype suggests
+an interface for adding a new lot to the website from lot owner/administrator
+perspective. The root is located at 
+[/Apps/prototype2/index.html](https://github.com/colewebb/group-8/tree/master/Apps/prototype2/index.html).
+
+Prototype 3, located at [/Apps/prototype3](https://github.com/colewebb/group-8/tree/master/Apps/prototype3),
+is a low-fidelity design rendered by Cole in ASCII art. This prototype is an
+alternative design for the customer interface, focused on a mobile interface 
+with notes on adaptivity for other form factors. The root is located at 
+[/Apps/prototype3/index.md](https://github.com/colewebb/group-8/tree/master/Apps/prototype3/index.md).
