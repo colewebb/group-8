@@ -22,8 +22,8 @@ Map screen (optional)
 |                           |
 |                           |
 +------+------+------+------+
-|  xx  |  xx  |  xx  |  xx  |
-|  xx  |  xx  |  xx  |  xx  |
+| (x)  | *--- |  0   |      |
+|  |   | *--- | ( )  |  +   |
 | map  | list | you  | more |
 +------+------+------+------+
 ```
@@ -50,8 +50,8 @@ List view
 |                           |
 |                           |
 +------+------+------+------+
-|  xx  |  xx  |  xx  |  xx  |
-|  xx  |  xx  |  xx  |  xx  |
+| (x)  | *--- |  0   |      |
+|  |   | *--- | ( )  |  +   |
 | map  | list | you  | more |
 +------+------+------+------+
 ```
@@ -61,8 +61,8 @@ Customer profile
 ```
 +---------------------------+
 |+---+ Prototype User       |
-||   | $27.00 in account    |
-||   | Change picture       |
+|| 0 | $27.00 in account    |
+||( )| Change picture       |
 |+---+ Edit information     |
 |                           |
 | Your Cars                 |
@@ -79,8 +79,8 @@ Customer profile
 |  5/9/22, 1 Medium Spot    |
 |  Aggie Village ($15.00)   |
 +------+------+------+------+
-|  xx  |  xx  |  xx  |  xx  |
-|  xx  |  xx  |  xx  |  xx  |
+| (x)  | *--- |  0   |      |
+|  |   | *--- | ( )  |  +   |
 | map  | list | you  | more |
 +------+------+------+------+
 ```
@@ -108,10 +108,34 @@ More menu
 |      Report an issue      |
 |     Help | Contact Us     |
 +------+------+------+      +
-|  xx  |  xx  |  xx  |  xx  |
-|  xx  |  xx  |  xx  |  xx  |
+| (x)  | *--- |  0   |      |
+|  |   | *--- | ( )  |  +   |
 | map  | list | you  | more |
 +------+------+------+------+
 ```
 
+This can be made adaptive to fit a desktop screen. One
+such way of doing so might look like:
 
+```
++--------------------------+-----------------------------------------+
+| Big Blue Parking Genie   |                                         |
+| - Map                    |                   Content               |
+| - List                   |                                         |
+| - You                    |                                         |
+| - More                   |                                         |
+|                          |                                         |
+|                          |                                         |
+|                          |                                         |
+|                          |                                         |
+|                          |                                         |
+|                          |                                         |
+|                          |                                         |
+|                          |                                         |
+|                          |                                         |
+|                          |                                         |
+|                          |                                         |
+|                          |                                         |
+|                          |                                         |
++--------------------------+-----------------------------------------+
+```
