@@ -104,7 +104,9 @@ devices. The root is located at
 Prototype 2, located at [/Apps/prototype2](https://github.com/colewebb/group-8/tree/master/Apps/prototype2),
 is a high-fidelity design rendered by Cole in HTML/CSS. This prototype suggests
 an interface for adding a new lot to the website from lot owner/administrator
-perspective. The root is located at 
+perspective. This prototype contains experimental support for dark mode (to 
+enable, switch from ```assets/styles.css``` to ```assets/styles-dark.css```).
+The root is located at 
 [/Apps/prototype2/index.html](https://github.com/colewebb/group-8/tree/master/Apps/prototype2/index.html).
 
 Prototype 3, located at [/Apps/prototype3](https://github.com/colewebb/group-8/tree/master/Apps/prototype3),
