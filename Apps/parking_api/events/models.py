@@ -27,6 +27,21 @@ class Customer(User):
     def addCredits(x):
         credits += x
 
+class Lot(models.Model):
+    name = models.CharField(max_length=30)
+    # distance
+    address = models.CharField(max_length=30)
+    spots = [] # list of Spots
+    openTime = models.DateTimeField()
+    closeTime = models.DateTimeField()
+    capacityActual = models.IntegerField()
+    capacityMax = models.IntegerField()
+    reservations = [] # list of reservations
+    attendants = [] # list of attendants
+
+    def addReservation(reservation):
+        pass
+
 class Attendant(User):
     lot = models.ForeignKey(Lot, on_delete=models.CASCADE)
 
@@ -52,7 +67,7 @@ class Reservation(models.Model):
     date = models.DateTimeField()
     address = models.CharField(max_length=30)
     price = models.DecimalField(max_digits=100, decimal_places=2)
-    id = models.IntegerField()
+    reservation_id = models.IntegerField()
 
     def confirmReservation():
         pass
@@ -63,20 +78,6 @@ class Reservation(models.Model):
     def getQRCode():
         pass
 
-class Lot(models.Model):
-    name = models.CharField(max_length=30)
-    # distance
-    address = models.CharField(max_length=30)
-    spots = [] # list of Spots
-    openTime = models.DateTimeField()
-    closeTime = models.DateTimeField()
-    capacityActual = models.IntegerField()
-    capacityMax = models.IntegerField()
-    reservations = [] # list of reservations
-    attendants = [] # list of attendants
-
-    def addReservation(reservation):
-        pass
 
 class Spot(models.Model):
     size = models.CharField(max_length=30)
@@ -96,7 +97,7 @@ class Event(models.Model):
         pass
 
     def notifyLotOwners():
-        pass 
+        pass
 
 class Root(models.Model):
     events = [] # list of events
