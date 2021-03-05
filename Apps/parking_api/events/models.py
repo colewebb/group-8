@@ -11,7 +11,7 @@ class User(models.Model):
     password = models.CharField(max_length=30) # probably change this later to something more secure
 
     def __str__(self):
-        return "(" + lastName + ", " + firstName + ") " + EmailField
+        return "(" + self.lastName + ", " + self.firstName + ") " + self.email
 
     # this is necessary for abstract inheritance in Django
     class Meta:
