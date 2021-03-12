@@ -1,5 +1,4 @@
-
-body {
+.root-container {
   background-color: #f2f2f2;
   display: flex;
   justify-content: center;
@@ -8,6 +7,7 @@ body {
 .card-login {
   background-color: #FFF;
   margin-top: 100px;
+  margin-bottom: 100px;
   padding-bottom: 40px;
   border-radius: 8px;
   -webkit-box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
@@ -32,9 +32,7 @@ body {
 }
 
 form {
-width: 340px;
-
-
+  width: 340px;
 }
 
 .input-field {
@@ -43,7 +41,7 @@ width: 340px;
   margin: 20px;
   margin-left: 50px;
   margin-right: 50px;
-  border-radius: 12;
+  border-radius: 12px;
 
 }
 .input-field:hover {
@@ -52,7 +50,7 @@ width: 340px;
   margin: 20px;
   margin-left: 50px;
   margin-right: 50px;
-  border-radius: 12;
+  border-radius: 22px;
 }
 
 .secure {
@@ -106,7 +104,6 @@ width: 340px;
 .image-container {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
   margin-bottom: -20px;
 
 }
@@ -116,7 +113,6 @@ img {
   width: 150px;
   height: 142px;
 }
-
 
 .card-top {
   background-color: #0F2439;

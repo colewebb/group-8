@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useState, useEffect }  from "react";
 import reactDom from "react-dom";
 import "./login.styles.css";
-import logo from "../assets/images/usu_logo_white.png";
+import logo from "../../assets/images/usu_logo_white.png";
+import { Redirect, useLocation } from 'react-router'
+
+
+const useInput = initialValue => {
+  const [value, setValue] = useState(initialValue)
+  return {
+    value,
+    setValue,
+    reset: () => setValue(''),
+    bind: {
+      value,
+      onChange: event => {setValue(event.target.value)}
+    }
+  }
+}
 
 export default function Login(props) {
+  const [submitted, setSubmitted] = useState(false);
+    const {value: content, bind: bindContent, reset: resetContent} = useInput('')
+
+    const handleSubmit = (event) => {
+      event.preventDefault()
+        setSubmitted(true)
+    }
+    if (submitted) {
+      return <Redirect push to={{
+        pathname: '/',
+      }}
+      />
+    }
+
   return (
     <div className="root-container">
       <div className="card-login">
@@ -15,8 +44,7 @@ export default function Login(props) {
         </div>
         <div className="card-bottom">
           <h2 className="card-login-sub-title">Welcome Back!</h2>
-
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="input-field">
               <input
                 type="text"
