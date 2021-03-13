@@ -74,7 +74,7 @@
   align-items: center;
 }
 
-.image-container:active {
+.menu-image-container:active {
   height: 44px;
   width: 44px;
   border-radius: 24px;
