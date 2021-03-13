@@ -19,10 +19,8 @@ class User(models.Model):
 
 class Customer(User):
     credits = models.DecimalField(max_digits=100, decimal_places=2)
-    reservations = [] # list of reservations
-
-    def addReservation(reservation):
-        reservations.append(reservation)
+    # Customer may have many reservations, but this is defined
+    # in the Reservation class
 
     def addCredits(x):
         credits += x
@@ -91,7 +89,8 @@ class Event(models.Model):
     startTime = models.DateTimeField()
     endTime = models.DateTimeField()
     address = models.CharField(max_length=30)
-    lots = [] # list of Lots
+    # Event has a one-to-many relationship with lots, but this
+    # is defined in the Lot class, not in the Event class
 
     def createEvent():
         pass

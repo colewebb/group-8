@@ -3,18 +3,7 @@ import datetime
 
 # This is where the test populations for the database are defined
 
-def populate_db(apps, schema_editor):
-    # example Customers
-    Customer = apps.get_model('events', 'Customer')
-
-    c1 = Customer(firstName='Jeremy', lastName='Young', email='young.a.jeremy@gmail.com',
-                    password='password', credits=500)
-    c1.save()
-
-    c2 = Customer(firstName='Cole', lastName='Webb', email='email@gmail.com',
-                    password='password', credits=500)
-    c2.save()
-
+def populate_db(apps, schema_editor): 
     # example events
     Event = apps.get_model('events', 'Event')
 
