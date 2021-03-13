@@ -15,7 +15,7 @@
 }
 
 .sidenav a {
-  padding: 8px 8px 8px 32px;
+  padding: 8px 8px 8px 8px;
   text-decoration: none;
   font-size: 25px;
   color: #cfcfcf;
@@ -25,6 +25,7 @@
 
 .sidenav a:hover {
   color: #FFF;
+  font-weight: 500;
 }
 
 .sidenav .closebtn {
@@ -90,4 +91,74 @@
   width: 20px;
   height: 17px;
   margin-left: 2px;
+}
+
+.credits-container {
+  background-color: white;
+  margin-left: 14px;
+  margin-right: 14px;
+  margin-bottom: 24px;
+  height: 144px;
+  border-radius: 8px;
+  box-shadow:  0 10px 16px 0 rgba(255,255,255,0.1),0 6px 20px 0 rgba(255,255,255,0.1) !important;
+}
+
+.credits-container-top {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  background-color: #b5b5b5;
+}
+
+.balance-text {
+  color: #a3a3a3;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.value-text {
+  color: #3d3d3d;
+  font-size: 26px;
+  margin-bottom: -10px;
+}
+
+.name-text {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  color: #FFF;
+  font-size: 22px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.logout-button a{
+  color: #0F2439;
+  margin-top: 0px;
+  padding-bottom: 10px;
+  padding-top: 8px;
+  font-weight: 500;
+
+}
+
+.logout-button a:hover{
+  color: #0F2439;
+  margin-top: 0px;
+  font-weight: 500;
+}
+
+.logout-button {
+  margin-top: 14px;
+  background-color: #cfcfcf;
+  border-radius: 8px;
+  width: 120px;
+}
+
+.logout-button:hover {
+  background-color: #FFF;
+  border-radius: 8px;
+  width: 120px;
+}
+
+.logout-button-center {
+  display: flex;
+  justify-content: center;
 }
