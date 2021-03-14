@@ -31,6 +31,37 @@ def getUsers(request):
 
     return JsonResponse(response_dictionary, safe=False)
 
+def getUserById(request, id):
+    try:
+        user = Customer.objects.get(pk=id)
+
+        reservation_list = []
+        for reservation in user.reservation_set.all():
+            res_dict = {
+                'spotType': reservation.spotType,
+                'date': str(reservation.date),
+                'address': reservation.address,
+                'price': reservation.price,
+                'id': reservation.id,
+            }
+            reservation_list.append(res_dict)
+
+        user_dictionary = {
+            'firstName': user.firstName,
+            'lastName': user.lastName,
+            'email': user.email,
+            'reservations': reservation_list,
+        }
+
+        return JsonResponse(user_dictionary, safe=False)
+    except (Customer.DoesNotExist):
+        error = {
+            'error': f"Could not find the user corresponding with the given id '{id}'"
+        }
+
+        return JsonResponse(error, safe=False)
+
+
 def newCustomer(request, firstName, lastName, email, password, credits):
     customer = Customer(firstName=firstName, lastName=lastName,
                         email=email, password=password, credits=credits)
@@ -49,9 +80,32 @@ def getEvents(request):
             'address': event.address,
             'startTime': str(event.startTime),
             'endTime': str(event.endTime),
+            'id': event.id,
         }
         events.append(dict)
 
     response['events'] = events
 
     return JsonResponse(response, safe=False)
+
+def getEventById(request, id):
+    try:
+        event = Event.objects.get(pk=id)
+
+        dict = {
+            'title': event.name,
+            'address': event.address,
+            'startTime': str(event.startTime),
+            'endTime': str(event.endTime),
+            'id': event.id,
+        }
+
+        return JsonResponse(dict, safe=False)
+    except (Event.DoesNotExist):
+        dict = {
+            'error': f"Could not find the event corresponding with the given id '{id}'"
+        }
+
+        return JsonResponse(dict, safe=False)
+
+# def newEvent(request, name, startTime, endTime, address)
