@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Customer, Event
+from .models import Customer, Event, Lot, Spot
 
 import json
 
@@ -109,3 +109,23 @@ def getEventById(request, id):
         return JsonResponse(dict, safe=False)
 
 # def newEvent(request, name, startTime, endTime, address)
+def getLots(request):
+    response = {}
+
+    lots = []
+    for lot in Lot.objects.all():
+        #spot_list = lot.spot_set()
+        dict = {
+            'name': lot.name,
+            'address': lot.address,
+        #    'spots': spot_list,
+            'openTime': lot.openTime,
+            'closeTime': lot.closeTime,
+            'capacityActual': lot.capacityActual,
+            'capacityMax': lot.capacityMax,
+        }
+        lots.append(dict)
+
+    response['lots'] = lots
+
+    return JsonResponse(response, safe=False)

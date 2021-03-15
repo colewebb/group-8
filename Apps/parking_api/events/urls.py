@@ -10,4 +10,5 @@ urlpatterns = [
     path('events/<int:id>/', views.getEventById, name='getEventById'),
     path('newCustomer/<str:firstName>&<str:lastName>&<str:email>&<str:password>&<int:credits>/',
         views.newCustomer, name='newCustomer'),
+    path('lots/', views.getLots, name='getLots'),
 ]

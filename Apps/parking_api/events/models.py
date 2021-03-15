@@ -29,7 +29,7 @@ class Lot(models.Model):
     name = models.CharField(max_length=30)
     # distance
     address = models.CharField(max_length=30)
-    spots = [] # list of Spots
+    # spots = [] # list of Spots
     openTime = models.DateTimeField()
     closeTime = models.DateTimeField()
     capacityActual = models.IntegerField()
@@ -78,11 +78,11 @@ class Reservation(models.Model):
 
 
 class Spot(models.Model):
+    lot = models.ForeignKey(Lot, on_delete=models.CASCADE)
     size = models.CharField(max_length=30)
     cost = models.DecimalField(max_digits=100, decimal_places=2)
-    lot = models.ForeignKey(Lot, on_delete=models.CASCADE)
-    reserved = models.BooleanField(default=False)
-    reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)
+    # reserved = models.BooleanField(default=False)
+    # reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)
 
 class Event(models.Model):
     name = models.CharField(max_length=30)
