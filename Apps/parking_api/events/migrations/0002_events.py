@@ -51,10 +51,10 @@ def populate_db(apps, schema_editor):
 
 
     #sample spots
-    #Spot = apps.get_model('events', 'Spot')
+    Spot = apps.get_model('events', 'Spot')
 
-    #s1 = Spot(lot=l1, size='small', cost=7.50)
-    #s1.save()
+    s1 = Spot(lot=l1, size='small', cost=7.50)
+    s1.save()
 
 
 class Migration(migrations.Migration):
