@@ -40,6 +40,7 @@ def populate_db(apps, schema_editor):
             capacityActual=500,
             capacityMax=500)
     l1.save()
+    l1.events.add(e1,e2)
 
     l2 = Lot(name='Blue Terrace',
             address='850 E Aggie BLVD Logan, UT 84321',
