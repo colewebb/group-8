@@ -137,3 +137,34 @@ def getLots(request):
     response['lots'] = lots
 
     return JsonResponse(response, safe=False)
+
+def getLotById(request, id):
+    try:
+        lot = Lot.objects.get(pk=id)
+
+        spot_list = []
+        for spot in lot.spot_set.all():
+            spot_dict = {
+                'size': spot.size,
+                'cost': spot.cost,
+                'reserved': spot.reserved,
+            }
+            spot_list.append(spot_dict)
+
+        dict = {
+            'name': lot.name,
+            'address': lot.address,
+            'spots': spot_list,
+            'openTime': lot.openTime,
+            'closeTime': lot.closeTime,
+            'capacityActual': lot.capacityActual,
+            'capacityMax': lot.capacityMax,
+        }
+
+        return JsonResponse(dict, safe=False)
+    except (Lot.DoesNotExist):
+        dict = {
+            'error': f"Could not find the lot corresponding with the given id '{id}'"
+        }
+
+        return JsonResponse(dict, safe=False)

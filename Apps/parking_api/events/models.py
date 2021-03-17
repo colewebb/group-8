@@ -2,8 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-# Many methods have yet to be implemented.
-
 class User(models.Model):
     firstName = models.CharField(max_length=30)
     lastName = models.CharField(max_length=30)
@@ -78,7 +76,7 @@ class Reservation(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     spot = models.ForeignKey(Spot, on_delete=models.CASCADE)
     date = models.DateTimeField()
-
+    
     # def confirmReservation():
     #     pass
     #

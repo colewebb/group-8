@@ -11,4 +11,5 @@ urlpatterns = [
     path('newCustomer/<str:firstName>&<str:lastName>&<str:email>&<str:password>&<int:credits>/',
         views.newCustomer, name='newCustomer'),
     path('lots/', views.getLots, name='getLots'),
+    path('lots/<int:id>/', views.getLotById, name='getLotById'),
 ]
