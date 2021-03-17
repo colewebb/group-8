@@ -31,8 +31,8 @@ def populate_db(apps, schema_editor):
     l1 = Lot.objects.get(pk=1)
     l2 = Lot.objects.get(pk=2)
     # one spot from each
-    s1 = l1.spot_set.get(pk=1)
-    s2 = l2.spot_set.get(pk=1)
+    s1 = l1.spot_set.all()[0]
+    s2 = l2.spot_set.all()[0]
 
     # create reservations
     r1 = Reservation(customer=c1,
@@ -40,13 +40,17 @@ def populate_db(apps, schema_editor):
                      date=e1.startTime
     )
     r1.save()
+    s1.reserved = True
+    s1.save()
 
     r2 = Reservation(customer=c2,
                      spot=s2,
-                     date=e2.starTime
+                     date=e2.startTime
     )
     r2.save()
 
+    s2.reserved = True
+    s2.save()
 
 class Migration(migrations.Migration):
     dependencies = [

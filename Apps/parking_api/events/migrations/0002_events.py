@@ -13,6 +13,7 @@ def populate_db(apps, schema_editor):
                    password='password',
                    credits=2000
     )
+    lo1.save()
 
     # example events
     Event = apps.get_model('events', 'Event')
@@ -57,34 +58,34 @@ def populate_db(apps, schema_editor):
     Spot = apps.get_model('events', 'Spot')
 
     for i in range(5):
-        small1 = Spot(l1,
+        small1 = Spot(lot=l1,
                       size='small',
                       cost=10,
                       )
         small1.save()
-        small2 = Spot(l2,
+        small2 = Spot(lot=l2,
                       size='small',
                       cost=10,
                       )
         small2.save()
     for i in range(5):
-        medium1 = Spot(l1,
+        medium1 = Spot(lot=l1,
                       size='medium',
                       cost=10,
                       )
         medium1.save()
-        medium2 = Spot(l2,
+        medium2 = Spot(lot=l2,
                       size='medium',
                       cost=10,
                       )
         medium2.save()
     for i in range(5):
-        large1 = Spot(l1,
+        large1 = Spot(lot=l1,
                       size='large',
                       cost=10,
                       )
         large1.save()
-        large2 = Spot(l2,
+        large2 = Spot(lot=l2,
                       size='large',
                       cost=10,
                       )
