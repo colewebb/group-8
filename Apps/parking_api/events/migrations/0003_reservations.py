@@ -2,34 +2,51 @@ from django.db import migrations
 import datetime
 
 def populate_db(apps, schema_editor):
-    # example Customers
+    Event = apps.get_model('events', 'Event')
+    Lot = apps.get_model('events', 'Lot')
+    Spot = apps.get_model('events', 'Spot')
     Customer = apps.get_model('events', 'Customer')
-
-    c1 = Customer(firstName='Jeremy', lastName='Young', email='young.a.jeremy@gmail.com',
-                    password='password', credits=500)
-    c1.save()
-
-    c2 = Customer(firstName='Cole', lastName='Webb', email='email@gmail.com',
-                    password='password', credits=500)
-    c2.save()
-
     Reservation = apps.get_model('events', 'Reservation')
 
+    c1 = Customer(firstName='Jeremy',
+                  lastName='Young',
+                  email='yaj@gmail.com',
+                  password='password',
+                  credits='100'
+    )
+    c1.save()
+
+    c2 = Customer(firstName='Logan',
+                  lastName='Smith',
+                  email='ls@gmail.com',
+                  password='password',
+                  credits='100'
+    )
+    c2.save()
+
+    # Grab Events
+    e1 = Event.objects.get(pk=1)
+    e2 = Event.objects.get(pk=2)
+    # Lots
+    l1 = Lot.objects.get(pk=1)
+    l2 = Lot.objects.get(pk=2)
+    # one spot from each
+    s1 = l1.spot_set.get(pk=1)
+    s2 = l2.spot_set.get(pk=1)
+
+    # create reservations
     r1 = Reservation(customer=c1,
-                    spotType='small',
-                    date=datetime.datetime.now(),
-                    address='home',
-                    price=20.00,
-                    reservation_id=1)
+                     spot=s1,
+                     date=e1.startTime
+    )
     r1.save()
 
-    r2 = Reservation(customer=c1,
-                    spotType='medium',
-                    date=datetime.datetime.now(),
-                    address='school',
-                    price=30.00,
-                    reservation_id=2)
+    r2 = Reservation(customer=c2,
+                     spot=s2,
+                     date=e2.starTime
+    )
     r2.save()
+
 
 class Migration(migrations.Migration):
     dependencies = [

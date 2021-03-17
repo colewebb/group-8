@@ -22,17 +22,17 @@ class Customer(User):
     # Customer may have many reservations, but this is defined
     # in the Reservation class
 
-    def addCredits(x):
-        credits += x
+    # def addCredits(x):
+    #     credits += x
 
 class LotOwner(User):
     credits = models.DecimalField(max_digits=100, decimal_places=2)
 
-    def addLotToEvent(lot, event):
-        pass
-
-    def addNewLot(lot):
-        pass
+    # def addLotToEvent(lot, event):
+    #     pass
+    #
+    # def addNewLot(lot):
+    #     pass
 
 class Administrator(User):
     credits = models.DecimalField(max_digits=100, decimal_places=2)
@@ -43,14 +43,14 @@ class Event(models.Model):
     endTime = models.DateTimeField()
     address = models.CharField(max_length=30)
 
-    def createEvent():
-        pass
-
-    def notifyLotOwners():
-        pass
+    # def createEvent():
+    #     pass
+    #
+    # def notifyLotOwners():
+    #     pass
 
 class Lot(models.Model):
-    #owner = models.ForeignKey(LotOwner, on_delete=models.CASCADE)
+    owner = models.ForeignKey(LotOwner, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     address = models.CharField(max_length=30)
     openTime = models.DateTimeField()
@@ -59,14 +59,14 @@ class Lot(models.Model):
     capacityMax = models.IntegerField()
     events = models.ManyToManyField(Event)
 
-    def addReservation(reservation):
-        pass
+    # def addReservation(reservation):
+    #     pass
 
 class Attendant(User):
     lot = models.ForeignKey(Lot, on_delete=models.CASCADE)
 
-    def verify(reservation):
-        pass
+    # def verify(reservation):
+    #     pass
 
 class Spot(models.Model):
     lot = models.ForeignKey(Lot, on_delete=models.CASCADE)
@@ -79,14 +79,14 @@ class Reservation(models.Model):
     spot = models.ForeignKey(Spot, on_delete=models.CASCADE)
     date = models.DateTimeField()
 
-    def confirmReservation():
-        pass
-
-    def cancelReservation():
-        pass
-
-    def getQRCode():
-        pass
+    # def confirmReservation():
+    #     pass
+    #
+    # def cancelReservation():
+    #     pass
+    #
+    # def getQRCode():
+    #     pass
 
 
 class Root(models.Model):
