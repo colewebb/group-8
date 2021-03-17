@@ -25,30 +25,8 @@ class Customer(User):
     def addCredits(x):
         credits += x
 
-class Lot(models.Model):
-    name = models.CharField(max_length=30)
-    # distance
-    address = models.CharField(max_length=30)
-    # spots = [] # list of Spots
-    openTime = models.DateTimeField()
-    closeTime = models.DateTimeField()
-    capacityActual = models.IntegerField()
-    capacityMax = models.IntegerField()
-    reservations = [] # list of reservations
-    attendants = [] # list of attendants
-
-    def addReservation(reservation):
-        pass
-
-class Attendant(User):
-    lot = models.ForeignKey(Lot, on_delete=models.CASCADE)
-
-    def verify(reservation):
-        pass
-
 class LotOwner(User):
     credits = models.DecimalField(max_digits=100, decimal_places=2)
-    lots = [] # list of Lots
 
     def addLotToEvent(lot, event):
         pass
@@ -59,13 +37,47 @@ class LotOwner(User):
 class Administrator(User):
     credits = models.DecimalField(max_digits=100, decimal_places=2)
 
+class Event(models.Model):
+    name = models.CharField(max_length=30)
+    startTime = models.DateTimeField()
+    endTime = models.DateTimeField()
+    address = models.CharField(max_length=30)
+
+    def createEvent():
+        pass
+
+    def notifyLotOwners():
+        pass
+
+class Lot(models.Model):
+    #owner = models.ForeignKey(LotOwner, on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    address = models.CharField(max_length=30)
+    openTime = models.DateTimeField()
+    closeTime = models.DateTimeField()
+    capacityActual = models.IntegerField()
+    capacityMax = models.IntegerField()
+    events = models.ManyToManyField(Event)
+
+    def addReservation(reservation):
+        pass
+
+class Attendant(User):
+    lot = models.ForeignKey(Lot, on_delete=models.CASCADE)
+
+    def verify(reservation):
+        pass
+
+class Spot(models.Model):
+    lot = models.ForeignKey(Lot, on_delete=models.CASCADE)
+    size = models.CharField(max_length=30)
+    cost = models.DecimalField(max_digits=100, decimal_places=2)
+    reserved = models.BooleanField(default=False)
+
 class Reservation(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    spotType = models.CharField(max_length=30)
+    spot = models.ForeignKey(Spot, on_delete=models.CASCADE)
     date = models.DateTimeField()
-    address = models.CharField(max_length=30)
-    price = models.DecimalField(max_digits=100, decimal_places=2)
-    reservation_id = models.IntegerField()
 
     def confirmReservation():
         pass
@@ -76,27 +88,6 @@ class Reservation(models.Model):
     def getQRCode():
         pass
 
-
-class Spot(models.Model):
-    lot = models.ForeignKey(Lot, on_delete=models.CASCADE)
-    size = models.CharField(max_length=30)
-    cost = models.DecimalField(max_digits=100, decimal_places=2)
-    # reserved = models.BooleanField(default=False)
-    # reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)
-
-class Event(models.Model):
-    name = models.CharField(max_length=30)
-    startTime = models.DateTimeField()
-    endTime = models.DateTimeField()
-    address = models.CharField(max_length=30)
-    # Event has a one-to-many relationship with lots, but this
-    # is defined in the Lot class, not in the Event class
-
-    def createEvent():
-        pass
-
-    def notifyLotOwners():
-        pass
 
 class Root(models.Model):
     events = [] # list of events

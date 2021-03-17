@@ -114,11 +114,19 @@ def getLots(request):
 
     lots = []
     for lot in Lot.objects.all():
-        #spot_list = lot.spot_set()
+        spot_list = []
+        for spot in lot.spot_set.all():
+            spot_dict = {
+                'size': spot.size,
+                'cost': spot.cost,
+                'reserved': spot.reserved,
+            }
+            spot_list.append(spot_dict)
+
         dict = {
             'name': lot.name,
             'address': lot.address,
-        #    'spots': spot_list,
+            'spots': spot_list,
             'openTime': lot.openTime,
             'closeTime': lot.closeTime,
             'capacityActual': lot.capacityActual,
