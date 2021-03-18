@@ -37,7 +37,8 @@ def populate_db(apps, schema_editor):
     # create reservations
     r1 = Reservation(customer=c1,
                      spot=s1,
-                     date=e1.startTime
+                     date=e1.startTime,
+                     event=e1
     )
     r1.save()
     s1.reserved = True
@@ -45,7 +46,8 @@ def populate_db(apps, schema_editor):
 
     r2 = Reservation(customer=c2,
                      spot=s2,
-                     date=e2.startTime
+                     date=e2.startTime,
+                     event=e2
     )
     r2.save()
 

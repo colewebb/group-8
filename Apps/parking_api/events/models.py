@@ -76,7 +76,8 @@ class Reservation(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     spot = models.ForeignKey(Spot, on_delete=models.CASCADE)
     date = models.DateTimeField()
-    
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+
     # def confirmReservation():
     #     pass
     #
