@@ -3,13 +3,12 @@ from django.db import models
 # Create your models here.
 
 class User(models.Model):
-    firstName = models.CharField(max_length=30)
-    lastName = models.CharField(max_length=30)
+    username = models.CharField(max_length=30)
     email = models.EmailField(max_length=254)
     password = models.CharField(max_length=30) # probably change this later to something more secure
 
-    def __str__(self):
-        return "(" + self.lastName + ", " + self.firstName + ") " + self.email
+    # def __str__(self):
+    #     return "(" + self.lastName + ", " + self.firstName + ") " + self.email
 
     # this is necessary for abstract inheritance in Django
     class Meta:

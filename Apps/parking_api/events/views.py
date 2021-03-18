@@ -22,8 +22,7 @@ def getUsers(request):
             reservation_list.append(res_dict)
 
         customer_dictionary = {
-            'firstName': customer.firstName,
-            'lastName': customer.lastName,
+            'username': customer.username,
             'email': customer.email,
             'reservations': reservation_list,
         }
@@ -46,8 +45,7 @@ def getUserById(request, id):
             reservation_list.append(res_dict)
 
         user_dictionary = {
-            'firstName': user.firstName,
-            'lastName': user.lastName,
+            'username': user.username,
             'email': user.email,
             'reservations': reservation_list,
         }

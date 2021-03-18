@@ -7,8 +7,7 @@ def populate_db(apps, schema_editor):
     # Lot owner
     LotOwner = apps.get_model('events', 'LotOwner')
 
-    lo1 = LotOwner(firstName='Supreme',
-                   lastName='Owner',
+    lo1 = LotOwner(username='supremeowner',
                    email='supreme.owner@gmail.com',
                    password='password',
                    credits=2000

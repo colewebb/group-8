@@ -8,16 +8,14 @@ def populate_db(apps, schema_editor):
     Customer = apps.get_model('events', 'Customer')
     Reservation = apps.get_model('events', 'Reservation')
 
-    c1 = Customer(firstName='Jeremy',
-                  lastName='Young',
+    c1 = Customer(username='jyoung',
                   email='yaj@gmail.com',
                   password='password',
                   credits='100'
     )
     c1.save()
 
-    c2 = Customer(firstName='Logan',
-                  lastName='Smith',
+    c2 = Customer(username='lsmith',
                   email='ls@gmail.com',
                   password='password',
                   credits='100'
