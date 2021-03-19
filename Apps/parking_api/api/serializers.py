@@ -1,5 +1,16 @@
 from rest_framework import serializers
 from api.models import Event, Lot, Spot, Reservation
+from django.contrib.auth.models import User
+
+
+class UserSerializer(serializers.ModelSerializer):
+    reservations = serializers.PrimaryKeyRelatedField(many=True, queryset=Reservation.objects.all())
+    lots = serializers.PrimaryKeyRelatedField(many=True, queryset=Lot.objects.all())
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'reservations', 'lots']
+
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,6 +19,8 @@ class EventSerializer(serializers.ModelSerializer):
 
 
 class LotSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+
     class Meta:
         model = Lot
         fields = ['owner', 'name', 'address', 'created', 'openTime',
@@ -22,6 +35,8 @@ class SpotSerializer(serializers.ModelSerializer):
 
 
 class ReservationSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+
     class Meta:
         model = Reservation
-        fields = ['user', 'spot', 'date', 'event', 'created']
+        fields = ['owner', 'spot', 'date', 'event', 'created']

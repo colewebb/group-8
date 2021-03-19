@@ -33,7 +33,7 @@ class Spot(models.Model):
 
 
 class Reservation(models.Model):
-    user = models.ForeignKey('auth.User', related_name='reservations', on_delete=models.CASCADE)
+    owner = models.ForeignKey('auth.User', related_name='reservations', on_delete=models.CASCADE)
     spot = models.ForeignKey(Spot, related_name='reservation', on_delete=models.CASCADE)
     date = models.DateTimeField()
     event = models.ForeignKey(Event, related_name='event', on_delete=models.CASCADE)
