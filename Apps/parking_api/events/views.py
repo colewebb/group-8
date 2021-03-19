@@ -9,37 +9,35 @@ import json
 def getUsers(request):
 
     response_dictionary = []
-    for customer in Customer.objects.all():
+    for user in User.objects.all():
         reservation_list = []
-        for reservation in customer.reservation_set.all():
+        for reservation in user.reservation_set.all():
             res_dict = {
-                'spotType': reservation.spotType,
+                # 'spotType': reservation.spotType,
                 'date': str(reservation.date),
-                'address': reservation.address,
-                'price': reservation.price,
+                # 'address': reservation.address,
+                # 'price': reservation.price,
                 'id': reservation.id,
             }
             reservation_list.append(res_dict)
 
-        customer_dictionary = {
-            'username': customer.username,
-            'email': customer.email,
+        user_dict = {
+            'username': user.username,
+            'email': user.email,
             'reservations': reservation_list,
         }
-        response_dictionary.append(customer_dictionary)
+        response_dictionary.append(user_dict)
 
     return JsonResponse(response_dictionary, safe=False)
 
 def getUserById(request, id):
     try:
-        user = Customer.objects.get(pk=id)
+        user = User.objects.get(pk=id)
 
         reservation_list = []
         for reservation in user.reservation_set.all():
             res_dict = {
                 'date': str(reservation.date),
-                'address': reservation.address,
-                'price': reservation.price,
                 'id': reservation.id,
             }
             reservation_list.append(res_dict)
@@ -51,7 +49,7 @@ def getUserById(request, id):
         }
 
         return JsonResponse(user_dictionary, safe=False)
-    except (Customer.DoesNotExist):
+    except (User.DoesNotExist):
         error = {
             'error': f"Could not find the user corresponding with the given id '{id}'"
         }
@@ -66,6 +64,22 @@ def newCustomer(request):
     #
     # # eventually, return something else
     # return getUsers(request)
+    username = request.POST['username']
+    email = request.POST['email']
+    password = request.POST['password']
+    role = request.POST['role']
+    credits = 500
+
+    if username == "" or email == "" or password = "":
+
+
+    new_customer = User(username=username,
+                            email=email,
+                            password=password,
+                            role=role,
+                            credits=credits
+                            )
+    new_customer.save()
 
 def getEvents(request):
     response = {}

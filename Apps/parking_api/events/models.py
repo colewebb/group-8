@@ -6,33 +6,12 @@ class User(models.Model):
     username = models.CharField(max_length=30)
     email = models.EmailField(max_length=254)
     password = models.CharField(max_length=30) # probably change this later to something more secure
+    role = models.CharField(max_length=30)
+
+    credits = models.DecimalField(max_digits=100, decimal_places=2)
 
     # def __str__(self):
     #     return "(" + self.lastName + ", " + self.firstName + ") " + self.email
-
-    # this is necessary for abstract inheritance in Django
-    class Meta:
-        abstract = True
-
-class Customer(User):
-    credits = models.DecimalField(max_digits=100, decimal_places=2)
-    # Customer may have many reservations, but this is defined
-    # in the Reservation class
-
-    # def addCredits(x):
-    #     credits += x
-
-class LotOwner(User):
-    credits = models.DecimalField(max_digits=100, decimal_places=2)
-
-    # def addLotToEvent(lot, event):
-    #     pass
-    #
-    # def addNewLot(lot):
-    #     pass
-
-class Administrator(User):
-    credits = models.DecimalField(max_digits=100, decimal_places=2)
 
 class Event(models.Model):
     name = models.CharField(max_length=30)
@@ -47,7 +26,7 @@ class Event(models.Model):
     #     pass
 
 class Lot(models.Model):
-    owner = models.ForeignKey(LotOwner, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     address = models.CharField(max_length=30)
     openTime = models.DateTimeField()
@@ -72,7 +51,7 @@ class Spot(models.Model):
     reserved = models.BooleanField(default=False)
 
 class Reservation(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
     spot = models.ForeignKey(Spot, on_delete=models.CASCADE)
     date = models.DateTimeField()
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
