@@ -12,6 +12,9 @@ class Event(models.Model):
     endTime = models.DateTimeField()
     address = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name + ", " + self.address + " (" + str(self.startTime) + ")"
+
 
 class Lot(models.Model):
     owner = models.ForeignKey('auth.User', related_name='lots', on_delete=models.CASCADE)
@@ -24,12 +27,18 @@ class Lot(models.Model):
     capacityMax = models.IntegerField()
     events = models.ManyToManyField(Event)
 
+    def __str__(self):
+        return self.name + ", " + self.address + " (" + self.owner.username + ")"
+
 
 class Spot(models.Model):
     lot = models.ForeignKey(Lot, related_name='spots', on_delete=models.CASCADE)
     size = models.CharField(choices=SPOT_SIZES, max_length=30)
     cost = models.DecimalField(max_digits=100, decimal_places=2)
     reserved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return SPOT_SIZES[int(self.size)][1] + " " + str(self.id) + " (" + self.lot.name + ")"
 
 
 class Reservation(models.Model):
@@ -38,6 +47,9 @@ class Reservation(models.Model):
     date = models.DateTimeField()
     event = models.ForeignKey(Event, related_name='event', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.owner.username + " (" + str(self.event) + ")"
 
 
 # class Root(models.Model):
