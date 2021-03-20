@@ -1,0 +1,122 @@
+.root-container {
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+}
+
+.card-login {
+  background-color: #FFF;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding-bottom: 40px;
+  border-radius: 8px;
+  -webkit-box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+   box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+ }
+
+.card-login-title {
+  color: #FFF;
+  padding: 20px;
+  margin-top: -40px;
+  padding-bottom: 40px;
+  text-align: center;
+  font-size: 32px;
+}
+
+.card-login-sub-title {
+  color: #0F2439;
+  padding: 20px;
+  padding-top: 10px;
+  padding-bottom: 4px;
+  text-align: center;
+}
+
+form {
+  width: 340px;
+}
+
+.input-field {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 12px;
+
+}
+.input-field:hover {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 22px;
+}
+
+.secure {
+  -webkit-text-security: ;
+}
+
+.input-field input {
+  width: 100%;
+  height: 36px;
+  text-align: left;
+  border-radius: 12;
+  font-size: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-width: 0;
+  border-radius: 22px;
+  background-color: #DEDEDE;
+}
+
+.input-field .input-submit {
+  margin-left: 20;
+  margin-right: 20;
+  height: 34px;
+  text-align: center;
+  color: #000;
+  border-width: 0;
+  border-radius: 22px;
+  background-color: #0F2439;
+  color: #FFF;
+  font-size: 20px;
+  font-weight: 600;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  margin-left: 34px;
+  margin-right: 34px;
+}
+
+.forgot-password-container{
+  display: flex;
+  justify-content: center;
+}
+
+.forgot-password {
+  font-size: 12px;
+  text-align: center;
+  color: #a6a6a6;
+  margin-top: -16px;
+  margin-bottom: 34px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -20px;
+
+}
+
+img {
+  padding-top: 20px;
+  width: 150px;
+  height: 142px;
+}
+
+.card-top {
+  background-color: #0F2439;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+
+}
