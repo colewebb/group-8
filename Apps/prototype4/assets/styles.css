@@ -1,0 +1,19 @@
+header {
+    background-color: navy;
+    color: white;
+}
+header a {
+    color: white;
+}
+body {
+    font-family: sans-serif;
+}
+footer {
+    text-align: center;
+}
+#pass {
+    background-color: lightgreen;
+}
+#fail {
+    background-color: lightpink;
+}

@@ -103,14 +103,22 @@ devices. The root is located at
 
 Prototype 2, located at [/Apps/prototype2](https://github.com/colewebb/group-8/tree/master/Apps/prototype2),
 is a high-fidelity design rendered by Cole in HTML/CSS. This prototype suggests
-an interface for adding a new lot to the website from lot owner/administrator
+an interface for administrating lots from the lot owner/administrator
 perspective. This prototype contains experimental support for dark mode (to 
 enable, switch from ```assets/styles.css``` to ```assets/styles-dark.css```).
 The root is located at 
 [/Apps/prototype2/index.html](https://github.com/colewebb/group-8/tree/master/Apps/prototype2/index.html).
+This interface can be modified slightly to administrate the entire site.
 
 Prototype 3, located at [/Apps/prototype3](https://github.com/colewebb/group-8/tree/master/Apps/prototype3),
 is a low-fidelity design rendered by Cole in ASCII art. This prototype is an
 alternative design for the customer interface, focused on a mobile interface 
 with notes on adaptivity for other form factors. The root is located at 
 [/Apps/prototype3/index.md](https://github.com/colewebb/group-8/tree/master/Apps/prototype3/index.md).
+
+Prototype 4, located at [/Apps/prototype4](https://github.com/colewebb/group-8/tree/master/Apps/prototype4),
+is a high-fidelity design rendered by Cole in HTML/CSS. This prototype suggests 
+an interface for checking if a reservation is valid. This can be done by inputting
+a reservation ID, or by scanning a QR code containing a link to the reservation. 
+The root is located at
+[/Apps/prototype4/index.html](https://github.com/colewebb/group-8/tree/master/Apps/prototype4/index.html)

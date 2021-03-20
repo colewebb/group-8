@@ -1,0 +1,86 @@
+<head>
+    <title>Lot Onboarding</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Big Blue Parking Genie Lot Onboarding</h1>
+        <p>Signed in as Prototype User. (not you? <a href="./logout.html">logout</a>)</p>
+    </header>
+    <div id="instructions">
+        <h2>Instructions</h2>
+        <p>
+            Please answer the following questions about your lot. For reference,
+        </p>
+        <ul>
+            <li>A small spot is large enough for a motorcycle or a lawn chair.</li>
+            <li>A medium spot is large enough for a full-sized car, with enough space to get out.</li>
+            <li>An oversize spot must measure at least 10 feet wide by 20 feet long.</li>
+            <li>Utah State University, in return for providing and promoting this platform, takes a 25% commission of all sales.</li>
+        </ul>
+    </div>
+    <h2>Form</h2>
+    <form>
+        <label>
+            Name of lot:
+            <input type="text" name="lot-name" value="">
+        </label>
+        <br><br>
+        <label>
+            Lot address:
+            <br>
+            <textarea name="address" rows="3" cols="80"></textarea>
+        </label>
+        <br><br>
+        <label>
+            Please describe your lot.
+            <br>
+            <textarea name="description" rows="8" cols="80"></textarea>
+        </label>
+        <br><br>
+        <label>
+            How many small spots do you have?
+            <input type="number" name="small-spots-count" value="">
+        </label>
+        <br><br>
+        <label>
+            How many medium spots do you have?
+            <input type="number" name="medium-spots-count" value="">
+        </label>
+        <br><br>
+        <label>
+            How many oversize spots do you have?
+            <input type="number" name="large-spots-count" value="">
+        </label>
+        <br><br>
+        <label>
+            How much will you charge for a small spot? $
+            <input type="number" name="small-spots-cost" value="">
+        </label>
+        <br><br>
+        <label>
+            How much will you charge for a medium spot? $
+            <input type="number" name="medium-spots-value" value="">
+        </label>
+        <br><br>
+        <label>
+            How much will you charge for a large spot? $
+            <input type="number" name="large-spots-value" value="">
+        </label>
+        <br><br>
+        <label>
+            Is your parking lot within a two-minute walk of public transit? Check if yes.
+            <input type="checkbox" name="near-transit" value="">
+        </label>
+        <br><br>
+        <label>
+            Is this lot USU-affiliated? Check if yes.
+            <input type="checkbox" name="usu-affiliated" value="">
+        </label>
+        <br><br>
+        <button type="button" name="submit">Submit</button>
+    </form>
+    <footer>
+        <p>Big Blue Parking Genie is a service of Utah State University and is subject to their terms of service.</p>
+    </footer>
+</body>
