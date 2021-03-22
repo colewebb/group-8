@@ -3,7 +3,7 @@ from .models import Event, Lot, Spot, Reservation
 from .serializers import EventSerializer, LotSerializer, SpotSerializer, ReservationSerializer
 from .serializers import UserSerializer
 from django.contrib.auth.models import User
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly, IsSuperUser
 
 
 # Create your views here.
@@ -28,7 +28,8 @@ class EventList(generics.ListCreateAPIView):
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsSuperUser]
 
 
 class LotList(generics.ListCreateAPIView):
