@@ -1,0 +1,19 @@
+.lots-grid-view-root {
+  justify-content: center;
+  display: flex;
+}
+
+.lots-grid-view {
+  max-width: 500px;
+  align-self: center;
+}
+
+.events-view-root {
+  background-color: #f2f2f2;
+}
+
+.lots-list-title-text {
+  color: #0F2439;
+  font-size: 30px;
+  margin-bottom: 0px;
+}

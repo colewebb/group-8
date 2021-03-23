@@ -1,15 +1,73 @@
-import React from "react";
+import React, { useState, useEffect }  from "react";
 import reactDom from "react-dom";
-import "./lots.styles.css";
 import Menu from '../../navigation/menu';
+import "./lots.styles.css";
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
+import LotCard from './lotCard.js';
+import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
 export default function Lots(props) {
+  const classes = useStyles();
+
+  function FormRow() {
+     return (
+       <React.Fragment>
+         <Grid item xs={12}>
+           <LotCard />
+         </Grid>
+
+       </React.Fragment>
+     );
+   }
+
   return (
-    <div>
+    <div class="events-view-root">
       <Menu />
-      <div>
-        <h1>Lots</h1>
-      </div>
+      <Breadcrumbs />
+      <h2 class="lots-list-title-text">Lots:</h2>
+      <div class="lots-grid-view-root">
+        <div class="lots-grid-view">
+          <Grid container spacing={1}>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+         </Grid>
+       </div>
+     </div>
     </div>
   );
 }
