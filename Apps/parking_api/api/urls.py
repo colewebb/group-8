@@ -4,14 +4,7 @@ from . import views
 
 app_name = 'events'
 urlpatterns = [
-    # path('users/', views.getUsers, name='getUsers'),
-    # path('users/<int:id>/', views.getUserById, name='getUserById'),
-    # path('events/', views.getEvents, name='getEvents'),
-    # path('events/<int:id>/', views.getEventById, name='getEventById'),
-    # path('newCustomer/', views.newCustomer, name='newCustomer'),
-    # path('lots/', views.getLots, name='getLots'),
-    # path('lots/<int:id>/', views.getLotById, name='getLotById'),
-    # path('users/<int:id>/reservations/', views.getUserReservations, name='getUserReservations'),
+    # general views
     path('events/', views.EventList.as_view()),
     path('events/<int:pk>/', views.EventDetail.as_view()),
     path('lots/', views.LotList.as_view()),
@@ -22,6 +15,9 @@ urlpatterns = [
     path('reservations/<int:pk>/', views.ReservationDetail.as_view()),
     path('users/', views.UserList.as_view()),
     path('users/<int:pk>/', views.UserDetail.as_view()),
+
+    # more specific views
+    path('users/<int:id>/reservations/', views.UserReservationList.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
