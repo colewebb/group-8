@@ -38,7 +38,7 @@ export default function Login(props) {
       <div className="card-login">
         <div className="card-top">
           <div className="image-container">
-            <img src={logo} alt="Utah State logo" />
+            <img className="login_image" src={logo} alt="Utah State logo" />
           </div>
           <h2 className="card-login-title">Event Parking</h2>
         </div>

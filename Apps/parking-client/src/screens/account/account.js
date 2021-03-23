@@ -1,14 +1,14 @@
 import React from "react";
 import reactDom from "react-dom";
-import "./reservation.styles.css";
+import "./account.styles.css";
 import Menu from '../../navigation/menu';
 
-export default function Reservation(props) {
+export default function Account(props) {
   return (
     <div>
       <Menu />
       <div>
-        <h1>Reservation</h1>
+        <h1>Account</h1>
       </div>
     </div>
   );
