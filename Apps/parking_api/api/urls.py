@@ -9,15 +9,13 @@ urlpatterns = [
     path('events/<int:pk>/', views.EventDetail.as_view()),
     path('lots/', views.LotList.as_view()),
     path('lots/<int:pk>/', views.LotDetail.as_view()),
-    path('spots/', views.SpotList.as_view()),
-    path('spots/<int:pk>/', views.SpotDetail.as_view()),
     path('reservations/', views.ReservationList.as_view()),
     path('reservations/<int:pk>/', views.ReservationDetail.as_view()),
     path('users/', views.UserList.as_view()),
     path('users/<int:pk>/', views.UserDetail.as_view()),
 
     # more specific views
-    path('users/<int:id>/reservations/', views.UserReservationList.as_view()),
+    # path('users/<int:id>/reservations/', views.UserReservationList.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

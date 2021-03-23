@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import Event, Lot, Spot, Reservation
+from api.models import Event, Lot, Reservation
 from django.contrib.auth.models import User
 
 
@@ -15,7 +15,8 @@ class UserSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['name', 'created', 'startTime', 'endTime', 'address']
+        fields = ['name', 'created', 'startTime', 'endTime', 'address', 'lots',
+                  'reservations']
 
 
 class LotSerializer(serializers.ModelSerializer):
@@ -24,14 +25,10 @@ class LotSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lot
         fields = ['owner', 'name', 'address', 'created', 'openTime',
-                  'closeTime', 'capacityActual', 'capacityMax',
+                  'closeTime', 'costSmall', 'capSmallActual', 'capSmallMax',
+                  'costMedium', 'capMediumActual', 'capMediumMax',
+                  'costLarge', 'capLargeActual', 'capLargeMax',
                   'events']
-
-
-class SpotSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Spot
-        fields = ['lot', 'size', 'cost', 'reserved']
 
 
 class ReservationSerializer(serializers.ModelSerializer):
@@ -39,4 +36,4 @@ class ReservationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reservation
-        fields = ['owner', 'spot', 'date', 'event', 'created']
+        fields = ['owner', 'lot', 'size', 'date', 'event', 'created']

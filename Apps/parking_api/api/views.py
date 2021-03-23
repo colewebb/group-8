@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions
-from .models import Event, Lot, Spot, Reservation
-from .serializers import EventSerializer, LotSerializer, SpotSerializer, ReservationSerializer
+from .models import Event, Lot, Reservation
+from .serializers import EventSerializer, LotSerializer, ReservationSerializer
 from .serializers import UserSerializer
 from django.contrib.auth.models import User
 from .permissions import IsOwnerOrReadOnly, IsSuperUserOrReadOnly
@@ -47,18 +47,6 @@ class LotDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = LotSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly]
-
-
-class SpotList(generics.ListCreateAPIView):
-    queryset = Spot.objects.all()
-    serializer_class = SpotSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
-
-class SpotDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Spot.objects.all()
-    serializer_class = SpotSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class ReservationList(generics.ListCreateAPIView):
