@@ -12,51 +12,51 @@ export default function Cart(props) {
     <div>
       <Menu />
       <Breadcrumbs />
-      <div class="cart-view-root">
-          <div class="cart-options-container">
-            <div class="cart-options-row">
-              <div class="cart-option-active">
+      <div className="cart-view-root">
+          <div className="cart-options-container">
+            <div className="cart-options-row">
+              <div className="cart-option-active">
                 <img className="cart-otions-icon" src={rvIcon} alt="rv icon" />
-                <p class="cart-option-title-text-active">Small</p>
-                <p class="cart-option-price-text-active">$8.00</p>
+                <p className="cart-option-title-text-active">Small</p>
+                <p className="cart-option-price-text-active">$8.00</p>
               </div>
-              <div class="cart-option-inactive">
+              <div className="cart-option-inactive">
                 <img className="cart-otions-icon" src={rvIconInactive} alt="rv icon" />
-                <p class="cart-option-title-text-inactive">Medium</p>
-                <p class="cart-option-price-text-inactive">$9.00</p>
+                <p className="cart-option-title-text-inactive">Medium</p>
+                <p className="cart-option-price-text-inactive">$9.00</p>
               </div>
-              <div class="cart-option-inactive">
+              <div className="cart-option-inactive">
                 <img className="cart-otions-icon" src={rvIconInactive} alt="rv icon" />
-                <p class="cart-option-title-text-inactive">Large</p>
-                <p class="cart-option-price-text-inactive">$12.00</p>
+                <p className="cart-option-title-text-inactive">Large</p>
+                <p className="cart-option-price-text-inactive">$12.00</p>
               </div>
             </div>
           </div>
-          <div class="cart-details-container">
-            <div class="cart-details-divider" />
-            <div class="cart-details-row">
-              <p class="cart-details-text">Lot:</p>
-              <p class="cart-details-text">Spectrum South Lot</p>
+          <div className="cart-details-container">
+            <div className="cart-details-divider" />
+            <div className="cart-details-row">
+              <p className="cart-details-text">Lot:</p>
+              <p className="cart-details-text">Spectrum South Lot</p>
             </div>
-            <div class="cart-details-row">
-              <p class="cart-details-text">Distance:</p>
-              <p class="cart-details-text">5 minutes walking</p>
+            <div className="cart-details-row">
+              <p className="cart-details-text">Distance:</p>
+              <p className="cart-details-text">5 minutes walking</p>
             </div>
-            <div class="cart-details-row">
-              <p class="cart-details-text">Open:</p>
-              <p class="cart-details-text">6:00 PM</p>
+            <div className="cart-details-row">
+              <p className="cart-details-text">Open:</p>
+              <p className="cart-details-text">6:00 PM</p>
             </div>
-            <div class="cart-details-divider" />
-            <div><iframe  class="cart-map-container" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Dee%20glem%20smith%20spectrum+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div>
-            <div class="space-30" />
-            <div class="cart-details-divider" />
-            <div class="cart-details-row">
-              <p class="cart-total-text">TOTAL</p>
-              <p class="cart-total-text">$8.00</p>
+            <div className="cart-details-divider" />
+            <div><iframe  className="cart-map-container" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Dee%20glem%20smith%20spectrum+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div>
+            <div className="space-30" />
+            <div className="cart-details-divider" />
+            <div className="cart-details-row">
+              <p className="cart-total-text">TOTAL</p>
+              <p className="cart-total-text">$8.00</p>
             </div>
-            <div class="cart-purchase-button-container">
-              <div class="cart-purchase-button">
-                <p class="cart-purchase-button-text">Purchase</p>
+            <div className="cart-purchase-button-container">
+              <div className="cart-purchase-button">
+                <p classNames="cart-purchase-button-text">Purchase</p>
               </div>
             </div>
           </div>

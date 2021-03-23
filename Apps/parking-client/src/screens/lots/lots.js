@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function Lots(props) {
-  const classes = useStyles();
 
   function FormRow() {
      return (
@@ -34,12 +33,12 @@ export default function Lots(props) {
    }
 
   return (
-    <div class="events-view-root">
+    <div className="events-view-root">
       <Menu />
       <Breadcrumbs />
-      <h2 class="lots-list-title-text">Lots:</h2>
-      <div class="lots-grid-view-root">
-        <div class="lots-grid-view">
+      <h2 className="lots-list-title-text">Lots:</h2>
+      <div className="lots-grid-view-root">
+        <div className="lots-grid-view">
           <Grid container spacing={1}>
            <Grid container item xs={12} spacing={0}>
              <FormRow />

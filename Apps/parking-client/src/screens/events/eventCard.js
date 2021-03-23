@@ -13,8 +13,8 @@ export default function EventCard(props) {
         </div>
         <p className="event-card-date-text">03/04/2021 - 7:00pm</p>
         <p className="event-card-location-text">Dee Glen Smith Spectrum</p>
-        <a class="overlay" href="/lots">
-          <a class="reserve-text" href="/lots">Reseve Now</a>
+        <a className="overlay" href="/lots">
+          <a className="reserve-text" href="/lots">Reseve Now</a>
         </a>
       </div>
     </div>
