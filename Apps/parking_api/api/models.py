@@ -43,7 +43,7 @@ class Reservation(models.Model):
     lot = models.ForeignKey(Lot, related_name='reservation', on_delete=models.CASCADE)
     size = models.CharField(choices=SPOT_SIZES, max_length=30)
     date = models.DateTimeField()
-    event = models.ForeignKey(Event, related_name='event', on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, related_name='reservations', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

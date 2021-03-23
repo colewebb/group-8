@@ -4,11 +4,14 @@ import datetime
 def populate_db(apps, schema_editor):
     # set up some users
     from django.contrib.auth.models import User
-    user1 = User(username='austin', email='asmith@gmail.com', password='password')
+    user1 = User.objects.create_user(username='austin', email='asmith@gmail.com', password='password',
+                 last_login=datetime.datetime.now())
     user1.save()
-    user2 = User(username='cole', email='cwebb@gmail.com', password='password')
+    user2 = User.objects.create_user(username='cole', email='cwebb@gmail.com', password='password',
+                 last_login=datetime.datetime.now())
     user2.save()
-    user3 = User(username='logan', email='lsmith@gmail.com', password='password')
+    user3 = User.objects.create_user(username='logan', email='lsmith@gmail.com', password='password',
+                 last_login=datetime.datetime.now())
     user3.save()
 
     # set up some events
@@ -27,7 +30,11 @@ def populate_db(apps, schema_editor):
                )
     e2.save()
 
-    superuser = User.objects.get(username='jeremy')
+    superuser = User.objects.create_superuser(username='jeremy',
+            email='young.a.jeremy@gmail.com',
+            password='password',
+            last_login=datetime.datetime.now())
+    superuser.save()
     # set up some lots (only createable by superusers)
     from api.models import Lot
     l1 = Lot(owner=superuser,
@@ -46,8 +53,8 @@ def populate_db(apps, schema_editor):
              capLargeActual=10,
              capLargeMax=10
     )
-    l1.events.add(e1)
     l1.save()
+    l1.events.add(e1)
 
     l2 = Lot(owner=superuser,
              name='Gr8 Parking',
@@ -65,8 +72,8 @@ def populate_db(apps, schema_editor):
              capLargeActual=0,
              capLargeMax=0
     )
-    l2.events.add(e1, e2)
     l2.save()
+    l2.events.add(e1, e2)
 
 class Migration(migrations.Migration):
 
