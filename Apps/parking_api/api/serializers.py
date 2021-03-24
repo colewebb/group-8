@@ -15,7 +15,7 @@ class UserSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['name', 'created', 'startTime', 'endTime', 'address', 'lot_set',
+        fields = ['id', 'name', 'created', 'startTime', 'endTime', 'address', 'lot_set',
                   'reservations']
 
 
@@ -24,7 +24,7 @@ class LotSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Lot
-        fields = ['owner', 'name', 'address', 'created', 'openTime',
+        fields = ['id', 'owner', 'name', 'address', 'created', 'openTime',
                   'closeTime', 'costSmall', 'capSmallActual', 'capSmallMax',
                   'costMedium', 'capMediumActual', 'capMediumMax',
                   'costLarge', 'capLargeActual', 'capLargeMax',
@@ -36,4 +36,4 @@ class ReservationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reservation
-        fields = ['owner', 'lot', 'size', 'date', 'event', 'created']
+        fields = ['id', 'owner', 'lot', 'size', 'date', 'event', 'created']
