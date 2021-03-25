@@ -1,12 +1,22 @@
 from rest_framework import generics, permissions
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from .models import Event, Lot, Reservation
 from .serializers import EventSerializer, LotSerializer, ReservationSerializer
-from .serializers import UserSerializer
+from .serializers import UserSerializer, RegisterSerializer
 from django.contrib.auth.models import User
 from .permissions import IsOwnerOrReadOnly, IsSuperUserOrReadOnly
 
+from django.shortcuts import get_object_or_404
+
 
 # Create your views here.
+
+
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer
 
 
 class UserList(generics.ListAPIView):
@@ -31,6 +41,14 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = EventSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,
                           IsSuperUserOrReadOnly]
+
+
+@api_view(['GET'])
+def lotsOfEventList(request, pk):
+    queryset = get_object_or_404(Event, pk=pk).lot_set.all()
+    serializer = LotSerializer(queryset, many=True)
+    return Response(serializer.data)
+
 
 
 class LotList(generics.ListCreateAPIView):

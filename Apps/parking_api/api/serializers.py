@@ -3,6 +3,24 @@ from api.models import Event, Lot, Reservation
 from django.contrib.auth.models import User
 
 
+class RegisterSerializer(serializers.ModelSerializer):
+
+    password = serializers.CharField(write_only=True, required=True)
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'password']
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            password=validated_data['password'],
+        )
+        user.save()
+
+        return user
+
+
 class UserSerializer(serializers.ModelSerializer):
     reservations = serializers.PrimaryKeyRelatedField(many=True, queryset=Reservation.objects.all())
     lots = serializers.PrimaryKeyRelatedField(many=True, queryset=Lot.objects.all())
