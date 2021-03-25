@@ -1,38 +1,38 @@
-</html>
-  <head>
-    <title>Lot Administration</title>
-    <link rel="stylesheet" href="assets/styles.css">
-  </head>
-  <body>
-    <header>
-        <h1>Big Blue Parking Genie Lot Administration Panel</h1>
-        <p>Signed in as Prototype User. (not you? <a href="./logout.html">logout</a>)</p>
-    </header>
-    <table>
-      <tr>
-        <td>
-          <p>Total Balance:</p>
-          <h1>$720.00</h1>
-        </td>
-        <td>
-          <p>Your lots:</p>
-          <ul>
-            <li>
-              <a href="./lot.html">Aggie Village Yellow Lot, 56/60 spots available</a>
-            </li>
-            <li>
-              <a href="./lot.html">1800 N Driveway, 0/1 spots available</a>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </table>
-    <a href="./add-new.html">Add a new lot</a>
-    <br>
-    <a href="./modify.html">Modify or remove a lot</a>
-    <br>
-    <a href="./transfer-balance.html">Transfer balance</a>
-    <br>
-    <a href="help.html">Help</a>
-  </body>
+{% load static %}
+<html>
+    <head>
+        <title>Lot Administration Portal</title>
+        <link rel="stylesheet" href="{% static 'lotOwners/styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Big Blue Parking Genie Lot Administration Panel</h1>
+            <p>Signed in as Prototype User. (not you? <a href="./logout">logout</a>)</p>
+        </header>
+        <table>
+            <tr>
+                <td>
+                    <p>Total balance:</p>
+                    <h1>$720.00</h1>
+                </td>
+                <td>
+                    <p>Your lots:</p>
+                    {% if lots %}
+                        <ul>
+                            {% for lot in lots %}
+                            <li><a href="/lot/{{ lot.id }}/">{{ lot.name }}</a>, {{ lot.capacityActual }}/{{ lot.capacityMax }} spots available (<a href="./modify-lot/{{ lot.id }}">Modify/Remove</a>)</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No lots available. <a href="./add-new">Add one...</a></p>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        <a href="./add-new">Add a new lot</a>
+        <br>
+        <a href="./transfer-balance">Transfer balance</a>
+        <br>
+        <a href="./help">Help</a>
+    </body>
 </html>

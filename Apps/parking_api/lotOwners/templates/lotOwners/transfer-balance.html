@@ -1,31 +1,14 @@
-</html>
-  <head>
-    <title>Balance Transfer</title>
-    <link rel="stylesheet" href="assets/styles.css">
-  </head>
-  <body>
-    <header>
-        <h1>Big Blue Parking Genie Balance Transfer</h1>
-        <p>Signed in as Prototype User. (not you? <a href="./logout.html">logout</a>)</p>
-    </header>
-    <p>Balance:</p>
-    <h1>$720.00</h1>
-    <form>
-        <label>
-            How much do you want to transfer?
-            <input type="number" name="transfer-amount" value="">
-        </label>
-        <br><br>
-        <label>
-            Where do you want the money to go?
-            <select name="which-lot" id="which-lot">
-                <option value="" disabled selected>Choose...</option>
-                <option value="bank">My Bank Account</option>
-                <option value="debit">My Debit Card</option>
-            </select>
-        </label>
-        <br><br>
-        <button type="button" name="submit">Submit</button>
-    </form>
-  </body>
+{% load static %}
+<html>
+    <head>
+        <title>Transfer Balance</title>
+        <link rel="stylesheet" href="{% static 'lotOwners/styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Big Blue Parking Genie Lot Administration Panel</h1>
+            <p>Signed in as Prototype User. (not you? <a href="./logout">logout</a>)</p>
+        </header>
+        <p>Transfer balance</p>
+    </body>
 </html>
