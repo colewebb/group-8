@@ -29,6 +29,13 @@ class UserDetail(generics.RetrieveAPIView):
     serializer_class = UserSerializer
 
 
+@api_view(['GET'])
+def reservationsOfUserList(request, pk):
+    queryset = get_object_or_404(User, pk=pk).reservations.all()
+    serializer = ReservationSerializer(queryset, many=True)
+    return Response(serializer.data)
+
+
 class EventList(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
@@ -48,7 +55,6 @@ def lotsOfEventList(request, pk):
     queryset = get_object_or_404(Event, pk=pk).lot_set.all()
     serializer = LotSerializer(queryset, many=True)
     return Response(serializer.data)
-
 
 
 class LotList(generics.ListCreateAPIView):

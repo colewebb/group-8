@@ -17,6 +17,7 @@ urlpatterns = [
     # more specific views
     # path('users/<int:id>/reservations/', views.UserReservationList.as_view()),
     path('events/<int:pk>/lots/', views.lotsOfEventList),
+    path('users/<int:pk>/reservations/', views.reservationsOfUserList),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
