@@ -126,3 +126,4 @@ npm-debug.log
 .env
 .DS_Store
 .eslintcache
+Apps/parking-client/yarn.lock
