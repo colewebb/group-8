@@ -2,6 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from api.models import Lot
 
+def urlEncodeAddress(path):
+    path = path.split(" ")
+    toReturn = ""
+    for bit in path:
+        toReturn = toReturn + bit + "+"
+    return toReturn[:-1]
+
 def index(request):
     lots = Lot.objects.order_by('id')
     context = {'lots': lots}
@@ -9,8 +16,8 @@ def index(request):
 
 
 def lotDetail(request, lot_id):
-    lot = Lot.objects[lot_id]
-    context = {'lot': lot}
+    lot = Lot.objects.get(pk=lot_id)
+    context = {'lot': lot, 'safeAddress': urlEncodeAddress(lot.address)}
     return render(request, 'lotOwners/lot.html', context)
 
 
@@ -28,7 +35,7 @@ def logout(request):
 
 
 def modifyLot(request, lot_id):
-    lot = Lot.objects[lot_id]
+    lot = Lot.objects.get(pk=lot_id)
     context = {'lot': lot}
     return render(request, 'lotOwners/modify.html', context)
 

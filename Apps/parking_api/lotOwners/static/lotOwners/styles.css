@@ -11,3 +11,6 @@ body {
 footer {
     text-align: center;
 }
+textarea {
+    font-family: sans-serif;
+}

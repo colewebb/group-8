@@ -9,6 +9,65 @@
             <h1>Big Blue Parking Genie Lot Administration Panel</h1>
             <p>Signed in as Prototype User. (not you? <a href="./logout">logout</a>)</p>
         </header>
-        <p>Add new lot</p>
+    <form>
+        <label>
+            Name of lot:
+            <input type="text" name="lot-name" value="">
+        </label>
+        <br><br>
+        <label>
+            Lot address:
+            <br>
+            <textarea name="address" rows="3" cols="80"></textarea>
+        </label>
+        <br><br>
+        <label>
+            Please describe your lot.
+            <br>
+            <textarea name="description" rows="8" cols="80"></textarea>
+        </label>
+        <br><br>
+        <label>
+            How many small spots do you have?
+            <input type="number" name="small-spots-count" value="">
+        </label>
+        <br><br>
+        <label>
+            How many medium spots do you have?
+            <input type="number" name="medium-spots-count" value="">
+        </label>
+        <br><br>
+        <label>
+            How many oversize spots do you have?
+            <input type="number" name="large-spots-count" value="">
+        </label>
+        <br><br>
+        <label>
+            How much will you charge for a small spot? $
+            <input type="number" name="small-spots-cost" value="">
+        </label>
+        <br><br>
+        <label>
+            How much will you charge for a medium spot? $
+            <input type="number" name="medium-spots-value" value="">
+        </label>
+        <br><br>
+        <label>
+            How much will you charge for a large spot? $
+            <input type="number" name="large-spots-value" value="">
+        </label>
+        <br><br>
+        <label>
+            Is your parking lot within a two-minute walk of public transit? Check if yes.
+            <input type="checkbox" name="near-transit" value="">
+        </label>
+        <br><br>
+        <label>
+            Is this lot USU-affiliated? Check if yes.
+            <input type="checkbox" name="usu-affiliated" value="">
+        </label>
+        <br><br>
+        <button type="button" name="submit">Submit</button>
+    </form>
     </body>
 </html>
