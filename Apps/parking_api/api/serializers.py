@@ -24,10 +24,11 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     reservations = serializers.PrimaryKeyRelatedField(many=True, queryset=Reservation.objects.all())
     lots = serializers.PrimaryKeyRelatedField(many=True, queryset=Lot.objects.all())
+    balance = 50
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'reservations', 'lots']
+        fields = ['id', 'username', 'reservations', 'lots', 'balance']
 
 
 class EventSerializer(serializers.ModelSerializer):
