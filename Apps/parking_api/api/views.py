@@ -2,8 +2,8 @@ from rest_framework import generics, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Event, Lot, Reservation
-from .serializers import EventSerializer, LotSerializer, ReservationSerializer
+from .models import Event, Lot, AssignedLot, Reservation
+from .serializers import EventSerializer, LotSerializer, AssignedLotSerializer, ReservationSerializer
 from .serializers import UserSerializer, RegisterSerializer
 from django.contrib.auth.models import User
 from .permissions import IsOwnerOrReadOnly, IsSuperUserOrReadOnly
@@ -52,8 +52,8 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
 
 @api_view(['GET'])
 def lotsOfEventList(request, pk):
-    queryset = get_object_or_404(Event, pk=pk).lot_set.all()
-    serializer = LotSerializer(queryset, many=True)
+    queryset = get_object_or_404(Event, pk=pk).assigned_lots.all()
+    serializer = AssignedLotSerializer(queryset, many=True)
     return Response(serializer.data)
 
 
@@ -73,6 +73,22 @@ class LotDetail(generics.RetrieveUpdateDestroyAPIView):
                           IsOwnerOrReadOnly]
 
 
+class ALotList(generics.ListCreateAPIView):
+    queryset = AssignedLot.objects.all()
+    serializer_class = AssignedLotSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
+
+
+class ALotDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = AssignedLot.objects.all()
+    serializer_class = AssignedLotSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
+
+
 class ReservationList(generics.ListCreateAPIView):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
@@ -80,6 +96,7 @@ class ReservationList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+        # update the count for the lot associated with the reservation
 
 
 class ReservationDetail(generics.RetrieveUpdateDestroyAPIView):
