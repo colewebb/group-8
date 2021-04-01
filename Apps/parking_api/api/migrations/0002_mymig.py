@@ -13,6 +13,9 @@ def populate_db(apps, schema_editor):
     user3 = User.objects.create_user(username='logan', email='lsmith@gmail.com', password='password',
                  last_login=datetime.datetime.now())
     user3.save()
+    user4 = User.objects.create_user(username='LotOwner', email='iownlots@gmail.com', password='password',
+                last_login=datetime.datetime.now())
+    user4.save()
 
     # set up some events
     from api.models import Event
@@ -35,45 +38,97 @@ def populate_db(apps, schema_editor):
             password='password',
             last_login=datetime.datetime.now())
     superuser.save()
-    # set up some lots (only createable by superusers)
-    from api.models import Lot
-    l1 = Lot(owner=superuser,
+
+    # set up some lots
+    from api.models import ParentLot
+    p1 = ParentLot(owner=superuser,
              name='Maverik Stadium',
              address='875 Douglas Dr, Logan, UT 84321',
              created=datetime.datetime.now(),
-             openTime=datetime.time(8, 0, 0),
-             closeTime=datetime.time(23, 0, 0),
-             costSmall=10.00,
-             capSmallActual=80,
              capSmallMax=80,
-             costMedium=15.00,
-             capMediumActual=40,
              capMediumMax=40,
-             costLarge=20.00,
-             capLargeActual=10,
              capLargeMax=10
     )
-    l1.save()
-    l1.events.add(e1)
+    p1.save()
 
-    l2 = Lot(owner=superuser,
+    p2 = ParentLot(owner=user4,
              name='Gr8 Parking',
              address='Engineering Lab Walkway, Logan, UT 84321',
              created=datetime.datetime.now(),
-             openTime=datetime.time(8, 0, 0),
-             closeTime=datetime.time(23, 0, 0),
-             costSmall=10.00,
-             capSmallActual=30,
              capSmallMax=30,
-             costMedium=15.00,
-             capMediumActual=5,
              capMediumMax=5,
-             costLarge=20.00,
-             capLargeActual=0,
              capLargeMax=0
     )
+    p2.save()
+
+
+    # assign some lots to events
+    from api.models import Lot
+    l1 = Lot(
+        owner=superuser,
+        openTime=datetime.time(17, 0, 0),
+        closeTime=datetime.time(23, 0, 0),
+        costSmall=10.00,
+        capSmallActual=50,
+        capSmallMax=50,
+        costMedium=15.00,
+        capMediumActual=20,
+        capMediumMax=20,
+        costLarge=20.00,
+        capLargeActual=10,
+        capLargeMax=10,
+        event=e1,
+        parentLot=p1
+    )
+    l1.save()
+
+    l2 = Lot(
+        owner=user4,
+        openTime=datetime.time(14, 0, 0),
+        closeTime=datetime.time(22, 0, 0),
+        costSmall=10.00,
+        capSmallActual=50,
+        capSmallMax=50,
+        costMedium=15.00,
+        capMediumActual=20,
+        capMediumMax=20,
+        costLarge=0,
+        capLargeActual=0,
+        capLargeMax=0,
+        event=e2,
+        parentLot=p2
+    )
     l2.save()
-    l2.events.add(e1, e2)
+
+    # a couple reservations
+    from api.models import Reservation
+    r1 = Reservation(
+        owner=user1,
+        lot=l2,
+        size='small',
+        date=l2.event.startTime,
+        event=l2.event
+    )
+    r1.save()
+
+    # this step is only necessary in the migrations, performed automatically
+    # upon api call
+    l2.capSmallActual -= 1
+    l2.save()
+
+    r2 = Reservation(
+        owner=user3,
+        lot=l1,
+        size='medium',
+        date=l1.event.startTime,
+        event=l1.event
+    )
+    r2.save()
+
+    # this step is only necessary in the migrations, performed automatically
+    # upon api call
+    l1.capMediumActual -= 1
+    l1.save()
 
 class Migration(migrations.Migration):
 
