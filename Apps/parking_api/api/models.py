@@ -16,8 +16,8 @@ class Event(models.Model):
         return self.name + ", " + self.address + " (" + str(self.startTime) + ")"
 
 
-class Lot(models.Model):
-    owner = models.ForeignKey('auth.User', related_name='lots', on_delete=models.CASCADE)
+class ParentLot(models.Model):
+    owner = models.ForeignKey('auth.User', related_name='parent_lots', on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     address = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
@@ -29,13 +29,14 @@ class Lot(models.Model):
     capLargeMax = models.IntegerField()
 
     def __str__(self):
-        return self.name + ", " + self.address + " (" + self.owner.username + ")"
+        return "Parent: " + self.name + ", " + self.address + " (" + self.owner.username + ")"
 
 
-class AssignedLot(models.Model):
+class Lot(models.Model):
     # capacities for each spot type
     # open time for the lot for the specific event (can be default 30 min before event)
     # points to a 'concrete' lot and an event
+    owner = models.ForeignKey('auth.User', related_name='lots', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     openTime = models.TimeField()
     closeTime = models.TimeField()
@@ -48,13 +49,15 @@ class AssignedLot(models.Model):
     costLarge = models.DecimalField(max_digits=100, decimal_places=2)
     capLargeActual = models.IntegerField()
     capLargeMax = models.IntegerField()
-    event = models.ForeignKey(Event, related_name='assigned_lots', on_delete=models.CASCADE)
-    parentLot = models.ForeignKey(Lot, related_name='assignments', on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, related_name='lots', on_delete=models.CASCADE)
+    parentLot = models.ForeignKey(ParentLot, related_name='assignments', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.parentLot.name + ", " + self.parentLot.address + " (" + self.owner.username + ")"
 
 class Reservation(models.Model):
     owner = models.ForeignKey('auth.User', related_name='reservations', on_delete=models.CASCADE)
-    lot = models.ForeignKey(AssignedLot, related_name='reservation', on_delete=models.CASCADE)
+    lot = models.ForeignKey(Lot, related_name='reservation', on_delete=models.CASCADE)
     size = models.CharField(choices=SPOT_SIZES, max_length=30)
     date = models.DateTimeField()
     event = models.ForeignKey(Event, related_name='reservations', on_delete=models.CASCADE)
