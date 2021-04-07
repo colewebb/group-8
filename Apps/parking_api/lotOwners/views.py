@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from api.models import Lot
+from django.contrib.auth import authenticate, login as auth_login
+from api.models import Lot, ParentLot
 from .forms import *
 
 def urlEncodeAddress(path):
@@ -11,13 +12,13 @@ def urlEncodeAddress(path):
     return toReturn[:-1]
 
 def index(request):
-    lots = Lot.objects.order_by('id')
+    lots = ParentLot.objects.order_by('id')
     context = {'lots': lots}
     return render(request, 'lotOwners/index.html', context)
 
 
 def lotDetail(request, lot_id):
-    lot = Lot.objects.get(pk=lot_id)
+    lot = ParentLot.objects.get(pk=lot_id)
     context = {'lot': lot, 'safeAddress': urlEncodeAddress(lot.address)}
     return render(request, 'lotOwners/lot.html', context)
 
@@ -37,12 +38,20 @@ def logout(request):
 
 
 def login(request):
-    form = Login()
-    return render(request, 'lotOwners/login.html', {'form': form})
+    if request.method == "GET":
+        form = Login()
+        return render(request, 'lotOwners/login.html', {'form': form})
+    elif request.method == "POST":
+        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+        if user is not None:
+            auth_login(request, user)
+            return redirect('./')
+        else:
+            return render(request, 'lotOwners/logout.html')
 
 
 def modifyLot(request, lot_id):
-    lot = Lot.objects.get(pk=lot_id)
+    lot = ParentLot.objects.get(pk=lot_id)
     form = ModifyLotForm(initial={
         'lotName': lot.name,
         'lotAddress': lot.address
