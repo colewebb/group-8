@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from api.models import Lot
+from .forms import *
 
 def urlEncodeAddress(path):
     path = path.split(" ")
@@ -22,7 +23,8 @@ def lotDetail(request, lot_id):
 
 
 def addNew(request):
-    return render(request, "lotOwners/add-new.html")
+    form = NewLotForm()
+    return render(request, "lotOwners/add-new.html", {'form': form})
 
 
 def help(request):
@@ -34,11 +36,24 @@ def logout(request):
     return render(request, 'lotOwners/logout.html')
 
 
+def login(request):
+    form = Login()
+    return render(request, 'lotOwners/login.html', {'form': form})
+
+
 def modifyLot(request, lot_id):
     lot = Lot.objects.get(pk=lot_id)
-    context = {'lot': lot}
+    form = ModifyLotForm(initial={
+        'lotName': lot.name,
+        'lotAddress': lot.address
+    })
+    context = {
+        'lot': lot,
+        'form': form
+    }
     return render(request, 'lotOwners/modify.html', context)
 
 
 def transferBalance(request):
-    return render(request, 'lotOwners/transfer-balance.html')
+    form = TransferBalance()
+    return render(request, 'lotOwners/transfer-balance.html', {'form': form})

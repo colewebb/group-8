@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout', views.logout, name="logout"),
     path('modify-lot/<int:lot_id>', views.modifyLot, name="modifyLot"),
     path('transfer-balance', views.transferBalance, name="transferBalance"),
+    path('login', views.login, name="login"),
 ]
