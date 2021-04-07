@@ -26,5 +26,6 @@ class Login(forms.Form):
     password = forms.CharField(label="Password", widget=forms.PasswordInput)
 
 class TransferBalance(forms.Form):
+    c = [('bank', 'My Bank Account'),("debit", "My debit card")]
     transferAmount = forms.FloatField(label="How much do you want to transfer?")
-    transferLocation = forms.CharField(label="Where do you want to transfer to?", widget=forms.Select(choices=[('bank', 'My Bank Account'),("debit", "My debit card")]))
+    transferLocation = forms.CharField(label="Where do you want to transfer to?", widget=forms.Select(choices=c))
