@@ -1,6 +1,24 @@
 from rest_framework import serializers
-from api.models import Event, Lot, Spot, Reservation
+from api.models import Event, Lot, ParentLot, Reservation
 from django.contrib.auth.models import User
+
+
+class RegisterSerializer(serializers.ModelSerializer):
+
+    password = serializers.CharField(write_only=True, required=True)
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'password']
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            password=validated_data['password'],
+        )
+        user.save()
+
+        return user
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -15,7 +33,8 @@ class UserSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ['name', 'created', 'startTime', 'endTime', 'address']
+        fields = ['id', 'name', 'created', 'startTime', 'endTime', 'address', 'lots',
+                  'reservations']
 
 
 class LotSerializer(serializers.ModelSerializer):
@@ -23,15 +42,29 @@ class LotSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Lot
-        fields = ['owner', 'name', 'address', 'created', 'openTime',
-                  'closeTime', 'capacityActual', 'capacityMax',
-                  'events']
+        fields = [
+            'id',
+            'owner',
+            'created',
+            'openTime', 'closeTime',
+            'costSmall', 'capSmallActual', 'capSmallMax',
+            'costMedium', 'capMediumActual', 'capMediumMax',
+            'costLarge', 'capLargeActual', 'capLargeMax',
+            'event',
+            'parentLot'
+        ]
 
 
-class SpotSerializer(serializers.ModelSerializer):
+class PLotSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+
     class Meta:
-        model = Spot
-        fields = ['lot', 'size', 'cost', 'reserved']
+        model = ParentLot
+        fields = ['id', 'owner', 'name', 'address', 'created',
+                  'capSmallMax',
+                  'capMediumMax',
+                  'capLargeMax',
+                  ]
 
 
 class ReservationSerializer(serializers.ModelSerializer):
@@ -39,4 +72,4 @@ class ReservationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reservation
-        fields = ['owner', 'spot', 'date', 'event', 'created']
+        fields = ['id', 'owner', 'lot', 'size', 'date', 'event', 'created']

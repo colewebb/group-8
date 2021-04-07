@@ -5,6 +5,8 @@
 
 ```$ pip install djangorestframework```
 
+```$ pip install django-cors-headers```
+
 
 ## Running instructions
  ```$ python manage.py runserver```
