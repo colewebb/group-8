@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from api.models import Lot, ParentLot
 from .forms import *
 
@@ -12,32 +12,42 @@ def urlEncodeAddress(path):
     return toReturn[:-1]
 
 def index(request):
+    if not request.user.is_authenticated:
+        return redirect('./login')
     lots = ParentLot.objects.order_by('id')
-    context = {'lots': lots}
+    context = {'lots': lots, 'user': request.user}
     return render(request, 'lotOwners/index.html', context)
 
 
 def lotDetail(request, lot_id):
+    if not request.user.is_authenticated:
+        return redirect('./login')
     lot = ParentLot.objects.get(pk=lot_id)
-    context = {'lot': lot, 'safeAddress': urlEncodeAddress(lot.address)}
+    context = {'lot': lot, 'user': request.user, 'safeAddress': urlEncodeAddress(lot.address)}
     return render(request, 'lotOwners/lot.html', context)
 
 
 def addNew(request):
+    if not request.user.is_authenticated:
+        return redirect('./login')
     form = NewLotForm()
-    return render(request, "lotOwners/add-new.html", {'form': form})
+    return render(request, "lotOwners/add-new.html", {'form': form, 'user': request.user})
 
 
 def help(request):
-    return render(request, 'lotOwners/help.html')
+    if not request.user.is_authenticated:
+        return redirect('./login')
+    return render(request, 'lotOwners/help.html', {'user': request.user})
 
 
 def logout(request):
-    # logout token bullcrap will need to go here
+    auth_logout(request)
     return render(request, 'lotOwners/logout.html')
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('./')
     if request.method == "GET":
         form = Login()
         return render(request, 'lotOwners/login.html', {'form': form})
@@ -51,6 +61,8 @@ def login(request):
 
 
 def modifyLot(request, lot_id):
+    if not request.user.is_authenticated:
+        return redirect('./login')
     lot = ParentLot.objects.get(pk=lot_id)
     form = ModifyLotForm(initial={
         'lotName': lot.name,
@@ -58,11 +70,14 @@ def modifyLot(request, lot_id):
     })
     context = {
         'lot': lot,
-        'form': form
+        'form': form,
+        'user': request.user
     }
     return render(request, 'lotOwners/modify.html', context)
 
 
 def transferBalance(request):
+    if not request.user.is_authenticated:
+        return redirect('./login')
     form = TransferBalance()
-    return render(request, 'lotOwners/transfer-balance.html', {'form': form})
+    return render(request, 'lotOwners/transfer-balance.html', {'form': form, 'user': request.user})

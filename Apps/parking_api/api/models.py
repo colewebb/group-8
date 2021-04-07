@@ -1,11 +1,23 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 SPOT_SIZES = [('small', 'small'), ('medium', 'medium'), ('large', 'large')]
 
 
+class LotOwner(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    balance = models.FloatField()
+
+
 class Event(models.Model):
+    class Meta:
+        permissions = [
+            ("create", "can create an event"),
+            ("update", "can modify an event"),
+            ("delete", "can delete an event"),
+        ]
     name = models.CharField(max_length=30)
     created = models.DateTimeField(auto_now_add=True)
     startTime = models.DateTimeField()
@@ -17,6 +29,12 @@ class Event(models.Model):
 
 
 class ParentLot(models.Model):
+    class Meta:
+        permissions = {
+            ("create", "can create a parent lot"),
+            ("update", "can modify a parent lot"),
+            ("delete", "can delete a parent lot"),
+        }
     owner = models.ForeignKey('auth.User', related_name='parent_lots', on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     address = models.CharField(max_length=100)
@@ -36,6 +54,12 @@ class Lot(models.Model):
     # capacities for each spot type
     # open time for the lot for the specific event (can be default 30 min before event)
     # points to a 'concrete' lot and an event
+    class Meta:
+        permissions = {
+            ("create", "can create a lot assignment"),
+            ("update", "can modify a lot assignment"),
+            ("delete", "can delete a lot assignment"),
+        }
     owner = models.ForeignKey('auth.User', related_name='lots', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     openTime = models.TimeField()
@@ -56,6 +80,11 @@ class Lot(models.Model):
         return self.parentLot.name + ", " + self.parentLot.address + " (" + self.owner.username + ")"
 
 class Reservation(models.Model):
+    class Meta:
+        permissions = {
+            ("create", "can create a reservation"),
+            ("delete", "can delete a reservation"),
+        }
     owner = models.ForeignKey('auth.User', related_name='reservations', on_delete=models.CASCADE)
     lot = models.ForeignKey(Lot, related_name='reservation', on_delete=models.CASCADE)
     size = models.CharField(choices=SPOT_SIZES, max_length=30)
