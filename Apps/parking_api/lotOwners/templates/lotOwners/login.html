@@ -1,0 +1,17 @@
+{% load static %}
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="stylesheet" href="{% static 'lotOwners/styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Big Blue Parking Genie Lot Administration Panel</h1>
+        </header>
+        <h2>Login</h2>
+        <form action="../../api" method="post">
+            {{ form.as_p }}
+            <button type="submit" name="submit">Submit</button>
+        </form>
+    </body>
+</html>
