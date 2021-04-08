@@ -14,7 +14,7 @@ def urlEncodeAddress(path):
 def index(request):
     if not request.user.is_authenticated:
         return redirect('./login')
-    lots = ParentLot.objects.order_by('id')
+    lots = ParentLot.objects.filter(owner=request.user)
     context = {'lots': lots, 'user': request.user}
     return render(request, 'lotOwners/index.html', context)
 
@@ -23,6 +23,8 @@ def lotDetail(request, lot_id):
     if not request.user.is_authenticated:
         return redirect('./login')
     lot = ParentLot.objects.get(pk=lot_id)
+    if lot.owner != request.user:
+        return redirect('../login')
     context = {'lot': lot, 'user': request.user, 'safeAddress': urlEncodeAddress(lot.address)}
     return render(request, 'lotOwners/lot.html', context)
 
@@ -64,6 +66,8 @@ def modifyLot(request, lot_id):
     if not request.user.is_authenticated:
         return redirect('./login')
     lot = ParentLot.objects.get(pk=lot_id)
+    if lot.owner != request.user:
+        return redirect('../login')
     form = ModifyLotForm(initial={
         'lotName': lot.name,
         'lotAddress': lot.address
