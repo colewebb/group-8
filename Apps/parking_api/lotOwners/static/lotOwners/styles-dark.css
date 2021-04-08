@@ -1,0 +1,23 @@
+header {
+    background-color: navy;
+    color: white;
+}
+header a {
+    color: white;
+}
+body {
+    font-family: sans-serif;
+    background-color: black;
+    color: white;
+}
+input {
+    background-color: black;
+    color: white;
+}
+textarea {
+    background-color: black;
+    color: white;
+}
+footer {
+    text-align: center;
+}

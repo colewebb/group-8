@@ -1,0 +1,24 @@
+.breadcrumbs-view-root {
+}
+
+.breadcrumbs-sub-view {
+  padding: 20px;
+  padding-bottom: 0px;
+}
+
+.breadcrumbs-event-text {
+  color: #0F2439;
+  padding-bottom: 0px;
+}
+
+.breadcrumbs-location-text {
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: -10px;
+}
+
+.breadcrumbs-time-text {
+  font-weight: 500;
+  margin-top: -10px;
+
+}
