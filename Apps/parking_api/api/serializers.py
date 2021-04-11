@@ -39,12 +39,14 @@ class EventSerializer(serializers.ModelSerializer):
 
 class LotSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
+    name = serializers.ReadOnlyField(source='parentLot.name')
 
     class Meta:
         model = Lot
         fields = [
             'id',
             'owner',
+            'name',
             'created',
             'openTime', 'closeTime',
             'costSmall', 'capSmallActual', 'capSmallMax',
