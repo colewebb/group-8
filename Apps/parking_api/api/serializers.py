@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import Event, Lot, ParentLot, Reservation
+from api.models import Event, Lot, ParentLot, Reservation, Balance
 from django.contrib.auth.models import User
 
 
@@ -24,7 +24,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     reservations = serializers.PrimaryKeyRelatedField(many=True, queryset=Reservation.objects.all())
     lots = serializers.PrimaryKeyRelatedField(many=True, queryset=Lot.objects.all())
-    balance = 50
+    balance = serializers.PrimaryKeyRelatedField(many=False, queryset=Balance.objects.all())
 
     class Meta:
         model = User

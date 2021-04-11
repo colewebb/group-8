@@ -2,7 +2,7 @@ from rest_framework import generics, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Event, Lot, ParentLot, Reservation
+from .models import Event, Lot, ParentLot, Reservation, Balance
 from .serializers import EventSerializer, LotSerializer, PLotSerializer, ReservationSerializer
 from .serializers import UserSerializer, RegisterSerializer
 from django.contrib.auth.models import User
