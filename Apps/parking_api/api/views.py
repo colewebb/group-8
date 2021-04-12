@@ -1,12 +1,13 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status
+from django.http import HttpResponseRedirect
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Event, Lot, ParentLot, Reservation
 from .serializers import EventSerializer, LotSerializer, PLotSerializer, ReservationSerializer
-from .serializers import UserSerializer, RegisterSerializer
+from .serializers import UserSerializer, UserSerializerWithToken, RegisterSerializer
 from django.contrib.auth.models import User
-from .permissions import IsOwnerOrReadOnly, IsSuperUserOrReadOnly
+from .permissions import IsOwnerOrReadOnly, IsSuperUserOrReadOnly, IsOwner, IsSuperUser, IsSuperUserOrCreateOnly
 
 from django.shortcuts import get_object_or_404
 
@@ -22,6 +23,15 @@ class RegisterView(generics.CreateAPIView):
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    permission_classes = (permissions.AllowAny,)
+
+    def post(self, request, format=None):
+        serializer = UserSerializerWithToken(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class UserDetail(generics.RetrieveAPIView):
@@ -39,15 +49,15 @@ def reservationsOfUserList(request, pk):
 class EventList(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                          IsSuperUserOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated,
+                          IsSuperUser]
 
 
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                          IsSuperUserOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated,
+                          IsSuperUser]
 
 
 @api_view(['GET'])
@@ -60,7 +70,7 @@ def lotsOfEventList(request, pk):
 class LotList(generics.ListCreateAPIView):
     queryset = Lot.objects.all()
     serializer_class = LotSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -69,14 +79,14 @@ class LotList(generics.ListCreateAPIView):
 class LotDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Lot.objects.all()
     serializer_class = LotSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated,
+                          IsOwner]
 
 
 class PLotList(generics.ListCreateAPIView):
     queryset = ParentLot.objects.all()
     serializer_class = PLotSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -85,14 +95,22 @@ class PLotList(generics.ListCreateAPIView):
 class PLotDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = ParentLot.objects.all()
     serializer_class = PLotSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated,
+                          IsOwner]
+
+#
+# class ReservationList(generics.ListAPIView):
+#     queryset = Reservation.objects.all()
+#     serializer_class = ReservationSerializer
+#     permission_classes = [permissions.IsAuthenticated,
+#                           IsSuperUser]
 
 
 class ReservationList(generics.ListCreateAPIView):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated,
+                          IsSuperUserOrCreateOnly]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -112,8 +130,8 @@ class ReservationList(generics.ListCreateAPIView):
 class ReservationDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticated,
+                          IsSuperUser]
 
     def perform_destroy(self, instance):
         lot = Lot.objects.get(pk=instance.lot.id)
