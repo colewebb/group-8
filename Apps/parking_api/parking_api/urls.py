@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('api-auth/', include('rest_framework.urls')),
+    path('lot-owners/', include('lotOwners.urls')),
     path('api-auth/register/', RegisterView.as_view()),
     path('token-auth/', obtain_jwt_token),
 ]

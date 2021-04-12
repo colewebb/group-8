@@ -1,0 +1,91 @@
+.event-card-container {
+
+}
+
+.event-card {
+  background-color: #FFF;
+  margin: 20px;
+  border-radius: 8px;
+  -webkit-box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+  box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+  position: relative;
+  padding-bottom: 3px;
+}
+
+.event-card-top {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  background-image: url('../../assets/images/dee_glen_smith_spectrum.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 110px;
+}
+
+.event-card-title-text {
+  color: #FFF;
+  text-align: left;
+  padding-left: 14px;
+  padding-top: 14px;
+  text-shadow: 2px 2px 10px #000000;
+
+}
+
+.event-card-date-text {
+  text-align: left;
+  font-size: 16px;
+  font-weight: 800;
+  margin-left: 20px;
+  margin-top: 16px;
+  color: #0F2439;
+}
+
+.event-card-location-text {
+  text-align: left;
+  font-size: 16px;
+  font-weight: 800;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #0F2439;
+}
+
+.events-title-text {
+  margin-top: 0px;
+  padding-top: 30px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .2s;
+  background-color: #000;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.event-card:hover .overlay {
+  opacity: .7;
+}
+
+.reserve-text {
+  color: white;
+  font-size: 28px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.overlay a {
+  text-decoration: none;
+}

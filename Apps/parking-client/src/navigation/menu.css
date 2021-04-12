@@ -1,0 +1,163 @@
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #0F2439;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  -webkit-box-shadow:  15px 15px 27px #000, -15px -15px 27px #ffffff;
+   box-shadow:  15px 15px 27px #000, -15px -15px 27px #ffffff;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 8px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #cfcfcf;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #FFF;
+  font-weight: 500;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.menuButton {
+  margin-top: 40px;
+  position: fixed;
+  background-color: #0F2439;
+  width: 60px;
+  height: 52px;
+  z-index: 0;
+  border-top-right-radius: 27px;
+  border-bottom-right-radius: 27px;
+  -webkit-box-shadow: 5px 5px 27px rgba(0,0,0,0.3), -5px -5px 27px rgba(0,0,0,0.3) !important;
+  box-shadow: 5px 5px 27px rgba(0,0,0,0.3), -5px -5px 7px rgba(0,0,0,0.3) !important;
+}
+
+.menu-image-container {
+  height: 44px;
+  width: 44px;
+  border-radius: 24px;
+  margin-top: 4px;
+  margin-left: 11px;
+  background-color: #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-image-container:hover {
+  height: 44px;
+  width: 44px;
+  border-radius: 24px;
+  margin-top: 4px;
+  margin-left: 11px;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-image-container:active {
+  height: 44px;
+  width: 44px;
+  border-radius: 24px;
+  margin-top: 4px;
+  margin-left: 11px;
+  background-color: #bdbdbd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-icon {
+  width: 20px;
+  height: 17px;
+  margin-left: 2px;
+}
+
+.credits-container {
+  background-color: white;
+  margin-left: 14px;
+  margin-right: 14px;
+  margin-bottom: 24px;
+  height: 144px;
+  border-radius: 8px;
+  box-shadow:  0 10px 16px 0 rgba(255,255,255,0.1),0 6px 20px 0 rgba(255,255,255,0.1) !important;
+}
+
+.credits-container-top {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  background-color: #b5b5b5;
+}
+
+.balance-text {
+  color: #a3a3a3;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.value-text {
+  color: #3d3d3d;
+  font-size: 26px;
+  margin-bottom: -10px;
+}
+
+.name-text {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  color: #FFF;
+  font-size: 22px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.logout-button a{
+  color: #0F2439;
+  margin-top: 0px;
+  padding-bottom: 10px;
+  padding-top: 8px;
+  font-weight: 500;
+
+}
+
+.logout-button a:hover{
+  color: #0F2439;
+  margin-top: 0px;
+  font-weight: 500;
+}
+
+.logout-button {
+  margin-top: 14px;
+  background-color: #cfcfcf;
+  border-radius: 8px;
+  width: 120px;
+}
+
+.logout-button:hover {
+  background-color: #FFF;
+  border-radius: 8px;
+  width: 120px;
+}
+
+.logout-button-center {
+  display: flex;
+  justify-content: center;
+}
