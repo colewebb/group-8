@@ -54,8 +54,7 @@ class UserSerializerWithToken(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('token', 'id', 'username', 'password',
-                'reservations', 'lots')
+        fields = ('token', 'id', 'username', 'password')
 
 
 class EventSerializer(serializers.ModelSerializer):
