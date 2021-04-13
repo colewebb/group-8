@@ -52,14 +52,14 @@ class EventList(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [permissions.IsAuthenticated,
-                          IsSuperUser]
+                          IsSuperUserOrReadOnly]
 
 
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [permissions.IsAuthenticated,
-                          IsSuperUser]
+                          IsSuperUserOrReadOnly]
 
 
 @api_view(['GET'])
@@ -82,7 +82,7 @@ class LotDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Lot.objects.all()
     serializer_class = LotSerializer
     permission_classes = [permissions.IsAuthenticated,
-                          IsOwner]
+                          IsOwnerOrReadOnly]
 
 
 class PLotList(generics.ListCreateAPIView):
@@ -111,8 +111,7 @@ class PLotDetail(generics.RetrieveUpdateDestroyAPIView):
 class ReservationList(generics.ListCreateAPIView):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
-    permission_classes = [permissions.IsAuthenticated,
-                          IsSuperUserOrCreateOnly]
+    permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -132,8 +131,7 @@ class ReservationList(generics.ListCreateAPIView):
 class ReservationDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
-    permission_classes = [permissions.IsAuthenticated,
-                          IsSuperUser]
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrReadOnly]
 
     def perform_destroy(self, instance):
         lot = Lot.objects.get(pk=instance.lot.id)
