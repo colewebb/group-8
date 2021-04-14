@@ -1,4 +1,5 @@
 {% load static %}
+{% csrf_token %}
 <html>
     <head>
         <title>Lot Administration Portal</title>
@@ -7,7 +8,7 @@
     <body>
         <header>
             <h1>Big Blue Parking Genie Lot Administration Panel</h1>
-            <p>Signed in as Prototype User. (not you? <a href="./logout">logout</a>)</p>
+            <p>Signed in as {{ user.username }}. (not you? <a href="./logout">logout</a>)</p>
         </header>
         <table>
             <tr>
@@ -16,16 +17,21 @@
                     <h1>$720.00</h1>
                 </td>
                 <td>
-                    <p>Your lots:</p>
+                    <p><b>Your lots:</b></p>
                     {% if lots %}
                         <ul>
                             {% for lot in lots %}
-                            <li><a href="./lot/{{ lot.id }}">{{ lot.name }}</a>, {{ lot.capacityActual }}/{{ lot.capacityMax }} spots available (<a href="./modify-lot/{{ lot.id }}">Modify/Remove</a>)</li>
+                            <li>
+                                {{ lot.name }} (<a href="./lot/{{ lot.id }}">Details</a>, <a href="./modify-lot/{{ lot.id }}">Modify or Remove</a>)
+                            </li>
                             {% endfor %}
                         </ul>
                     {% else %}
                         <p>No lots available. <a href="./add-new">Add one...</a></p>
                     {% endif %}
+                </td>
+                <td>
+                    <p><b>Your events:</b></p>
                 </td>
             </tr>
         </table>
