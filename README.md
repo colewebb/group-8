@@ -17,10 +17,13 @@ React setup Docs:
 Detailed setup instructions:
 
 This project contains the `parking_api` django backend API. Running/setup
-instructions found in it's subfolder ```/parking_api/README.md```
+instructions found in it's subfolder ```/parking_api/README.md```. In a 
+nutshell, use ```pip``` to install ```Django```, ```djangorestframework```,
+and ```django-cors-headers```.
 
-This project contains the `parking_client` react frontend client. Running/setup
-instructions found in it's subfolder ```/parking-client/README.md```
+This project contains the `parking-client` react frontend client. Running/setup
+instructions found in it's subfolder ```/parking-client/README.md```. In a nutshell, 
+install ```npm``` and run ```npm install``` from the ```parking-client``` folder.
 
 ## Build Instructions
 
