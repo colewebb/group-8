@@ -4,10 +4,10 @@
 
 .event-card {
   background-color: #FFF;
-  margin: 20px;
+  margin: 10px;
   border-radius: 8px;
-  -webkit-box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
-  box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+  -webkit-box-shadow:  15px 15px 27px #c9c9c9, -15px -15px 27px #c9c9c9;
+  box-shadow:  15px 15px 27px #c9c9c9, -15px -15px 27px #c9c9c9;
   position: relative;
   padding-bottom: 3px;
 }
@@ -15,8 +15,9 @@
 .event-card-top {
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
-  background-image: url('../../assets/images/dee_glen_smith_spectrum.jpg');
-  background-position: center;
+  background-color: #0F2439;
+  /*background-image: url('../../assets/images/dee_glen_smith_spectrum.jpg');
+  */background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 110px;
@@ -45,7 +46,7 @@
   font-size: 16px;
   font-weight: 800;
   margin-left: 20px;
-  margin-top: 10px;
+  margin-top: 16px;
   margin-bottom: 20px;
   color: #0F2439;
 }
@@ -88,4 +89,52 @@
 
 .overlay a {
   text-decoration: none;
+}
+
+.event-card-info-row {
+  justify-content: space-between;
+  display: flex;
+  margin-right: 20px;
+}
+
+.event-card-info-action-button:hover {
+  background-color: #24496e;
+  cursor: pointer;
+
+}
+
+.event-card-info-action-button {
+  background-color: #0F2439;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-radius: 6px;
+}
+
+.event-card-info-action {
+  text-decoration: none;
+}
+
+.event-card-action-button-text {
+  color: #FFF;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.event-card-info-action {
+  margin-top: 24px;
+}
+
+.event-card-info-sub-text {
+  color: #a3a3a3;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: -14px;
+  margin-left: 20px;
+
+  text-align: left;
 }
