@@ -156,11 +156,16 @@ class TestDatabase(TestCase):
             parentLot=pl
         )
         l.save()
-        r1 = Reservation(
+        r = Reservation(
             owner=user1,
             lot=l,
             size='small',
             date=l.event.startTime,
             event=l.event
         )
-        r1.save()
+        r.save()
+        self.assertEqual(r.owner, user1)
+        self.assertEqual(r.lot, l)
+        self.assertEqual(r.size, 'small')
+        self.assertEqual(r.date, l.event.startTime)
+        self.assertEqual(r.event, l.event)
