@@ -1,6 +1,6 @@
 import React, { useState, useEffect }  from "react";
 import reactDom from "react-dom";
-import "./login.styles.css";
+import "./register.styles.css";
 import logo from "../../assets/images/usu_logo_white.png";
 import { Redirect, useLocation } from 'react-router'
 
@@ -18,10 +18,11 @@ const useInput = initialValue => {
   }
 }
 
-export default function Login(props) {
+export default function Register(props) {
   const [submitted, setSubmitted] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
 
@@ -32,32 +33,55 @@ export default function Login(props) {
     };
 
     function handleChangePassword(e)  {
-        e.preventDefault();
+      e.preventDefault();
 
-        setPassword(e.target.value);
-      };
+      setPassword(e.target.value);
+    };
 
-  const handle_login = (e, data) => {
+    function handleChangeConfirmPassword(e)  {
+      e.preventDefault();
+
+      setConfirmPassword(e.target.value);
+    };
+
+  const handle_register = (e, data) => {
       e.preventDefault();
       setErrorMessage('');
-      fetch('http://localhost:8000/token-auth/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
+      if(password !== confirmPassword){
+        setErrorMessage('Passwords do not match');
+      }else{
+        fetch('http://localhost:8000/api-auth/register/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
         .then(res => res.json())
         .then(json => {
-          if(json.token){
-            localStorage.setItem('token', json.token);
-            localStorage.setItem('username', json.user.username);
-
-            window.location = "/";
+          if(json.id){
+            fetch('http://localhost:8000/token-auth/', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(json => {
+              if(json.token){
+                localStorage.setItem('token', json.token);
+                window.location = "/";
+              }else{
+                setErrorMessage("Something went wrong");
+              }
+            });
           }else{
-            setErrorMessage("Incorrect username or password");
+            setErrorMessage("Username taken");
           }
         });
+
+      }
     };
 
   return (
@@ -70,8 +94,8 @@ export default function Login(props) {
           <h2 className="card-login-title">Event Parking</h2>
         </div>
         <div className="card-bottom">
-          <h2 className="card-login-sub-title">Welcome Back!</h2>
-          <form onSubmit={e => handle_login(e, {username: username, password: password})}>
+          <h2 className="card-login-sub-title">Glad you made it!</h2>
+          <form onSubmit={e => handle_register(e, {username: username, password: password})}>
             <div className="input-field">
               <input
                 type="text"
@@ -88,12 +112,20 @@ export default function Login(props) {
                 required
               />
             </div>
+            <div className="input-field">
+              <input
+                type="password"
+                placeholder={"Confirm Password"}
+                onChange={handleChangeConfirmPassword}
+                required
+              />
+            </div>
             <div className="forgot-password-container">
               <a href={"www.google.com"} className="forgot-password">Forgot Password?</a>
             </div>
             <p className="error-message">{errorMessage}</p>
             <div className="input-field">
-              <input className="input-submit" type="submit" value="Login" />
+              <input className="input-submit" type="submit" value="Register" />
             </div>
           </form>
         </div>
