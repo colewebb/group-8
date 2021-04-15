@@ -2,6 +2,8 @@
 
 
 #SETUP AND RUN (tested on mac)
+you will need yarn
+
 1. npm install
 2. yarn start
 
