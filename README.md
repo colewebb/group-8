@@ -16,11 +16,15 @@ React setup Docs:
 
 Detailed setup instructions:
 
+You will need to run 2 things.
+
+1. The parking_api found in /Apps/parking_api. The README.md located in this sub folder has specific instructions for getting it started.  
 This project contains the `parking_api` django backend API. Running/setup
 instructions found in it's subfolder ```/parking_api/README.md```
 
-This project contains the `parking_client` react frontend client. Running/setup
-instructions found in it's subfolder ```/parking-client/README.md```
+2. The parking-clinet found in /Apps/parking-client. The README.md located in this sub folder has specific instructions for getting it started.  
+instructions found in it's subfolder ```/parking_cleint/README.md```
+
 
 ## Build Instructions
 
@@ -96,21 +100,21 @@ correctly, and so on.
 ## Prototypes
 
 Prototype 1, located at [/Apps/prototype1](https://github.com/colewebb/group-8/tree/master/Apps/prototype1),
-is a low-fidelity design rendered by Austin in Adobe XD. This prototype shows a 
-possible customer interface, designed to work equally well on mobile and desktop 
-devices. The root is located at 
+is a low-fidelity design rendered by Austin in Adobe XD. This prototype shows a
+possible customer interface, designed to work equally well on mobile and desktop
+devices. The root is located at
 [/Apps/prototype1/Splash.png](https://github.com/colewebb/group-8/tree/master/Apps/prototype1/Splash.png).
 
 Prototype 2, located at [/Apps/prototype2](https://github.com/colewebb/group-8/tree/master/Apps/prototype2),
 is a high-fidelity design rendered by Cole in HTML/CSS. This prototype suggests
 an interface for adding a new lot to the website from lot owner/administrator
-perspective. This prototype contains experimental support for dark mode (to 
+perspective. This prototype contains experimental support for dark mode (to
 enable, switch from ```assets/styles.css``` to ```assets/styles-dark.css```).
-The root is located at 
+The root is located at
 [/Apps/prototype2/index.html](https://github.com/colewebb/group-8/tree/master/Apps/prototype2/index.html).
 
 Prototype 3, located at [/Apps/prototype3](https://github.com/colewebb/group-8/tree/master/Apps/prototype3),
 is a low-fidelity design rendered by Cole in ASCII art. This prototype is an
-alternative design for the customer interface, focused on a mobile interface 
-with notes on adaptivity for other form factors. The root is located at 
+alternative design for the customer interface, focused on a mobile interface
+with notes on adaptivity for other form factors. The root is located at
 [/Apps/prototype3/index.md](https://github.com/colewebb/group-8/tree/master/Apps/prototype3/index.md).
