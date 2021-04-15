@@ -4,13 +4,14 @@
 
 This project is built using Django and React. Django provides a backend, serving
 files and providing database services. React runs on the front end, and provides
-more simple and powerful JavaScript extensions.
+more simple and powerful JavaScript extensions. React is automatically installed
+by NPM.
 
-Django setup Docs:
+Django setup docs:
 [https://docs.djangoproject.com/en/3.1/topics/install/#install-the-django-code](https://docs.djangoproject.com/en/3.1/topics/install/#install-the-django-code).
 
-React setup Docs:
- [https://create-react-app.dev/docs/getting-started/](https://create-react-app.dev/docs/getting-started/).
+NPM setup docs:
+ [https://www.npmjs.com/get-npm](https://www.npmjs.com/get-npm).
 
 ## Setup Instructions
 
@@ -30,22 +31,12 @@ mysite```.
 
 For the React server, from the React folder, run ```npm start```.
 
-## Projects
-
-There are three project boards currently, one will be used for each stage. The others are used as backlogs until we reach that stage.
-
-## Wiki
-
-There is a GitHub Wiki initialized, but it is currently empty. Perhaps eventually
-it will be used for documentation and other customer-facing information.
-
 ## Requirements
 
  - Transactions, collecting money, University takes commission
  - Actors: parkers, lot owners, lot attendants, University, supervisor
  - All lots have attendants
  - Prices set by lot owners
- - Prices set by lot owner
  - Phone friendly, no app required
  - Different sizes of parking spots (mobile homes, large sites for tailgating, etc.)
  - QR codes required for authentication on the spot
