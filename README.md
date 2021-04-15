@@ -72,10 +72,15 @@ meetings.
 
 ## Unit Testing Instructions
 
-Test suites, when they're available, will be run from their own directories
-under ```Apps/```. The test suites here will automatically check that the database
-will accept new information and CRUD operations, that running the servers works
-correctly, and so on.
+The parking API uses the builtin Django test setup, which is run by running 
+```python manage.py test``` from ```\Apps\parking_api\```. There is some
+spaghetti at the moment, complaining about timezones and naivety. This is 
+normal, and a byproduct of some weirdness with how Django handles time. The 
+important part is at the bottom:
+
+```Ran 5 tests in 0.423s
+
+OK```
 
 ## System Testing Instructions
 
