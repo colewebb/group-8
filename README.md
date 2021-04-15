@@ -17,12 +17,12 @@ React setup Docs:
 Detailed setup instructions:
 
 This project contains the `parking_api` django backend API. Running/setup
-instructions found in it's subfolder ```/parking_api/README.md```. In a 
+instructions found in it's subfolder ```/parking_api/README.md```. In a
 nutshell, use ```pip``` to install ```Django```, ```djangorestframework```,
 and ```django-cors-headers```.
 
 This project contains the `parking-client` react frontend client. Running/setup
-instructions found in it's subfolder ```/parking-client/README.md```. In a nutshell, 
+instructions found in it's subfolder ```/parking-client/README.md```. In a nutshell,
 install ```npm``` and run ```npm install``` from the ```parking-client``` folder.
 
 ## Build Instructions
@@ -57,6 +57,8 @@ it will be used for documentation and other customer-facing information.
 The workspace is organized as follows:
 
  - Documentation is contained in the ```docs/``` folder
+ - Planning documents are in ```docs/planning```, with standup reports
+   in ```docs/planning/standup reports```.
  - Source code is contained in the ```Apps/``` folder, and each project (client
    side, server side, test suites etc.) are in their own folders.
 
@@ -99,21 +101,21 @@ correctly, and so on.
 ## Prototypes
 
 Prototype 1, located at [/Apps/prototype1](https://github.com/colewebb/group-8/tree/master/Apps/prototype1),
-is a low-fidelity design rendered by Austin in Adobe XD. This prototype shows a 
-possible customer interface, designed to work equally well on mobile and desktop 
-devices. The root is located at 
+is a low-fidelity design rendered by Austin in Adobe XD. This prototype shows a
+possible customer interface, designed to work equally well on mobile and desktop
+devices. The root is located at
 [/Apps/prototype1/Splash.png](https://github.com/colewebb/group-8/tree/master/Apps/prototype1/Splash.png).
 
 Prototype 2, located at [/Apps/prototype2](https://github.com/colewebb/group-8/tree/master/Apps/prototype2),
 is a high-fidelity design rendered by Cole in HTML/CSS. This prototype suggests
 an interface for adding a new lot to the website from lot owner/administrator
-perspective. This prototype contains experimental support for dark mode (to 
+perspective. This prototype contains experimental support for dark mode (to
 enable, switch from ```assets/styles.css``` to ```assets/styles-dark.css```).
-The root is located at 
+The root is located at
 [/Apps/prototype2/index.html](https://github.com/colewebb/group-8/tree/master/Apps/prototype2/index.html).
 
 Prototype 3, located at [/Apps/prototype3](https://github.com/colewebb/group-8/tree/master/Apps/prototype3),
 is a low-fidelity design rendered by Cole in ASCII art. This prototype is an
-alternative design for the customer interface, focused on a mobile interface 
-with notes on adaptivity for other form factors. The root is located at 
+alternative design for the customer interface, focused on a mobile interface
+with notes on adaptivity for other form factors. The root is located at
 [/Apps/prototype3/index.md](https://github.com/colewebb/group-8/tree/master/Apps/prototype3/index.md).
