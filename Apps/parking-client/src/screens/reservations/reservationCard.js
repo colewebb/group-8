@@ -1,15 +1,15 @@
 import React from "react";
 import reactDom from "react-dom";
-import "./eventCard.css";
+import "./reservationCard.css";
 import Moment from 'moment';
 
 
 
-export default function EventCard(props) {
+export default function ReservationCard(props) {
 
   Moment.locale('en');
    var dt = props.startTime;
-   var path = `events/${props.id}/lots/`
+   var path = `reservation/${props.id}/`
 
   return (
     <div className="event-card-container">
@@ -20,13 +20,13 @@ export default function EventCard(props) {
         <div className="event-card-info-row">
           <div className="event-card-info">
             <p className="event-card-info-sub-text">Date:</p>
-            <p className="event-card-date-text">{Moment(dt).format('MMMM DD, h:mm a')}</p>
+            <p className="event-card-date-text">{Moment(dt).format('MMMM Do YYYY, h:mm:ss a')}</p>
             <p className="event-card-info-sub-text">Location:</p>
             <p className="event-card-location-text">{props.address}</p>
           </div>
           <a className="event-card-info-action" href={path}>
             <div className="event-card-info-action-button">
-              <p className="event-card-action-button-text">Parking Details</p>
+              <p className="event-card-action-button-text">See Reservation</p>
             </div>
           </a>
         </div>

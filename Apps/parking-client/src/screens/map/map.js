@@ -1,44 +1,50 @@
-import React from 'react'
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import React, { useState, useEffect } from 'react'
 
-const containerStyle = {
-  width: '400px',
-  height: '400px'
-};
 
-const center = {
-  lat: -3.745,
-  lng: -38.523
-};
+export default function Map(props) {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
 
-function Map() {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyAuuILfl7zBuq99JX2UnA_c_gc6yHmw4O0"
-  })
-
-  const [map, setMap] = React.useState(null)
-
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-    setMap(map)
+  // Note: the empty deps array [] means
+  // this useEffect will run once
+  // similar to componentDidMount()
+  useEffect(() => {
+    fetch("http://localhost:8000/api/events/", {
+            headers: {
+              Authorization: `JWT ${localStorage.getItem('token')}`
+            }
+          })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
   }, [])
 
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <ul>
+        {items.map(item => (
+          <li key={item.id}>
+            {item.name} {item.created} {item.startTime} {item.endTime} {item.address}
+          </li>
 
-  return isLoaded ? (
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-      >
-      </GoogleMap>
-  ) : <></>
+        ))}
+      </ul>
+    );
+  }
 }
-
-export default React.memo(Map)

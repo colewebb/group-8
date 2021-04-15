@@ -4,10 +4,18 @@
 }
 
 .grid-view {
-  max-width: 700px;
+  max-width: 600px;
   align-self: center;
+  margin-bottom: 100px;
+  min-height: 600px;
 }
 
 .events-view-root {
-  background-color: #f2f2f2;
+  background-color: #e3e3e3;
+}
+
+.events-title-text {
+  color: #0F2439;
+  font-size: 32;
+  font-weight: 800;
 }
