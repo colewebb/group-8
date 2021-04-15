@@ -9,6 +9,9 @@
             <h1>Big Blue Parking Genie Lot Administration Panel</h1>
             <p>Signed in as {{ user.username }}. (not you? <a href="./logout">logout</a>)</p>
         </header>
+        <p>
+            <a href="../">Lot Administration Panel</a> -> Lot detail for lot # {{ lot.id }}
+        </p>
         <h2>Lot details for lot # {{ lot.id }}</h2>
         <p>Lot name: {{ lot.name }}</p>
         <p>Lot address: {{ lot.address }}</p>
