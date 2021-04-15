@@ -47,7 +47,7 @@ def addNew(request):
             capLargeMax=request.POST['oversizeSpotCount']
         )
         newLot.save()
-        return redirect("../lot/" + str(newLot.id))
+        return redirect("./lot/" + str(newLot.id))
 
 
 def help(request):
@@ -97,8 +97,6 @@ def modifyLot(request, lot_id):
         }
         return render(request, 'lotOwners/modify.html', context)
     if request.method == "POST":
-        if request.POST['delete'] == True:
-            lot.delete()
         lot.name = request.POST['lotName']
         lot.address = request.POST['lotAddress']
         lot.capSmallMax = request.POST['smallSpotCount']
