@@ -11,4 +11,5 @@ urlpatterns = [
     path('modify-lot/<int:lot_id>', views.modifyLot, name="modifyLot"),
     path('transfer-balance', views.transferBalance, name="transferBalance"),
     path('login', views.login, name="login"),
+    path('associate/<int:lot_id>', views.associate, name="associate"),
 ]

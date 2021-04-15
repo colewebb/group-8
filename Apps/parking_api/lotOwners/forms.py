@@ -22,3 +22,14 @@ class TransferBalance(forms.Form):
     c = [('bank', 'My Bank Account'),("debit", "My debit card")]
     transferAmount = forms.FloatField(label="How much do you want to transfer?")
     transferLocation = forms.CharField(label="Where do you want to transfer to?", widget=forms.Select(choices=c))
+
+class AssociateWithEvent(forms.Form):
+    openTime = forms.TimeField(label="What time does your lot open?")
+    closeTime = forms.TimeField(label="What time does your lot close?")
+    costSmall = forms.FloatField(label="How much will you charge for a small spot?")
+    costMedium = forms.FloatField(label="How much will you charge for a medium spot?")
+    costLarge = forms.FloatField(label="How much will charge for a large spot?")
+    capSmallActual = forms.IntegerField(label="How many small spots will you have available for this event?")
+    capMediumActual = forms.IntegerField(label="How many medium spots will you have available for this event?")
+    capLargeActual = forms.IntegerField(label="How many large spots will you have available for this event?")
+    

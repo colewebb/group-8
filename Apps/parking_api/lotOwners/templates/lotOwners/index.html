@@ -25,7 +25,7 @@
                         <ul>
                             {% for lot in lots %}
                             <li>
-                                {{ lot.name }} (<a href="./lot/{{ lot.id }}">Details</a>, <a href="./modify-lot/{{ lot.id }}">Modify</a>)
+                                {{ lot.name }} (<a href="./lot/{{ lot.id }}">Details</a>, <a href="./modify-lot/{{ lot.id }}">Modify</a>, <a href="./associate/{{ lot.id }}">Associate</a>)
                             </li>
                             {% endfor %}
                         </ul>
@@ -35,6 +35,17 @@
                 </td>
                 <td>
                     <p><b>Your events:</b></p>
+                    {% if events %}
+                        <ul>
+                            {% for lot in events %}
+                            <li>
+                                {{ lot.event.name }}, {{ lot.parentLot.name }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                    <p>You don't have any lots associated with events. Associate one to get started.</p>
+                    {% endif %}
                 </td>
             </tr>
         </table>
