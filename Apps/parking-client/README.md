@@ -5,6 +5,9 @@
 1. npm install
 2. yarn start
 
+use path /login to log into the system once running
+use path /register to create a user and log into the system once running
+
 =========================================
 
 
