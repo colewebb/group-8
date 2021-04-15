@@ -20,11 +20,9 @@ You will need to run 2 things.
 
 1. The parking_api found in /Apps/parking_api. The README.md located in this sub folder has specific instructions for getting it started.  
 This project contains the `parking_api` django backend API. Running/setup
-instructions found in it's subfolder ```/parking_api/README.md```
-
-2. The parking-clinet found in /Apps/parking-client. The README.md located in this sub folder has specific instructions for getting it started.  
-instructions found in it's subfolder ```/parking_cleint/README.md```
-
+instructions found in it's subfolder ```/parking_api/README.md```. In a
+nutshell, use ```pip``` to install ```Django```, ```djangorestframework```,
+and ```django-cors-headers```.
 
 ## Build Instructions
 
@@ -58,6 +56,8 @@ it will be used for documentation and other customer-facing information.
 The workspace is organized as follows:
 
  - Documentation is contained in the ```docs/``` folder
+ - Planning documents are in ```docs/planning```, with standup reports
+   in ```docs/planning/standup reports```.
  - Source code is contained in the ```Apps/``` folder, and each project (client
    side, server side, test suites etc.) are in their own folders.
 
