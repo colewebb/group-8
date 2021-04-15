@@ -20,7 +20,9 @@
                     {% if lots %}
                         <ul>
                             {% for lot in lots %}
-                            <li><a href="./lot/{{ lot.id }}">{{ lot.name }}</a>, {{ lot.capacityActual }}/{{ lot.capacityMax }} spots available (<a href="./modify-lot/{{ lot.id }}">Modify/Remove</a>)</li>
+                            <li>
+                                {{ lot.name }} (<a href="./lot/{{ lot.id }}">Details</a>, <a href="./modify-lot/{{ lot.id }}">Modify</a>)
+                            </li>
                             {% endfor %}
                         </ul>
                     {% else %}

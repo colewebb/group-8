@@ -18,8 +18,6 @@ class ModifyLotForm(forms.Form):
     mediumSpotCount = forms.IntegerField(label="How many medium spots do you have?")
     mediumSpotCost = forms.FloatField(label="How much will you charge for a medium spot?")
     oversizeSpotCount = forms.IntegerField(label="How many oversize spots do you have?")
-    oversizeSpotCost = forms.FloatField(label="How much will you charge for an oversize spot?")
-    delete = forms.BooleanField(label="Delete?")
 
 class Login(forms.Form):
     username = forms.CharField(label="Username")
