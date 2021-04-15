@@ -78,9 +78,7 @@ spaghetti at the moment, complaining about timezones and naivety. This is
 normal, and a byproduct of some weirdness with how Django handles time. The 
 important part is at the bottom:
 
-```Ran 5 tests in 0.423s
-
-OK```
+```Ran 5 tests in 0.423s OK```
 
 ## System Testing Instructions
 
