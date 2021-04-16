@@ -1,0 +1,21 @@
+{% load static %}
+<html>
+    <head>
+        <title>Add New Lot</title>
+        <link rel="stylesheet" href="{% static 'lotOwners/styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Big Blue Parking Genie Lot Administration Panel</h1>
+            <p>Signed in as {{ user.username }}. (not you? <a href="./logout">logout</a>)</p>
+        </header>
+        <p>
+            <a href="./">Lot Administration Panel</a> -> Add new lot
+        </p>
+        <form action="./add-new" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" name="submit">Submit</button>
+        </form>
+    </body>
+</html>

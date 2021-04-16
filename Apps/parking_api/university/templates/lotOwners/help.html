@@ -1,0 +1,17 @@
+{% load static %}
+<html>
+    <head>
+        <title>Help</title>
+        <link rel="stylesheet" href="{% static 'lotOwners/styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Big Blue Parking Genie Lot Administration Panel</h1>
+            <p>Signed in as {{ user }}. (not you? <a href="./logout">logout</a>)</p>
+        </header>
+        <p>
+            <a href="./">Lot Administration Panel</a> -> Help
+        </p>
+        <h2>Help</h2>
+    </body>
+</html>
