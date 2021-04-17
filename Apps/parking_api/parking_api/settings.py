@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'lotOwners.apps.LotownersConfig',
     'university.apps.UniversityConfig',
+    'attendant.apps.AttendantConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
