@@ -18,7 +18,7 @@ def index(request):
     lots = ParentLot.objects.all()
     events = Lot.objects.all()
     context = {'lots': lots, 'user': request.user, 'events': events}
-    return render(request, 'lotOwners/index.html', context)
+    return render(request, 'university/index.html', context)
 
 
 def lotDetail(request, lot_id):
@@ -26,7 +26,7 @@ def lotDetail(request, lot_id):
         return redirect('./login')
     lot = ParentLot.objects.get(pk=lot_id)
     context = {'lot': lot, 'user': request.user, 'safeAddress': urlEncodeAddress(lot.address)}
-    return render(request, 'lotOwners/lot.html', context)
+    return render(request, 'university/lot.html', context)
 
 
 def addNew(request):
@@ -34,7 +34,7 @@ def addNew(request):
         if not request.user.is_authenticated:
             return redirect('./login')
         form = NewLotForm()
-        return render(request, "lotOwners/add-new.html", {'form': form, 'user': request.user})
+        return render(request, "university/add-new.html", {'form': form, 'user': request.user})
     if request.method == "POST":
         if not request.user.is_authenticated:
             return redirect('../login')
@@ -54,12 +54,12 @@ def addNew(request):
 def help(request):
     if not request.user.is_authenticated:
         return redirect('./login')
-    return render(request, 'lotOwners/help.html', {'user': request.user})
+    return render(request, 'university/help.html', {'user': request.user})
 
 
 def logout(request):
     auth_logout(request)
-    return render(request, 'lotOwners/logout.html')
+    return render(request, 'university/logout.html')
 
 
 def login(request):
@@ -67,14 +67,14 @@ def login(request):
         return redirect('./')
     if request.method == "GET":
         form = Login()
-        return render(request, 'lotOwners/login.html', {'form': form})
+        return render(request, 'university/login.html', {'form': form})
     elif request.method == "POST":
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is not None:
             auth_login(request, user)
             return redirect('./')
         else:
-            return render(request, 'lotOwners/logout.html')
+            return render(request, 'university/logout.html')
 
 
 def modifyLot(request, lot_id):
@@ -94,7 +94,7 @@ def modifyLot(request, lot_id):
             'form': form,
             'user': request.user
         }
-        return render(request, 'lotOwners/modify.html', context)
+        return render(request, 'university/modify.html', context)
     if request.method == "POST":
         if not request.user.is_authenticated:
             return redirect('../login')
@@ -118,7 +118,7 @@ def associate(request, lot_id):
             'capMediumActual': lot.capMediumMax,
             'capLargeActual': lot.capLargeMax
         })
-        return render(request, 'lotOwners/associate.html', {'user': request.user, 'lot': lot, 'events': events, 'form': form})
+        return render(request, 'university/associate.html', {'user': request.user, 'lot': lot, 'events': events, 'form': form})
     if request.method == "POST":
         if not request.user.is_authenticated:
             return redirect('../login')
@@ -149,4 +149,4 @@ def transferBalance(request):
     if not request.user.is_authenticated:
         return redirect('./login')
     form = TransferBalance()
-    return render(request, 'lotOwners/transfer-balance.html', {'form': form, 'user': request.user})
+    return render(request, 'university/transfer-balance.html', {'form': form, 'user': request.user})

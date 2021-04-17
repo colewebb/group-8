@@ -40,6 +40,7 @@ CORS_ORIGIN_WHITELIST = (
 INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'lotOwners.apps.LotownersConfig',
+    'university.apps.UniversityConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

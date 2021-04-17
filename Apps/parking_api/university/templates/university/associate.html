@@ -2,15 +2,15 @@
 <html>
     <head>
         <title>Associate</title>
-        <link rel="stylesheet" href="{% static 'lotOwners/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'university/styles.css' %}">
     </head>
     <body>
         <header>
-            <h1>Big Blue Parking Genie Lot Administration Panel</h1>
+            <h1>Big Blue Parking Genie University Administration Panel</h1>
             <p>Signed in as {{ user }}. (not you? <a href="./logout">logout</a>)</p>
         </header>
         <p>
-            <a href="../">Lot Administration Panel</a> -> Associate for lot # {{ lot.id }}
+            <a href="../">University Administration Panel</a> -> Associate for lot # {{ lot.id }}
         </p>
         <h2>Associate for lot # {{ lot.id }}, {{ lot.name }}</h2>
         {% if events %}
