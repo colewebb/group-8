@@ -9,6 +9,10 @@
             <h1>Big Blue Parking Genie Lot Attendant</h1>
             <p>You are signed in as {{ user.username }}. <a href="../logout">Logout</a></p>
         </header>
-        Attendant
+        <form action="./{{ lot.id }}" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit" name="submit">Submit</button>
+        </form>
     </body>
 </html>
