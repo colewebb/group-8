@@ -20,45 +20,18 @@ const useInput = initialValue => {
 
 export default function Login(props) {
   const [submitted, setSubmitted] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+    const {value: content, bind: bindContent, reset: resetContent} = useInput('')
 
-
-  function handleChangeUsername(e)  {
-      e.preventDefault();
-
-      setUsername(e.target.value);
-    };
-
-    function handleChangePassword(e)  {
-        e.preventDefault();
-
-        setPassword(e.target.value);
-      };
-
-  const handle_login = (e, data) => {
-      e.preventDefault();
-      setErrorMessage('');
-      fetch('http://localhost:8000/token-auth/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-        .then(res => res.json())
-        .then(json => {
-          if(json.token){
-            localStorage.setItem('token', json.token);
-            localStorage.setItem('username', json.user.username);
-
-            window.location = "/";
-          }else{
-            setErrorMessage("Incorrect username or password");
-          }
-        });
-    };
+    const handleSubmit = (event) => {
+      event.preventDefault()
+        setSubmitted(true)
+    }
+    if (submitted) {
+      return <Redirect push to={{
+        pathname: '/',
+      }}
+      />
+    }
 
   return (
     <div className="root-container">
@@ -71,27 +44,22 @@ export default function Login(props) {
         </div>
         <div className="card-bottom">
           <h2 className="card-login-sub-title">Welcome Back!</h2>
-          <form onSubmit={e => handle_login(e, {username: username, password: password})}>
+          <form onSubmit={handleSubmit}>
             <div className="input-field">
               <input
                 type="text"
-                placeholder={"Username"}
-                onChange={handleChangeUsername}
-                required
+                placeholder={"Email"}
               />
             </div>
             <div className="input-field">
               <input
                 type="password"
                 placeholder={"Password"}
-                onChange={handleChangePassword}
-                required
               />
             </div>
             <div className="forgot-password-container">
               <a href={"www.google.com"} className="forgot-password">Forgot Password?</a>
             </div>
-            <p className="error-message">{errorMessage}</p>
             <div className="input-field">
               <input className="input-submit" type="submit" value="Login" />
             </div>
@@ -100,5 +68,4 @@ export default function Login(props) {
       </div>
     </div>
   );
-//}
 }

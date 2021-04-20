@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from api.models import Lot, ParentLot, Event
@@ -22,12 +22,8 @@ def index(request):
 
 
 def lotDetail(request, lot_id):
-    if not request.user.is_authenticated:
-        return redirect('./login')
-    lot = ParentLot.objects.get(pk=lot_id)
-    if lot.owner != request.user:
-        return redirect('../login')
-    context = {'lot': lot, 'user': request.user, 'safeAddress': urlEncodeAddress(lot.address)}
+    lot = Lot.objects.get(pk=lot_id)
+    context = {'lot': lot, 'safeAddress': urlEncodeAddress(lot.address)}
     return render(request, 'lotOwners/lot.html', context)
 
 
@@ -54,29 +50,17 @@ def addNew(request):
 
 
 def help(request):
-    if not request.user.is_authenticated:
-        return redirect('./login')
-    return render(request, 'lotOwners/help.html', {'user': request.user})
+    return render(request, 'lotOwners/help.html')
 
 
 def logout(request):
-    auth_logout(request)
+    # logout token bullcrap will need to go here
     return render(request, 'lotOwners/logout.html')
 
 
 def login(request):
-    if request.user.is_authenticated:
-        return redirect('./')
-    if request.method == "GET":
-        form = Login()
-        return render(request, 'lotOwners/login.html', {'form': form})
-    elif request.method == "POST":
-        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
-        if user is not None:
-            auth_login(request, user)
-            return redirect('./')
-        else:
-            return render(request, 'lotOwners/logout.html')
+    form = Login()
+    return render(request, 'lotOwners/login.html', {'form': form})
 
 
 def modifyLot(request, lot_id):
@@ -154,7 +138,5 @@ def associate(request, lot_id):
 
 
 def transferBalance(request):
-    if not request.user.is_authenticated:
-        return redirect('./login')
     form = TransferBalance()
-    return render(request, 'lotOwners/transfer-balance.html', {'form': form, 'user': request.user})
+    return render(request, 'lotOwners/transfer-balance.html', {'form': form})
