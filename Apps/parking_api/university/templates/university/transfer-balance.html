@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Transfer Balance</title>
-        <link rel="stylesheet" href="{% static 'university/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'lotOwners/styles.css' %}">
     </head>
     <body>
         <header>
@@ -12,7 +12,8 @@
         <p>
             <a href="./">University Administration Panel</a> -> Transfer balance
         </p>
-        <form>
+        <form action="./transfer-balance" method="post">
+            {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Submit</button>
         </form>

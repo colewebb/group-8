@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from api.models import Lot, ParentLot, Event
+from api.models import Lot, ParentLot, Event, Balance
 from datetime import datetime
 from .forms import *
 
@@ -17,7 +17,8 @@ def index(request):
         return redirect('./login')
     lots = ParentLot.objects.all()
     events = Lot.objects.all()
-    context = {'lots': lots, 'user': request.user, 'events': events}
+    balance = Balance.objects.get(owner=request.user)
+    context = {'lots': lots, 'user': request.user, 'events': events, 'balance': balance}
     return render(request, 'university/index.html', context)
 
 
@@ -148,5 +149,15 @@ def associate(request, lot_id):
 def transferBalance(request):
     if not request.user.is_authenticated:
         return redirect('./login')
-    form = TransferBalance()
-    return render(request, 'university/transfer-balance.html', {'form': form, 'user': request.user})
+    if request.method == "GET":
+        form = TransferBalance()
+        return render(request, 'university/transfer-balance.html', {'form': form, 'user': request.user})
+    elif request.method == "POST":
+        balance = Balance.objects.get(owner=request.user)
+        transferAmount = request.POST['transferAmount']
+        if float(transferAmount) > float(balance.value):
+            return HttpResponse("You do not have that much money in your account. Please try again.")
+        else:
+            balance.value = float(balance.value) - float(transferAmount)
+            balance.save()
+            return redirect('./')

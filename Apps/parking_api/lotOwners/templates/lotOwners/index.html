@@ -14,10 +14,16 @@
         </p>
         <table>
             <tr>
+                {% if balance %}
                 <td>
                     <p>Total balance:</p>
-                    <h1>${{ balance }}</h1>
+                    <h1>${{ balance.value }}</h1>
                 </td>
+                {% else %}
+                <td>
+                    <p>You don't have a balance associated with your account. Please contact your administrator.</p>
+                </td>
+                {% endif %}
                 <td>
                     <p>Your lots:</p>
                     {% if lots %}

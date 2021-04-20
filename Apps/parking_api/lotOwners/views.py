@@ -17,7 +17,7 @@ def index(request):
         return redirect('./login')
     lots = ParentLot.objects.filter(owner=request.user)
     events = Lot.objects.filter(owner=request.user)
-    balance = Balance.objects.get(owner=request.user).value
+    balance = Balance.objects.get(owner=request.user)
     context = {'lots': lots, 'user': request.user, 'events': events, 'balance': balance}
     return render(request, 'lotOwners/index.html', context)
 
@@ -149,5 +149,15 @@ def associate(request, lot_id):
 def transferBalance(request):
     if not request.user.is_authenticated:
         return redirect('./login')
-    form = TransferBalance()
-    return render(request, 'lotOwners/transfer-balance.html', {'form': form, 'user': request.user})
+    if request.method == "GET":
+        form = TransferBalance()
+        return render(request, 'lotOwners/transfer-balance.html', {'form': form, 'user': request.user})
+    elif request.method == "POST":
+        balance = Balance.objects.get(owner=request.user)
+        transferAmount = request.POST['transferAmount']
+        if float(transferAmount) > float(balance.value):
+            return HttpResponse("You do not have that much money in your account. Please try again.")
+        else:
+            balance.value = float(balance.value) - float(transferAmount)
+            balance.save()
+            return redirect('./')

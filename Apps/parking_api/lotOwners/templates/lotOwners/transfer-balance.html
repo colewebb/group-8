@@ -12,7 +12,8 @@
         <p>
             <a href="./">Lot Administration Panel</a> -> Transfer balance
         </p>
-        <form>
+        <form action="./transfer-balance" method="post">
+            {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Submit</button>
         </form>
