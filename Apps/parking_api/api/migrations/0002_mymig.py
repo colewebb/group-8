@@ -16,6 +16,8 @@ def populate_db(apps, schema_editor):
     user4 = User.objects.create_user(username='LotOwner', email='iownlots@gmail.com', password='password',
                 last_login=datetime.datetime.now())
     user4.save()
+    superuser = User.objects.create_superuser(username="admin", email="admin@fake.com", password="admin", last_login=datetime.datetime.now())
+    superuser.save()
 
     from api.models import Balance
     b1 = Balance(owner=user1, value=50)
@@ -26,6 +28,8 @@ def populate_db(apps, schema_editor):
     b3.save()
     b4 = Balance(owner=user4, value=50)
     b4.save()
+    b5 = Balance(owner=superuser, value=250)
+    b5.save()
 
     # set up some events
     from api.models import Event
@@ -139,6 +143,12 @@ def populate_db(apps, schema_editor):
     # upon api call
     l1.capMediumActual -= 1
     l1.save()
+
+    # create some groups
+    from django.contrib.auth.models import Group
+    owners = Group(id=1, name="Owners")
+    owners.save()
+    user4.groups.add(owners)
 
 class Migration(migrations.Migration):
 
