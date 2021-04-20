@@ -1,0 +1,16 @@
+header {
+    background-color: navy;
+    color: white;
+}
+header a {
+    color: white;
+}
+body {
+    font-family: sans-serif;
+}
+footer {
+    text-align: center;
+}
+textarea {
+    font-family: sans-serif;
+}

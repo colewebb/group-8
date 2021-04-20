@@ -1,0 +1,21 @@
+{% load static %}
+<html>
+    <head>
+        <title>Welcome</title>
+        <link rel="stylesheet" href="{% static 'attendant/main.css' %}">
+    </head>
+    <body class="green">
+        <header>
+            <h1>Big Blue Parking Genie Lot Attendant</h1>
+        </header>
+        <p>This reservation is valid.</p>
+        <p>Details:</p>
+        <ul>
+            <li>Lot: {{ reservation.lot.parentLot.name }}</li>
+            <li>Event: {{ reservation.event.name }}</li>
+            <li> Spot size: {{ reservation.size }}</li>
+            <li> Valid only on {{ reservation.date }}, from {{ reservation.lot.openTime }} to {{ reservation.lot.closeTime }}</li>
+        </ul>
+        <a href="./">Back</a>
+    </body>
+</html>

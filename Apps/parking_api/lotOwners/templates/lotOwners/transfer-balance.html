@@ -9,7 +9,11 @@
             <h1>Big Blue Parking Genie Lot Administration Panel</h1>
             <p>Signed in as {{ user.username }}. (not you? <a href="./logout">logout</a>)</p>
         </header>
-        <form>
+        <p>
+            <a href="./">Lot Administration Panel</a> -> Transfer balance
+        </p>
+        <form action="./transfer-balance" method="post">
+            {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Submit</button>
         </form>

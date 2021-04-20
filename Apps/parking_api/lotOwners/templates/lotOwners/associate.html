@@ -1,0 +1,32 @@
+{% load static %}
+<html>
+    <head>
+        <title>Associate</title>
+        <link rel="stylesheet" href="{% static 'lotOwners/styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Big Blue Parking Genie Lot Administration Panel</h1>
+            <p>Signed in as {{ user.username }}. (not you? <a href="./logout">logout</a>)</p>
+        </header>
+        <p>
+            <a href="../">Lot Administration Panel</a> -> Associate for lot # {{ lot.id }}
+        </p>
+        <h2>Associate for lot # {{ lot.id }}, {{ lot.name }}</h2>
+        {% if events %}
+        <form action="./{{ lot.id }}" method="POST">
+            {% csrf_token %}
+            <label for="event">Choose an event</label>
+            <select id="event" name="event">
+                {% for event in events %}
+                <option value="{{ event.id }}">{{ event.name }}</option>
+                {% endfor %}
+            </select>
+            {{ form.as_p }}
+            <button type="submit" name="submit">Submit</button>
+        </form>
+        {% else %}
+        <p>No events are available. Please contact your administrator.</p>
+        {% endif %}
+    </body>
+</html>

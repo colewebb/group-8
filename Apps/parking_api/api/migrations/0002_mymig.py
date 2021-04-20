@@ -17,6 +17,16 @@ def populate_db(apps, schema_editor):
                 last_login=datetime.datetime.now())
     user4.save()
 
+    from api.models import Balance
+    b1 = Balance(owner=user1, value=50)
+    b1.save()
+    b2 = Balance(owner=user2, value=50)
+    b2.save()
+    b3 = Balance(owner=user3, value=50)
+    b3.save()
+    b4 = Balance(owner=user4, value=50)
+    b4.save()
+
     # set up some events
     from api.models import Event
     e1 = Event(name='USU v. BYU', created=datetime.datetime.now(),

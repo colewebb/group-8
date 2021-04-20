@@ -4,25 +4,23 @@
 
 This project is built using Django and React. Django provides a backend, serving
 files and providing database services. React runs on the front end, and provides
-more simple and powerful JavaScript extensions. React is automatically installed
-by NPM.
+more simple and powerful JavaScript extensions.
 
-Django setup docs:
+Django setup Docs:
 [https://docs.djangoproject.com/en/3.1/topics/install/#install-the-django-code](https://docs.djangoproject.com/en/3.1/topics/install/#install-the-django-code).
 
-NPM setup docs:
- [https://www.npmjs.com/get-npm](https://www.npmjs.com/get-npm).
+React setup Docs:
+ [https://create-react-app.dev/docs/getting-started/](https://create-react-app.dev/docs/getting-started/).
 
 ## Setup Instructions
 
 Detailed setup instructions:
 
-You will need to run 2 things.
+This project contains the `parking_api` django backend API. Running/setup
+instructions found in it's subfolder ```/parking_api/README.md```
 
-1. The parking_api found in ```/Apps/parking_api```. The README.md located in 
-   this sub folder has specific instructions for getting it started.
-2. This project contains the `parking_api` django backend API. Running/setup
-   instructions found in it's subfolder ```/parking_api/README.md```. 
+This project contains the `parking_client` react frontend client. Running/setup
+instructions found in it's subfolder ```/parking-client/README.md```
 
 ## Build Instructions
 
@@ -31,12 +29,22 @@ mysite```.
 
 For the React server, from the React folder, run ```npm start```.
 
+## Projects
+
+There are three project boards currently, one will be used for each stage. The others are used as backlogs until we reach that stage.
+
+## Wiki
+
+There is a GitHub Wiki initialized, but it is currently empty. Perhaps eventually
+it will be used for documentation and other customer-facing information.
+
 ## Requirements
 
  - Transactions, collecting money, University takes commission
  - Actors: parkers, lot owners, lot attendants, University, supervisor
  - All lots have attendants
  - Prices set by lot owners
+ - Prices set by lot owner
  - Phone friendly, no app required
  - Different sizes of parking spots (mobile homes, large sites for tailgating, etc.)
  - QR codes required for authentication on the spot
@@ -46,8 +54,6 @@ For the React server, from the React folder, run ```npm start```.
 The workspace is organized as follows:
 
  - Documentation is contained in the ```docs/``` folder
- - Planning documents are in ```docs/planning```, with standup reports
-   in ```docs/planning/standup reports```.
  - Source code is contained in the ```Apps/``` folder, and each project (client
    side, server side, test suites etc.) are in their own folders.
 
@@ -72,13 +78,10 @@ meetings.
 
 ## Unit Testing Instructions
 
-The parking API uses the builtin Django test setup, which is run by running 
-```python manage.py test``` from ```\Apps\parking_api\```. There is some
-spaghetti at the moment, complaining about timezones and naivety. This is 
-normal, and a byproduct of some weirdness with how Django handles time. The 
-important part is at the bottom:
-
-```Ran 5 tests in 0.423s OK```
+Test suites, when they're available, will be run from their own directories
+under ```Apps/```. The test suites here will automatically check that the database
+will accept new information and CRUD operations, that running the servers works
+correctly, and so on.
 
 ## System Testing Instructions
 
@@ -93,21 +96,21 @@ important part is at the bottom:
 ## Prototypes
 
 Prototype 1, located at [/Apps/prototype1](https://github.com/colewebb/group-8/tree/master/Apps/prototype1),
-is a low-fidelity design rendered by Austin in Adobe XD. This prototype shows a
-possible customer interface, designed to work equally well on mobile and desktop
-devices. The root is located at
+is a low-fidelity design rendered by Austin in Adobe XD. This prototype shows a 
+possible customer interface, designed to work equally well on mobile and desktop 
+devices. The root is located at 
 [/Apps/prototype1/Splash.png](https://github.com/colewebb/group-8/tree/master/Apps/prototype1/Splash.png).
 
 Prototype 2, located at [/Apps/prototype2](https://github.com/colewebb/group-8/tree/master/Apps/prototype2),
 is a high-fidelity design rendered by Cole in HTML/CSS. This prototype suggests
 an interface for adding a new lot to the website from lot owner/administrator
-perspective. This prototype contains experimental support for dark mode (to
+perspective. This prototype contains experimental support for dark mode (to 
 enable, switch from ```assets/styles.css``` to ```assets/styles-dark.css```).
-The root is located at
+The root is located at 
 [/Apps/prototype2/index.html](https://github.com/colewebb/group-8/tree/master/Apps/prototype2/index.html).
 
 Prototype 3, located at [/Apps/prototype3](https://github.com/colewebb/group-8/tree/master/Apps/prototype3),
 is a low-fidelity design rendered by Cole in ASCII art. This prototype is an
-alternative design for the customer interface, focused on a mobile interface
-with notes on adaptivity for other form factors. The root is located at
+alternative design for the customer interface, focused on a mobile interface 
+with notes on adaptivity for other form factors. The root is located at 
 [/Apps/prototype3/index.md](https://github.com/colewebb/group-8/tree/master/Apps/prototype3/index.md).

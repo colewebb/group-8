@@ -5,8 +5,6 @@
 
 ```$ pip install djangorestframework```
 
-```$ pip install djangorestframework-jwt```
-
 ```$ pip install django-cors-headers```
 
 

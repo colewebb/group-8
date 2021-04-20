@@ -1,5 +1,4 @@
 {% load static %}
-{% csrf_token %}
 <html>
     <head>
         <title>Lot Administration Portal</title>
@@ -10,19 +9,28 @@
             <h1>Big Blue Parking Genie Lot Administration Panel</h1>
             <p>Signed in as {{ user.username }}. (not you? <a href="./logout">logout</a>)</p>
         </header>
+        <p>
+            <a href="./">Lot Administration Panel</a>
+        </p>
         <table>
             <tr>
+                {% if balance %}
                 <td>
                     <p>Total balance:</p>
-                    <h1>$720.00</h1>
+                    <h1>${{ balance.value }}</h1>
                 </td>
+                {% else %}
                 <td>
-                    <p><b>Your lots:</b></p>
+                    <p>You don't have a balance associated with your account. Please contact your administrator.</p>
+                </td>
+                {% endif %}
+                <td>
+                    <p>Your lots:</p>
                     {% if lots %}
                         <ul>
                             {% for lot in lots %}
                             <li>
-                                {{ lot.name }} (<a href="./lot/{{ lot.id }}">Details</a>, <a href="./modify-lot/{{ lot.id }}">Modify or Remove</a>)
+                                {{ lot.name }} (<a href="./lot/{{ lot.id }}">Details</a>, <a href="./modify-lot/{{ lot.id }}">Modify</a>, <a href="./associate/{{ lot.id }}">Associate</a>)
                             </li>
                             {% endfor %}
                         </ul>
@@ -32,6 +40,17 @@
                 </td>
                 <td>
                     <p><b>Your events:</b></p>
+                    {% if events %}
+                        <ul>
+                            {% for lot in events %}
+                            <li>
+                                {{ lot.event.name }}, {{ lot.parentLot.name }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                    <p>You don't have any lots associated with events. Associate one to get started.</p>
+                    {% endif %}
                 </td>
             </tr>
         </table>

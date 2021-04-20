@@ -1,0 +1,64 @@
+{% load static %}
+{% csrf_token %}
+<html>
+    <head>
+        <title>Lot Administration Portal</title>
+        <link rel="stylesheet" href="{% static 'university/styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Big Blue Parking Genie University Administration Panel</h1>
+            <p>Signed in as {{ user.username }}. (not you? <a href="./logout">logout</a>)</p>
+        </header>
+        <p>
+            <a href="./">University Administration Panel</a>
+        </p>
+        <table>
+            <tr>
+                {% if balance %}
+                <td>
+                    <p>Total balance:</p>
+                    <h1>${{ balance.value }}</h1>
+                </td>
+                {% else %}
+                <td>
+                    <p>You don't have a balance associated with your account. Please contact your administrator.</p>
+                </td>
+                {% endif %}
+                <td>
+                    <p><b>All lots:</b></p>
+                    {% if lots %}
+                        <ul>
+                            {% for lot in lots %}
+                            <li>
+                                {{ lot.name }}, owned by {{ lot.owner.username }} (<a href="./lot/{{ lot.id }}">Details</a>, <a href="./modify-lot/{{ lot.id }}">Modify</a>, <a href="./associate/{{ lot.id }}">Associate</a>)
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No lots available. <a href="./add-new">Add one...</a></p>
+                    {% endif %}
+                </td>
+                <td>
+                    <p><b>All events:</b></p>
+                    {% if events %}
+                        <ul>
+                            {% for lot in events %}
+                            <li>
+                                {{ lot.event.name }}, {{ lot.parentLot.name }}, owned by {{ lot.owner.username }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                    <p>You don't have any lots associated with events. Associate one to get started.</p>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        <a href="./add-new">Add a new lot</a>
+        <br>
+        <a href="./transfer-balance">Transfer balance</a>
+        <br>
+        <a href="./help">Help</a>
+    </body>
+</html>
