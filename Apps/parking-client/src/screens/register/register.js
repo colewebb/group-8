@@ -71,6 +71,8 @@ export default function Register(props) {
             .then(json => {
               if(json.token){
                 localStorage.setItem('token', json.token);
+                localStorage.setItem('username', json.user.username);
+                localStorage.setItem('id', json.user.id);
                 window.location = "/";
               }else{
                 setErrorMessage("Something went wrong");
@@ -120,12 +122,13 @@ export default function Register(props) {
                 required
               />
             </div>
-            <div className="forgot-password-container">
-              <a href={"www.google.com"} className="forgot-password">Forgot Password?</a>
-            </div>
+
             <p className="error-message">{errorMessage}</p>
             <div className="input-field">
               <input className="input-submit" type="submit" value="Register" />
+            </div>
+            <div className="forgot-password-container">
+              <a href={"/login"} className="forgot-password">Already have an account? LOGIN HERE!</a>
             </div>
           </form>
         </div>

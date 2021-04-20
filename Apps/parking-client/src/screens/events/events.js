@@ -39,12 +39,17 @@ export default function Events(props) {
             setIsLoaded(true);
             setItems(result);
           }else{
+            localStorage.setItem('token', '');
+            localStorage.setItem('username', '');
+            localStorage.setItem('id', '');
             window.location = "/loggedout";
           }
         },
         (error) => {
+          localStorage.setItem('token', '');
+          localStorage.setItem('username', '');
+          localStorage.setItem('id', '');
           window.location = "/loggedout";
-          setError(error);
         }
       )
   }, [])

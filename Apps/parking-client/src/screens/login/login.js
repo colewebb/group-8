@@ -22,7 +22,7 @@ export default function Login(props) {
   const [submitted, setSubmitted] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(' ');
 
 
   function handleChangeUsername(e)  {
@@ -39,7 +39,7 @@ export default function Login(props) {
 
   const handle_login = (e, data) => {
       e.preventDefault();
-      setErrorMessage('');
+      setErrorMessage(' ');
       fetch('http://localhost:8000/token-auth/', {
         method: 'POST',
         headers: {
@@ -52,11 +52,14 @@ export default function Login(props) {
           if(json.token){
             localStorage.setItem('token', json.token);
             localStorage.setItem('username', json.user.username);
-
+            localStorage.setItem('id', json.user.id);
             window.location = "/";
           }else{
             setErrorMessage("Incorrect username or password");
           }
+        },
+        (error) => {
+          setErrorMessage("Can't Connect.. Try again later");
         });
     };
 
@@ -88,12 +91,12 @@ export default function Login(props) {
                 required
               />
             </div>
-            <div className="forgot-password-container">
-              <a href={"www.google.com"} className="forgot-password">Forgot Password?</a>
-            </div>
             <p className="error-message">{errorMessage}</p>
             <div className="input-field">
               <input className="input-submit" type="submit" value="Login" />
+            </div>
+            <div className="forgot-password-container">
+              <a href={"/register"} className="forgot-password">Don't have an account: REGESTER HERE!</a>
             </div>
           </form>
         </div>

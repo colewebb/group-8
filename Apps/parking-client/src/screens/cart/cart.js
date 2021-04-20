@@ -57,8 +57,9 @@ export default function Cart(props) {
             setEvents(result);
           },
           (error) => {
-            setIsLoaded(true);
-            setError(error);
+            localStorage.setItem('token', '');
+            localStorage.setItem('username', '');
+            localStorage.setItem('id', '');
           }
         )
   }, [])
@@ -87,6 +88,33 @@ export default function Cart(props) {
   function getEventId(url){
     let re = /(?<=events\/)(.*)(?=\/lots*)/i;
     return re.exec(url)[0];
+  }
+
+  function purchase(){
+    fetch(`http://localhost:8000/api/lots/${getLotId(currentUrl)}/`, {
+            headers: {
+              Authorization: `JWT ${localStorage.getItem('token')}`
+            }
+          })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result);
+          updateSize(getSpotSize(currentUrl));
+          if(size == 'Small'){
+            setPrice(result.costSmall);
+          }else if(size == 'Medium'){
+            setPrice(result.costMedium);
+          }else if(size == 'Large'){
+            setPrice(result.costLarge);
+          }
+        },
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
   }
 
 
@@ -129,7 +157,7 @@ export default function Cart(props) {
               <p class="cart-details-text">{items.openTime} PM</p>
             </div>
             <div class="cart-details-divider" />
-            <div><iframe  class="cart-map-container" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Dee%20glem%20smith%20spectrum+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div>
+            <div><iframe  class="cart-map-container" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Utah%20State%20University+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe></div>
             <div class="space-30" />
             <div class="cart-details-divider" />
             <div class="cart-details-row">

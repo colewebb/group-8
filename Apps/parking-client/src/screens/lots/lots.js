@@ -46,7 +46,10 @@ export default function Lots(props) {
           setItems(result);
         },
         (error) => {
-          setIsLoaded(true);
+          localStorage.setItem('token', '');
+          localStorage.setItem('username', '');
+          localStorage.setItem('id', '');
+          window.location = "/loggedout";
           setError(error);
         }
       )
@@ -62,7 +65,7 @@ export default function Lots(props) {
             setEvents(result);
           },
           (error) => {
-            setIsLoaded(true);
+            window.location = "/loggedout";
             setError(error);
           }
         )

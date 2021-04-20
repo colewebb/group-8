@@ -17,7 +17,7 @@ export default function Reservation(props) {
   const [lot, setLot] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/reservation/${getReservationId(currentUrl)}/`, {
+    fetch(`http://localhost:8000/api/reservations/${getReservationId(currentUrl)}/`, {
             headers: {
               Authorization: `JWT ${localStorage.getItem('token')}`
             }
@@ -29,11 +29,16 @@ export default function Reservation(props) {
           setReservation(result);
         },
         (error) => {
-          setIsLoaded(true);
-          setError(error);
+          localStorage.setItem('token', '');
+          localStorage.setItem('username', '');
+          localStorage.setItem('id', '');
         }
       )
-      fetch(`http://localhost:8000/api/events/5/`)
+      fetch(`http://localhost:8000/api/events/1/`, {
+              headers: {
+                Authorization: `JWT ${localStorage.getItem('token')}`
+              }
+            })
         .then(res => res.json())
         .then(
           (result) => {
@@ -41,11 +46,16 @@ export default function Reservation(props) {
             setEvents(result);
           },
           (error) => {
-            setIsLoaded(true);
-            setError(error);
+            localStorage.setItem('token', '');
+            localStorage.setItem('username', '');
+            localStorage.setItem('id', '');
           }
         )
-        fetch(`http://localhost:8000/api/lots/1/`)
+        fetch(`http://localhost:8000/api/lots/1/`, {
+                headers: {
+                  Authorization: `JWT ${localStorage.getItem('token')}`
+                }
+              })
           .then(res => res.json())
           .then(
             (result) => {

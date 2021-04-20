@@ -28,7 +28,7 @@ export default function Reservations(props) {
 
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/reservations/", {
+    fetch(`http://localhost:8000/api/users/${localStorage.getItem('id')}/reservations/`, {
             headers: {
               Authorization: `JWT ${localStorage.getItem('token')}`
             }
@@ -36,31 +36,19 @@ export default function Reservations(props) {
       .then(res => res.json())
       .then(
         (result) => {
+          console.log(result);
           setIsLoaded(true);
-          setItems(result);
+          if(result[0]){
+            setItems(result);
+          }else{
+            setItems([result]);
+          }
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-    fetch("http://localhost:8000/api/events/5/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setEvents(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-          window.location = "/";
+          // localStorage.setItem('token', '');
+          // localStorage.setItem('username', '');
+          // localStorage.setItem('id', '');
+          // window.location = "/";
         }
       )
   }, [])
@@ -70,7 +58,7 @@ export default function Reservations(props) {
      return (
        <React.Fragment>
          <Grid item xs={12}>
-           <ReservationCard id={props.id} name={props.name} startTime={props.startTime} address={props.address}/>
+           <ReservationCard id={props.id} eventId={props.eventId}/>
          </Grid>
 
        </React.Fragment>
@@ -86,7 +74,7 @@ export default function Reservations(props) {
           <Grid container spacing={1}>
           {items.map(item => (
             <Grid key={item.id} container item xs={12} spacing={0}>
-              <FormRow id={item.id} name={events.name} startTime={events.startTime} address={events.address}/>
+              <FormRow id={item.id} eventId={item.event}/>
             </Grid>
           ))}
          </Grid>
