@@ -22,8 +22,8 @@ def index(request):
 
 
 def lotDetail(request, lot_id):
-    lot = Lot.objects.get(pk=lot_id)
-    context = {'lot': lot, 'safeAddress': urlEncodeAddress(lot.address)}
+    lot = ParentLot.objects.get(pk=lot_id)
+    context = {'lot': lot, 'safeAddress': urlEncodeAddress(lot.address), 'user': request.user}
     return render(request, 'lotOwners/lot.html', context)
 
 
@@ -50,11 +50,11 @@ def addNew(request):
 
 
 def help(request):
-    return render(request, 'lotOwners/help.html')
+    return render(request, 'lotOwners/help.html', {'user': request.user})
 
 
 def logout(request):
-    # logout token bullcrap will need to go here
+    logout(request)
     return render(request, 'lotOwners/logout.html')
 
 
@@ -139,4 +139,4 @@ def associate(request, lot_id):
 
 def transferBalance(request):
     form = TransferBalance()
-    return render(request, 'lotOwners/transfer-balance.html', {'form': form})
+    return render(request, 'lotOwners/transfer-balance.html', {'form': form, 'user': request.user})
