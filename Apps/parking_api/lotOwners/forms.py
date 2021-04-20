@@ -14,9 +14,7 @@ class ModifyLotForm(forms.Form):
     lotName = forms.CharField(label="Name of lot:")
     lotAddress = forms.CharField(label="Lot address:", widget=forms.Textarea)
     smallSpotCount = forms.IntegerField(label="How many small spots do you have?")
-    smallSpotCost = forms.FloatField(label="How much will you charge for a small spot?")
     mediumSpotCount = forms.IntegerField(label="How many medium spots do you have?")
-    mediumSpotCost = forms.FloatField(label="How much will you charge for a medium spot?")
     oversizeSpotCount = forms.IntegerField(label="How many oversize spots do you have?")
 
 class Login(forms.Form):
