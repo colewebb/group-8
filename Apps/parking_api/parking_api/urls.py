@@ -17,7 +17,6 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import include, path
 from api.views import RegisterView
-from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,5 +24,4 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('lot-owners/', include('lotOwners.urls')),
     path('api-auth/register/', RegisterView.as_view()),
-    path('token-auth/', obtain_jwt_token),
 ]

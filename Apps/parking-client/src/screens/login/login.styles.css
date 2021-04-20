@@ -7,7 +7,7 @@
 .card-login {
   background-color: #FFF;
   margin-top: 100px;
-  margin-bottom: 300px;
+  margin-bottom: 100px;
   padding-bottom: 40px;
   border-radius: 8px;
   -webkit-box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
@@ -98,7 +98,7 @@ form {
   text-align: center;
   color: #a6a6a6;
   margin-top: -16px;
-  margin-bottom: 14px;
+  margin-bottom: 34px;
 }
 
 .image-container {
@@ -118,9 +118,4 @@ form {
   background-color: #0F2439;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-
-}
-
-.error-message {
-  color: red;
 }

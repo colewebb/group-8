@@ -1,6 +1,10 @@
 from rest_framework import serializers
+<<<<<<< HEAD
+from api.models import Event, Lot, ParentLot, Reservation, Balance
+=======
 from rest_framework_jwt.settings import api_settings
 from api.models import Event, Lot, ParentLot, Reservation
+>>>>>>> master
 from django.contrib.auth.models import User
 
 
@@ -25,10 +29,11 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     reservations = serializers.PrimaryKeyRelatedField(many=True, queryset=Reservation.objects.all())
     lots = serializers.PrimaryKeyRelatedField(many=True, queryset=Lot.objects.all())
+    balance = serializers.PrimaryKeyRelatedField(many=False, queryset=Balance.objects.all())
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'reservations', 'lots']
+        fields = ['id', 'username', 'reservations', 'lots', 'balance']
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):

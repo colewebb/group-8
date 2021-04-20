@@ -1,21 +1,10 @@
 # Getting Started with Create React App
 
 
-#SETUP AND RUN (tested on mac)
-you will need yarn
 
+#SETUP (tested on mac)
 1. npm install
 2. yarn start
-
-use path /login to log into the system once running
-use path /register to create a user and log into the system once running
-
-=========================================
-
-
-
-
-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

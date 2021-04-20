@@ -7,7 +7,7 @@
     <body>
         <header>
             <h1>Big Blue Parking Genie Lot Administration Panel</h1>
-            <p>Signed in as {{ user.username }}. (not you? <a href="./logout">logout</a>)</p>
+            <p>Signed in as Prototype User. (not you? <a href="./logout">logout</a>)</p>
         </header>
         <h2>Lot details for lot # {{ lot.id }}</h2>
         <p>Lot name: {{ lot.name }}</p>
@@ -21,8 +21,9 @@
             allowfullscreen
             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD7vXYTBfu4QdkDLxs21bSmqrkJAd31pUk&q={{ safeAddress }}">
         </iframe>
-        <p>Total small spots: {{ lot.capSmallMax }}</p>
-        <p>Total medium spots: {{ lot.capMediumMax }}</p>
-        <p>Total large spots: {{ lot.capLargeMax }}</p>
+        <p>Opening time: {{ lot.openTime }}</p>
+        <p>Closing time: {{ lot.closeTime }}</p>
+        <p>Available spots: {{ lot.capacityActual }}</p>
+        <p>Total spots: {{ lot.capacityMax }}</p>
     </body>
 </html>
