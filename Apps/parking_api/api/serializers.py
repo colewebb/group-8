@@ -1,10 +1,6 @@
 from rest_framework import serializers
-<<<<<<< HEAD
 from api.models import Event, Lot, ParentLot, Reservation, Balance
-=======
 from rest_framework_jwt.settings import api_settings
-from api.models import Event, Lot, ParentLot, Reservation
->>>>>>> master
 from django.contrib.auth.models import User
 
 
