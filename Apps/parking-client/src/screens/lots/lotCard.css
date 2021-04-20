@@ -1,79 +1,47 @@
 .lot-card-root {
-  justify-content: center;
-  display: flex;
+
 }
 
 .lot-card-container {
   background-color: #FFF;
-  margin: 8px;
+  margin: 20px;
   border-radius: 8px;
-  -webkit-box-shadow:  15px 15px 27px #c9c9c9, -15px -15px 27px #c9c9c9;
-  box-shadow:  15px 15px 27px #c9c9c9, -15px -15px 27px #c9c9c9;
+  -webkit-box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+  box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
   position: relative;
-  padding: 4px;
-  width: 100%;
-  padding-bottom: 12px;
-}
-
-.lot-card-sub-container {
   justify-content: flex-start;
   display: flex;
-
 }
 
 .lot-card-price-container {
   background-color: #0F2439;
-  width: 33%;
-  min-width: 70px;
-  max-height: 160px;
-  margin: 4px;
+  width: 26%;
+  margin: 8px;
   border-radius: 8px;
-  cursor: pointer;
-  text-decoration: none;
-
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
-
-.lot-card-price-container:hover {
-  background-color: #24496e;
-  width: 33%;
-  min-width: 70px;
-  max-height: 160px;
-  margin: 4px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
 
 .lot-card-info-container {
   margin-left: 6px;
+  width: 100%;
   margin-right: 10px;
-
 }
 
 .lot-card-info-row {
   justify-content: space-between;
   display: flex;
-  margin-right: 20px;
-  margin-left: 10px;
-
+  width: 100%;
 }
 
 .lot-card-price-text {
-  color: #e8e8e8;
-  font-size: 15px;
-  font-weight: 600;
-  padding-right: 5px;
-  padding-left: 5px;
-  text-align: center;
-  margin-bottom: 20px;
-
-}
-
-.lot-card-option-title-text {
   color: #FFF;
-  font-weight: 700;
-  font-size: 18px;
-  margin-bottom: -10px;
+  font-size: 22px;
+  font-weight: 900;
+  padding-right: 20px;
+  padding-left: 20px;
+
 }
 
 .lot-card-name-text {
@@ -82,11 +50,13 @@
   font-weight: 800;
   margin-bottom: -4px;
   margin-top: 10px;
+
   text-align: left;
+
 }
 
 .lot-card-info-text {
-  color: #474747;
+  color: #636363;
   font-size: 16px;
   font-weight: 700;
   margin-bottom: -8px;
@@ -94,48 +64,10 @@
 
 }
 
-
 .lot-card-info-sub-text {
-  color: #6e6e6e;
+  color: #a3a3a3;
   font-size: 10px;
   font-weight: 700;
   margin-bottom: 0px;
   text-align: center;
-}
-
-.lot-otions-icon {
-  width: 50px;
-  margin-bottom: -20px;
-}
-
-.lot-otions-icon-small {
-  width: 38px;
-  margin-bottom: -14px;
-  margin-top: 6px;
-
-}
-
-.lot-card-info-action {
-  text-decoration: none;
-}
-
-.lot-card-info-action-button {
-  background-color: #0F2439;
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  border-radius: 6px;
-}
-
-.lot-card-action-button-text {
-  color: #FFF;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.lot-card-info-action {
-  margin-top: 0px;
 }

@@ -1,0 +1,20 @@
+{% load static %}
+<html>
+    <head>
+        <title>Transfer Balance</title>
+        <link rel="stylesheet" href="{% static 'university/styles.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Big Blue Parking Genie University Administration Panel</h1>
+            <p>Signed in as {{ user.username }}. (not you? <a href="./logout">logout</a>)</p>
+        </header>
+        <p>
+            <a href="./">University Administration Panel</a> -> Transfer balance
+        </p>
+        <form>
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

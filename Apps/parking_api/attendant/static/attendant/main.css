@@ -1,0 +1,16 @@
+body.green {
+    background-color: lightgreen;
+}
+body.red {
+    background-color: pink;
+}
+body {
+    font-family: sans-serif;
+}
+header {
+    background-color: navy;
+    color: white;
+}
+header a {
+    color: white;
+}

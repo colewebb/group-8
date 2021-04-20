@@ -1,0 +1,17 @@
+{% load static %}
+<html>
+    <head>
+        <title>Attendant</title>
+        <link rel="stylesheet" href="{% static 'attendant/main.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Big Blue Parking Genie Lot Attendant</h1>
+        </header>
+        <form action="./login" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit" name="submit">Submit</button>
+        </form>
+    </body>
+</html>

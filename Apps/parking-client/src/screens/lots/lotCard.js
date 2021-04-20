@@ -2,50 +2,28 @@ import React from "react";
 import reactDom from "react-dom";
 import "./lotCard.css";
 import Menu from '../../navigation/menu';
-import smallIcon from '../../assets/icons/006-scooter.png';
-import mediumIcon from '../../assets/icons/002-car.png';
-import largeIcon from '../../assets/icons/049-camper.png';import Moment from 'moment';
 
 export default function lotCard(props) {
-  var path = `cart/${props.id}`
-
-
   return (
     <div className="lot-card-root">
       <div className="lot-card-container">
-        <div className="lot-card-sub-container">
-          <a className="lot-card-price-container" href={`${path}/?size=Small`}>
-            <img className="lot-otions-icon-small" src={smallIcon} alt="rv icon" />
-            <p className="lot-card-option-title-text">Small</p>
-            <p className="lot-card-price-text">${props.costSmall}</p>
-
-          </a>
-          <a className="lot-card-price-container" href={`${path}/?size=Medium`}>
-            <img className="lot-otions-icon" src={mediumIcon} alt="rv icon" />
-            <p className="lot-card-option-title-text">Medium</p>
-            <p className="lot-card-price-text">${props.costMedium}</p>
-          </a>
-          <a className="lot-card-price-container" href={`${path}/?size=Large`}>
-            <img className="lot-otions-icon" src={largeIcon} alt="rv icon" />
-            <p className="lot-card-option-title-text">Large</p>
-            <p className="lot-card-price-text">${props.costLarge}</p>
-          </a>
+        <div className="lot-card-price-container">
+          <p className="lot-card-price-text">$10.00</p>
         </div>
-
         <div className="lot-card-info-container">
-            <p className="lot-card-name-text">{props.name}</p>
+            <p className="lot-card-name-text">South Spectrum Lot</p>
             <div className="lot-card-info-row">
               <div>
-                <p className="lot-card-info-text">{props.openTime}</p>
+                <p className="lot-card-info-text">6:30pm</p>
                 <p className="lot-card-info-sub-text">Open Time</p>
-              </div>
-              <div>
-                <p className="lot-card-info-text">{props.address}</p>
-                <p className="lot-card-info-sub-text">Address</p>
               </div>
               <div>
                 <p className="lot-card-info-text">0.03 miles</p>
                 <p className="lot-card-info-sub-text">Distance</p>
+              </div>
+              <div>
+                <p className="lot-card-info-text">150</p>
+                <p className="lot-card-info-sub-text">spots</p>
               </div>
             </div>
         </div>

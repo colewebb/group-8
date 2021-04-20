@@ -1,5 +1,4 @@
-import Breadcrumbs from '../breadcrumbs/breadcrumbs';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect }  from "react";
 import reactDom from "react-dom";
 import Menu from '../../navigation/menu';
 import "./lots.styles.css";
@@ -8,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import LotCard from './lotCard.js';
+import Breadcrumbs from '../breadcrumbs/breadcrumbs';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,60 +20,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function Lots(props) {
-  const classes = useStyles();
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
-  const [events, setEvents] = useState([]);
 
-  const currentUrl = window.location.href;
-
-  function getLotId(url){
-    let re = /(?<=events\/)(.*)(?=\/lots)/i;
-    return re.exec(url)[0];
-  }
-
-  useEffect(() => {
-    fetch(`http://localhost:8000/api/events/${getLotId(currentUrl)}/lots/`, {
-            headers: {
-              Authorization: `JWT ${localStorage.getItem('token')}`
-            }
-          })
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-      fetch(`http://localhost:8000/api/events/${getLotId(currentUrl)}/`, {
-              headers: {
-                Authorization: `JWT ${localStorage.getItem('token')}`
-              }
-            })
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setEvents(result);
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        )
-  }, [])
-
-
-  function FormRow(props) {
+  function FormRow() {
      return (
        <React.Fragment>
          <Grid item xs={12}>
-           <LotCard id={props.id} name={props.name} openTime={props.openTime} address={props.address} costSmall={props.costSmall} costMedium={props.costMedium} costLarge={props.costLarge}/>
+           <LotCard />
          </Grid>
 
        </React.Fragment>
@@ -81,18 +33,37 @@ export default function Lots(props) {
    }
 
   return (
-    <div class="events-view-root">
+    <div className="events-view-root">
       <Menu />
-      <Breadcrumbs name={events.name} address={events.address} date={events.startTime}/>
-      <h2 class="lot-title-text">Parking Options:</h2>
-      <div class="grid-view-root">
-        <div class="grid-view">
+      <Breadcrumbs />
+      <h2 className="lots-list-title-text">Lots:</h2>
+      <div className="lots-grid-view-root">
+        <div className="lots-grid-view">
           <Grid container spacing={1}>
-          {items.map(item => (
-            <Grid key={item.id} container item xs={12} spacing={0}>
-              <FormRow id={item.id} name={item.name} openTime={item.openTime} address={item.address} costSmall={item.costSmall} costMedium={item.costMedium} costLarge={item.costLarge}/>
-            </Grid>
-          ))}
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
+           <Grid container item xs={12} spacing={0}>
+             <FormRow />
+           </Grid>
          </Grid>
        </div>
      </div>
