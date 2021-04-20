@@ -24,9 +24,8 @@
             allowfullscreen
             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD7vXYTBfu4QdkDLxs21bSmqrkJAd31pUk&q={{ safeAddress }}">
         </iframe>
-        <p>Opening time: {{ lot.openTime }}</p>
-        <p>Closing time: {{ lot.closeTime }}</p>
-        <p>Available spots: {{ lot.capacityActual }}</p>
-        <p>Total spots: {{ lot.capacityMax }}</p>
+        <p>Number of small spots: {{ lot.capSmallMax }}</p>
+        <p>Number of medium spots: {{ lot.capMediumMax }}</p>
+        <p>Number of large spots: {{ lot.capLargeMax }}</p>
     </body>
 </html>

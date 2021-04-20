@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from api.models import Lot, ParentLot, Event
@@ -22,8 +22,10 @@ def index(request):
 
 
 def lotDetail(request, lot_id):
+    if not request.user.is_authenticated:
+        return redirect('./login')
     lot = ParentLot.objects.get(pk=lot_id)
-    context = {'lot': lot, 'safeAddress': urlEncodeAddress(lot.address), 'user': request.user}
+    context = {'lot': lot, 'user': request.user, 'safeAddress': urlEncodeAddress(lot.address)}
     return render(request, 'lotOwners/lot.html', context)
 
 
@@ -50,25 +52,35 @@ def addNew(request):
 
 
 def help(request):
+    if not request.user.is_authenticated:
+        return redirect('./login')
     return render(request, 'lotOwners/help.html', {'user': request.user})
 
 
 def logout(request):
-    logout(request)
+    auth_logout(request)
     return render(request, 'lotOwners/logout.html')
 
 
 def login(request):
-    form = Login()
-    return render(request, 'lotOwners/login.html', {'form': form})
+    if request.user.is_authenticated:
+        return redirect('./')
+    if request.method == "GET":
+        form = Login()
+        return render(request, 'lotOwner/login.html', {'form': form})
+    elif request.method == "POST":
+        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+        if user is not None:
+            auth_login(request, user)
+            return redirect('./')
+        else:
+            return render(request, 'lotOwners/logout.html')
 
 
 def modifyLot(request, lot_id):
     lot = ParentLot.objects.get(pk=lot_id)
     if request.method == "GET":
         if not request.user.is_authenticated:
-            return redirect('../login')
-        if lot.owner != request.user:
             return redirect('../login')
         form = ModifyLotForm(initial={
             'lotName': lot.name,
@@ -86,8 +98,6 @@ def modifyLot(request, lot_id):
     if request.method == "POST":
         if not request.user.is_authenticated:
             return redirect('../login')
-        if lot.owner != request.user:
-            return redirect('../login')
         lot.name = request.POST['lotName']
         lot.address = request.POST['lotAddress']
         lot.capSmallMax = request.POST['smallSpotCount']
@@ -102,8 +112,6 @@ def associate(request, lot_id):
     events = Event.objects.all()
     if request.method == "GET":
         if not request.user.is_authenticated:
-            return redirect('../login')
-        if lot.owner != request.user:
             return redirect('../login')
         form = AssociateWithEvent(initial={
             'capSmallActual': lot.capSmallMax,
@@ -138,5 +146,7 @@ def associate(request, lot_id):
 
 
 def transferBalance(request):
+    if not request.user.is_authenticated:
+        return redirect('./login')
     form = TransferBalance()
     return render(request, 'lotOwners/transfer-balance.html', {'form': form, 'user': request.user})
