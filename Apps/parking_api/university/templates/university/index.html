@@ -1,16 +1,17 @@
 {% load static %}
+{% csrf_token %}
 <html>
     <head>
         <title>Lot Administration Portal</title>
-        <link rel="stylesheet" href="{% static 'lotOwners/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'university/styles.css' %}">
     </head>
     <body>
         <header>
-            <h1>Big Blue Parking Genie Lot Administration Panel</h1>
-            <p>Signed in as Prototype User. (not you? <a href="./logout">logout</a>)</p>
+            <h1>Big Blue Parking Genie University Administration Panel</h1>
+            <p>Signed in as {{ user.username }}. (not you? <a href="./logout">logout</a>)</p>
         </header>
         <p>
-            <a href="./">Lot Administration Panel</a>
+            <a href="./">University Administration Panel</a>
         </p>
         <table>
             <tr>
@@ -19,12 +20,12 @@
                     <h1>$720.00</h1>
                 </td>
                 <td>
-                    <p>Your lots:</p>
+                    <p><b>All lots:</b></p>
                     {% if lots %}
                         <ul>
                             {% for lot in lots %}
                             <li>
-                                {{ lot.name }} (<a href="./lot/{{ lot.id }}">Details</a>, <a href="./modify-lot/{{ lot.id }}">Modify</a>, <a href="./associate/{{ lot.id }}">Associate</a>)
+                                {{ lot.name }}, owned by {{ lot.owner.username }} (<a href="./lot/{{ lot.id }}">Details</a>, <a href="./modify-lot/{{ lot.id }}">Modify</a>, <a href="./associate/{{ lot.id }}">Associate</a>)
                             </li>
                             {% endfor %}
                         </ul>
@@ -33,12 +34,12 @@
                     {% endif %}
                 </td>
                 <td>
-                    <p><b>Your events:</b></p>
+                    <p><b>All events:</b></p>
                     {% if events %}
                         <ul>
                             {% for lot in events %}
                             <li>
-                                {{ lot.event.name }}, {{ lot.parentLot.name }}
+                                {{ lot.event.name }}, {{ lot.parentLot.name }}, owned by {{ lot.owner.username }}
                             </li>
                             {% endfor %}
                         </ul>

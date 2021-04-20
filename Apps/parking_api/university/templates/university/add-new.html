@@ -2,15 +2,15 @@
 <html>
     <head>
         <title>Add New Lot</title>
-        <link rel="stylesheet" href="{% static 'lotOwners/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'university/styles.css' %}">
     </head>
     <body>
         <header>
-            <h1>Big Blue Parking Genie Lot Administration Panel</h1>
-            <p>Signed in as Prototype User. (not you? <a href="./logout">logout</a>)</p>
+            <h1>Big Blue Parking Genie University Administration Panel</h1>
+            <p>Signed in as {{ user.username }}. (not you? <a href="./logout">logout</a>)</p>
         </header>
         <p>
-            <a href="./">Lot Administration Panel</a> -> Add new lot
+            <a href="./">University Administration Panel</a> -> Add new lot
         </p>
         <form action="./add-new" method="post">
             {% csrf_token %}

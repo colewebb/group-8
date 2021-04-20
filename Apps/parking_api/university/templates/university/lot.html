@@ -2,15 +2,15 @@
 <html>
     <head>
         <title>Lot Details</title>
-        <link rel="stylesheet" href="{% static 'lotOwners/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'university/styles.css' %}">
     </head>
     <body>
         <header>
-            <h1>Big Blue Parking Genie Lot Administration Panel</h1>
-            <p>Signed in as Prototype User. (not you? <a href="./logout">logout</a>)</p>
+            <h1>Big Blue Parking Genie University Administration Panel</h1>
+            <p>Signed in as {{ user.username }}. (not you? <a href="./logout">logout</a>)</p>
         </header>
         <p>
-            <a href="../">Lot Administration Panel</a> -> Lot detail for lot # {{ lot.id }}
+            <a href="../">University Administration Panel</a> -> Lot detail for lot # {{ lot.id }}
         </p>
         <h2>Lot details for lot # {{ lot.id }}</h2>
         <p>Lot name: {{ lot.name }}</p>
@@ -24,9 +24,8 @@
             allowfullscreen
             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD7vXYTBfu4QdkDLxs21bSmqrkJAd31pUk&q={{ safeAddress }}">
         </iframe>
-        <p>Opening time: {{ lot.openTime }}</p>
-        <p>Closing time: {{ lot.closeTime }}</p>
-        <p>Available spots: {{ lot.capacityActual }}</p>
-        <p>Total spots: {{ lot.capacityMax }}</p>
+        <p>Total small spots: {{ lot.capSmallMax }}</p>
+        <p>Total medium spots: {{ lot.capMediumMax }}</p>
+        <p>Total large spots: {{ lot.capLargeMax }}</p>
     </body>
 </html>

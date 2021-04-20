@@ -1,0 +1,22 @@
+{% load static %}
+<html>
+    <head>
+        <title>Attendant</title>
+        <link rel="stylesheet" href="{% static 'attendant/main.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Big Blue Parking Genie Lot Attendant</h1>
+        </header>
+        {% if lots %}
+        <h2>Your lots:</h2>
+        <ul>
+            {% for lot in lots %}
+                <li><a href="./manual/{{ lot.id }}">{{ lot.parentLot.name }}, {{ lot.event.name }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>You don't have any lots associated with events</p>
+        {% endif %}
+    </body>
+</html>

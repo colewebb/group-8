@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from api.models import Lot, ParentLot, Event
@@ -15,16 +15,18 @@ def urlEncodeAddress(path):
 def index(request):
     if not request.user.is_authenticated:
         return redirect('./login')
-    lots = ParentLot.objects.filter(owner=request.user)
-    events = Lot.objects.filter(owner=request.user)
+    lots = ParentLot.objects.all()
+    events = Lot.objects.all()
     context = {'lots': lots, 'user': request.user, 'events': events}
-    return render(request, 'lotOwners/index.html', context)
+    return render(request, 'university/index.html', context)
 
 
 def lotDetail(request, lot_id):
-    lot = Lot.objects.get(pk=lot_id)
-    context = {'lot': lot, 'safeAddress': urlEncodeAddress(lot.address)}
-    return render(request, 'lotOwners/lot.html', context)
+    if not request.user.is_authenticated:
+        return redirect('./login')
+    lot = ParentLot.objects.get(pk=lot_id)
+    context = {'lot': lot, 'user': request.user, 'safeAddress': urlEncodeAddress(lot.address)}
+    return render(request, 'university/lot.html', context)
 
 
 def addNew(request):
@@ -32,7 +34,7 @@ def addNew(request):
         if not request.user.is_authenticated:
             return redirect('./login')
         form = NewLotForm()
-        return render(request, "lotOwners/add-new.html", {'form': form, 'user': request.user})
+        return render(request, "university/add-new.html", {'form': form, 'user': request.user})
     if request.method == "POST":
         if not request.user.is_authenticated:
             return redirect('../login')
@@ -50,25 +52,35 @@ def addNew(request):
 
 
 def help(request):
-    return render(request, 'lotOwners/help.html')
+    if not request.user.is_authenticated:
+        return redirect('./login')
+    return render(request, 'university/help.html', {'user': request.user})
 
 
 def logout(request):
-    # logout token bullcrap will need to go here
-    return render(request, 'lotOwners/logout.html')
+    auth_logout(request)
+    return render(request, 'university/logout.html')
 
 
 def login(request):
-    form = Login()
-    return render(request, 'lotOwners/login.html', {'form': form})
+    if request.user.is_authenticated:
+        return redirect('./')
+    if request.method == "GET":
+        form = Login()
+        return render(request, 'university/login.html', {'form': form})
+    elif request.method == "POST":
+        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+        if user is not None:
+            auth_login(request, user)
+            return redirect('./')
+        else:
+            return render(request, 'university/logout.html')
 
 
 def modifyLot(request, lot_id):
     lot = ParentLot.objects.get(pk=lot_id)
     if request.method == "GET":
         if not request.user.is_authenticated:
-            return redirect('../login')
-        if lot.owner != request.user:
             return redirect('../login')
         form = ModifyLotForm(initial={
             'lotName': lot.name,
@@ -82,11 +94,9 @@ def modifyLot(request, lot_id):
             'form': form,
             'user': request.user
         }
-        return render(request, 'lotOwners/modify.html', context)
+        return render(request, 'university/modify.html', context)
     if request.method == "POST":
         if not request.user.is_authenticated:
-            return redirect('../login')
-        if lot.owner != request.user:
             return redirect('../login')
         lot.name = request.POST['lotName']
         lot.address = request.POST['lotAddress']
@@ -103,14 +113,12 @@ def associate(request, lot_id):
     if request.method == "GET":
         if not request.user.is_authenticated:
             return redirect('../login')
-        if lot.owner != request.user:
-            return redirect('../login')
         form = AssociateWithEvent(initial={
             'capSmallActual': lot.capSmallMax,
             'capMediumActual': lot.capMediumMax,
             'capLargeActual': lot.capLargeMax
         })
-        return render(request, 'lotOwners/associate.html', {'user': request.user, 'lot': lot, 'events': events, 'form': form})
+        return render(request, 'university/associate.html', {'user': request.user, 'lot': lot, 'events': events, 'form': form})
     if request.method == "POST":
         if not request.user.is_authenticated:
             return redirect('../login')
@@ -138,5 +146,7 @@ def associate(request, lot_id):
 
 
 def transferBalance(request):
+    if not request.user.is_authenticated:
+        return redirect('./login')
     form = TransferBalance()
-    return render(request, 'lotOwners/transfer-balance.html', {'form': form})
+    return render(request, 'university/transfer-balance.html', {'form': form, 'user': request.user})
