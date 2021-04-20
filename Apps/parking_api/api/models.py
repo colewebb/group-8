@@ -15,7 +15,6 @@ class Event(models.Model):
     def __str__(self):
         return self.name + ", " + self.address + " (" + str(self.startTime) + ")"
 
-
 class ParentLot(models.Model):
     owner = models.ForeignKey('auth.User', related_name='parent_lots', on_delete=models.CASCADE)
     name = models.CharField(max_length=30)

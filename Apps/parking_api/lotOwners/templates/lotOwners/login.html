@@ -2,15 +2,16 @@
 <html>
     <head>
         <title>Login</title>
-        <link rel="stylesheet" href="{% static 'lotOwners/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'university/styles.css' %}">
     </head>
     <body>
         <header>
             <h1>Big Blue Parking Genie Lot Administration Panel</h1>
         </header>
         <h2>Login</h2>
-        <form action="../../api" method="post">
+        <form action="./login" method="post">
             {{ form.as_p }}
+            {% csrf_token %}
             <button type="submit" name="submit">Submit</button>
         </form>
     </body>

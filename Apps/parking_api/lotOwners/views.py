@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from api.models import Lot, ParentLot, Event
+from api.models import Lot, ParentLot, Event, Balance
 from datetime import datetime
 from .forms import *
 
@@ -17,7 +17,8 @@ def index(request):
         return redirect('./login')
     lots = ParentLot.objects.filter(owner=request.user)
     events = Lot.objects.filter(owner=request.user)
-    context = {'lots': lots, 'user': request.user, 'events': events}
+    balance = Balance.objects.get(owner=request.user).value
+    context = {'lots': lots, 'user': request.user, 'events': events, 'balance': balance}
     return render(request, 'lotOwners/index.html', context)
 
 
@@ -67,7 +68,7 @@ def login(request):
         return redirect('./')
     if request.method == "GET":
         form = Login()
-        return render(request, 'lotOwner/login.html', {'form': form})
+        return render(request, 'lotOwners/login.html', {'form': form})
     elif request.method == "POST":
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is not None:
