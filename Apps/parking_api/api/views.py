@@ -144,13 +144,32 @@ class ReservationDetail(generics.RetrieveUpdateDestroyAPIView):
 
     def perform_destroy(self, instance):
         lot = Lot.objects.get(pk=instance.lot.id)
+        customer = self.request.user
+        lotowner = lot.owner
+        admin = User.objects.get(username='admin')
         size = instance.size
         if size == 'small':
             lot.capSmallActual += 1
+            customer.balance.value += lot.costSmall
+            customer.balance.save()
+            lotowner.balance.value -= Decimal(1 - UNIVERSITY_FEE_PERCENT) * lot.costSmall
+            lotowner.balance.save()
+            admin.balance.value -= Decimal(UNIVERSITY_FEE_PERCENT) * lot.costSmall
+            admin.balance.save()
         elif size == 'medium':
             lot.capMediumActual += 1
+            customer.balance.value += lot.costMedium
+            customer.balance.save()
+            lotowner.balance.value -= Decimal(1 - UNIVERSITY_FEE_PERCENT) * lot.costMedium
+            lotowner.balance.save()
+            admin.balance.value -= Decimal(UNIVERSITY_FEE_PERCENT) * lot.costMedium
         elif size == 'large':
             lot.capLargeActual += 1
+            customer.balance.value += lot.costLarge
+            customer.balance.save()
+            lotowner.balance.value -= Decimal(1 - UNIVERSITY_FEE_PERCENT) * lot.costLarge
+            lotowner.balance.save()
+            admin.balance.value -= Decimal(UNIVERSITY_FEE_PERCENT) * lot.costLarge
 
         lot.save()
 
