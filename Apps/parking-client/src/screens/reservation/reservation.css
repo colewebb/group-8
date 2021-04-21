@@ -1,4 +1,4 @@
-.cart-view-root {
+.reservation-view-root {
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -6,11 +6,7 @@
   width: 100%;
 }
 
-.cart-view-root-1 {
-  background-color: #e3e3e3;
-}
-
-.cart-options-container {
+.reservation-options-container {
   background-color: #0F2439;
   border-top-left-radius: 28px;
   border-top-right-radius: 28px;
@@ -22,42 +18,41 @@
 
 }
 
-.cart-container {
+.reservation-container {
   justify-content: center;
   display: flex;
   flex-direction: column;
 }
 
 
-.cart-option-active {
+.reservation-option-active {
   background-color: #FFFFFF;
   padding: 20px;
-  margin-right: 6px;
-  margin-left: 6px;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  width: 60px;
+  width: 160px;
+  height: 160px;
   border-radius: 18px;
   -webkit-box-shadow:  5px 5px 7px #2A4764, -5px -5px 7px #2A4764;
   box-shadow:  5px 5px 7px #2A4764, -5px -5px 7px #2A4764;
-  cursor: pointer;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
-.cart-option-title-text-active {
+.reservation-option-title-text-active {
   color: #0F2439;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 18px;
   margin-bottom: -10px;
 
 }
-.cart-option-price-text-active {
+.reservation-option-price-text-active {
   color: #555555;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 
-.cart-option {
+.reservation-option-inactive {
   background-color: #2A4764;
   padding: 20px;
   margin-right: 6px;
@@ -69,71 +64,58 @@
   cursor: pointer;
 }
 
+.reservation-title-text {
+  color: #FFF;
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.reservation-title-sub-text {
+  color: #FFF;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  margin-top: 30px;
+}
 
 
-.cart-option-title-text {
+.reservation-option-title-text-inactive {
   color: #DBDBDB;
   font-weight: 600;
   font-size: 18px;
   margin-bottom: -10px;
 
 }
-.cart-option-price-text {
+.reservation-option-price-text-inactive {
   color: #DBDBDB;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 
-.cart-options-row {
+.reservation-options-row {
   justify-content: center;
   display: flex;
   padding-top: 10px;
 }
 
-.cart-options-icon-small {
-  width: 46px;
-  margin-top: 4px;
-  margin-bottom: -8px;
-  opacity: .4;
-}
-
-.cart-options-icon-medium {
-  width: 60px;
-  margin-bottom: -20px;
-  opacity: .4;
-}
-
-.cart-options-icon-large {
-  width: 60px;
-  margin-bottom: -20px;
-  opacity: .4;
-}
-
-.cart-options-icon-small-active {
-  width: 46px;
-  margin-top: 4px;
-  margin-bottom: -8px;
-}
-
-.cart-options-icon-medium-active {
+.reservation-otions-icon {
   width: 60px;
   margin-bottom: -20px;
 }
 
-.cart-options-icon-large-active {
-  width: 60px;
-  margin-bottom: -20px;
-}
-
-.cart-details-container {
+.reservation-details-container {
   background-color: #0F2439;
   min-height: 500px;
   width: 100%;
   max-width: 500px;
+  margin-top: -1px;
 }
 
-.cart-details-divider {
+.reservation-details-divider {
   height: 1px;
   margin-left: 20px;
   margin-right: 20px;
@@ -152,7 +134,7 @@
   margin-top: 30px;
 }
 
-.cart-details-row {
+.reservation-details-row {
   padding-left: 28px;
   padding-right: 28px;
   justify-content: space-between;
@@ -160,36 +142,31 @@
   margin-bottom: -5px;
 }
 
-.cart-details-text {
+.reservation-details-text {
  color: #FFF;
 }
 
 
 
-.cart-total-text {
+.reservation-total-text {
  color: #FFF;
  font-weight: 700;
  font-size: 22px;
 }
 
-.cart-purchase-button-container {
+.reservation-purchase-button-container {
   justify-content: center;
   display: flex;
   align-items: center;
-  text-decoration: none;
 }
 
-.cart-purchase-button-text a{
-  text-decoration: none;
-}
-
-.cart-map-container {
+.reservation-map-container {
   border-radius: 12px;
   width: 90%;
   margin-top: 28px;
 }
 
-.cart-purchase-button {
+.reservation-purchase-button {
   background-color: #FFF;
   text-align: center;
   align-items: center;
@@ -200,7 +177,7 @@
   box-shadow:  5px 5px 7px #2A4764, -5px -5px 7px #2A4764;
 }
 
-.cart-purchase-button-text {
+.reservation-purchase-button-text {
   padding-left: 30px;
   padding-right: 30px;
   font-size:22px;
@@ -208,11 +185,9 @@
   color: #0F2439;
   margin-top: 14px;
   margin-bottom: 14px;
-  text-decoration: none;
-
 }
 
-.cart-additional-info-text  {
+.reservation-additional-info-text {
   margin-top: 40px;
   color: #dbdbdb;
   font-size: 12px;

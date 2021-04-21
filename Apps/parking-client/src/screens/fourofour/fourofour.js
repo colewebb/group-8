@@ -1,13 +1,13 @@
 import React from "react";
-import "./account.styles.css";
+import reactDom from "react-dom";
+import "./fourofour.css";
 import Menu from '../../navigation/menu';
 
-export default function Account(props) {
+export default function Fourofour(props) {
   return (
     <div>
-      <Menu />
       <div>
-        <h1>Account</h1>
+        <h1>404</h1>
       </div>
     </div>
   );
