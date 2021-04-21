@@ -20,7 +20,7 @@ def populate_db(apps, schema_editor):
     superuser.save()
 
     # Now performed automatically by signals
-    
+
     # from api.models import Balance
     # b1 = Balance(owner=user1, value=50)
     # b1.save()
@@ -116,7 +116,6 @@ def populate_db(apps, schema_editor):
         owner=user1,
         lot=l2,
         size='small',
-        date=l2.event.startTime,
         event=l2.event
     )
     r1.save()
@@ -125,7 +124,6 @@ def populate_db(apps, schema_editor):
         owner=user3,
         lot=l1,
         size='medium',
-        date=l1.event.startTime,
         event=l1.event
     )
     r2.save()

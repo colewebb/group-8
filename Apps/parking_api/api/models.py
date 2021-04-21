@@ -58,7 +58,6 @@ class Reservation(models.Model):
     owner = models.ForeignKey('auth.User', related_name='reservations', on_delete=models.CASCADE)
     lot = models.ForeignKey(Lot, related_name='reservation', on_delete=models.CASCADE)
     size = models.CharField(choices=SPOT_SIZES, max_length=30)
-    date = models.DateTimeField()
     event = models.ForeignKey(Event, related_name='reservations', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
