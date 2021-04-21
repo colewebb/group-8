@@ -53,6 +53,7 @@ export default function Login(props) {
             localStorage.setItem('token', json.token);
             localStorage.setItem('username', json.user.username);
             localStorage.setItem('id', json.user.id);
+            localStorage.setItem('balance', json.user.balance);
             window.location = "/";
           }else{
             setErrorMessage("Incorrect username or password");

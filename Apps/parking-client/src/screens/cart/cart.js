@@ -19,6 +19,7 @@ export default function Cart(props) {
   const [size, setSize] = useState(getSpotSize(currentUrl));
   const [price, setPrice] = useState(items.costSmall);
   const [lot, setLot] = useState(items.costSmall);
+  const [errorMessage, setErrorMessage] = useState('');
 
 
 
@@ -93,30 +94,31 @@ export default function Cart(props) {
   }
 
   function purchase(data){
-    console.log('data');
-    console.log(JSON.stringify(data));
-    console.log('data');
+    if( localStorage.getItem('balance') < price){
+      setErrorMessage("Insufficient balance")
+    }else{
+      fetch('http://localhost:8000/api/reservations/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `JWT ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify(data)
+      })
+        .then(res => res.json())
+        .then(json => {
+          if(json.id){
+            window.location = `/reservation/${json.id}/`;
+          }
+        },
+        (error) => {
+          localStorage.setItem('token', '');
+          localStorage.setItem('username', '');
+          localStorage.setItem('id', '');
+          window.location = "/loggedout";
+        });
+    }
 
-    fetch('http://localhost:8000/api/reservations/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `JWT ${localStorage.getItem('token')}`
-      },
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(json => {
-        if(json.id){
-          window.location = `/reservation/${json.id}/`;
-        }
-      },
-      (error) => {
-        localStorage.setItem('token', '');
-        localStorage.setItem('username', '');
-        localStorage.setItem('id', '');
-        window.location = "/loggedout";
-      });
     }
 
 
@@ -188,6 +190,7 @@ export default function Cart(props) {
                 <div class="cart-purchase-button-text">Purchase</div>
               </div>
             </div>
+            <p className="error-message">{errorMessage}</p>
             <div>
               <p className="cart-additional-info-text">This purchase is for parking only and does not include entry into the event.</p>
             </div>

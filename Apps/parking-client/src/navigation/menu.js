@@ -5,6 +5,8 @@ import logo from "../assets/images/usu_logo_white.png";
 
 export default function Menu(props) {
   let [menuWidth, openMenu] = useState(0);
+  let [username, setUsername] = useState(localStorage.getItem('username'));
+  let [balance, setBalance] = useState(localStorage.getItem('balance'));
 
   const handle_logout = () => {
     localStorage.setItem('token', '');
@@ -18,7 +20,23 @@ export default function Menu(props) {
     if(width >= 720) {
       openMenu(menuWidth = 250);
     }
-  });
+
+    fetch(`http://localhost:8000/api/users/${localStorage.getItem('id')}/`, {
+        headers: {
+          Authorization: `JWT ${localStorage.getItem('token')}`
+        }
+      })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setBalance(result.balance);
+          localStorage.setItem('balance', result.balance);
+        },
+        (error) => {
+        }
+      )
+  }, [])
+
 
 
   return (
@@ -35,9 +53,9 @@ export default function Menu(props) {
         <h2 className="card-login-title-menu">Event Parking</h2>
         <div class="credits-container">
           <div class="credits-container-top">
-            <h2 class="name-text">{`${localStorage.getItem('username')}`}</h2>
+            <h2 class="name-text">{username}</h2>
           </div>
-          <h2 class="value-text">$34.00</h2>
+          <h2 class="value-text">${balance}</h2>
           <h2 class="balance-text">Balance</h2>
           <div />
         </div>
@@ -45,7 +63,6 @@ export default function Menu(props) {
         <a href="/account">Account</a>
         <a href="/events">Events</a>
         <a href="/reservations">Reservations</a>
-        <a href="/faq">FAQ</a>
         <div class="logout-button-center">
           <div class="logout-button">
             <a class="logout-button-text" onClick={() => handle_logout()}>Logout</a>

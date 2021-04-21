@@ -31,10 +31,7 @@ export default function ReservationCard(props) {
           setStartTime(result.startTime);
         },
         (error) => {
-          localStorage.setItem('token', '');
-          localStorage.setItem('username', '');
-          localStorage.setItem('id', '');
-          window.location = "/";
+
         }
       )
   }, [])
