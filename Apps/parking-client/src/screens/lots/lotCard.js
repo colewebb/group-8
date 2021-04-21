@@ -9,29 +9,40 @@ import largeIcon from '../../assets/icons/049-camper.png';import Moment from 'mo
 export default function lotCard(props) {
   var path = `cart/${props.id}`
 
-
+  console.log(props.capSmallActual)
   return (
     <div className="lot-card-root">
       <div className="lot-card-container">
         <div className="lot-card-sub-container">
+
+        {props.capSmallActual < props.capSmallMax  ?
           <a className="lot-card-price-container" href={`${path}/?size=Small`}>
             <img className="lot-otions-icon-small" src={smallIcon} alt="rv icon" />
             <p className="lot-card-option-title-text">Small</p>
             <p className="lot-card-price-text">${props.costSmall}</p>
-
           </a>
+        :
+          <div />
+        }
+        {props.capMediumActual < props.capMediumMax  ?
           <a className="lot-card-price-container" href={`${path}/?size=Medium`}>
             <img className="lot-otions-icon" src={mediumIcon} alt="rv icon" />
             <p className="lot-card-option-title-text">Medium</p>
             <p className="lot-card-price-text">${props.costMedium}</p>
           </a>
+        :
+          <div />
+        }
+        {props.capLargeActual < props.capLargeMax  ?
           <a className="lot-card-price-container" href={`${path}/?size=Large`}>
             <img className="lot-otions-icon" src={largeIcon} alt="rv icon" />
             <p className="lot-card-option-title-text">Large</p>
             <p className="lot-card-price-text">${props.costLarge}</p>
           </a>
+        :
+          <div />
+        }
         </div>
-
         <div className="lot-card-info-container">
             <p className="lot-card-name-text">{props.name}</p>
             <div className="lot-card-info-row">

@@ -76,7 +76,7 @@ export default function Lots(props) {
      return (
        <React.Fragment>
          <Grid item xs={12}>
-           <LotCard id={props.id} name={props.name} openTime={props.openTime} address={props.address} costSmall={props.costSmall} costMedium={props.costMedium} costLarge={props.costLarge}/>
+           <LotCard id={props.id} capMediumActual={props.capMediumActual} capMediumMax={props.capMediumMax} capLargeActual={props.capLargeActual} capLargeMax={props.capLargeMax} capSmallActual={props.capSmallActual} capSmallMax={props.capSmallMax} name={props.name} openTime={props.openTime} address={props.address} costSmall={props.costSmall} costMedium={props.costMedium} costLarge={props.costLarge}/>
          </Grid>
 
        </React.Fragment>
@@ -93,7 +93,7 @@ export default function Lots(props) {
           <Grid container spacing={1}>
           {items.map(item => (
             <Grid key={item.id} container item xs={12} spacing={0}>
-              <FormRow id={item.id} name={item.name} openTime={item.openTime} address={item.address} costSmall={item.costSmall} costMedium={item.costMedium} costLarge={item.costLarge}/>
+              <FormRow id={item.id} capMediumActual={item.capMediumActual} capMediumMax={item.capMediumMax} capLargeActual={item.capLargeActual} capLargeMax={item.capLargeMax} capSmallActual={item.capSmallActual} capSmallMax={item.capSmallMax} name={item.name} openTime={item.openTime} address={item.address} costSmall={item.costSmall} costMedium={item.costMedium} costLarge={item.costLarge}/>
             </Grid>
           ))}
          </Grid>
