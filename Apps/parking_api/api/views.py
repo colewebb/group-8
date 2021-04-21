@@ -38,6 +38,18 @@ def reservationsOfUserList(request, pk):
     serializer = ReservationSerializer(queryset, many=True)
     return Response(serializer.data)
 
+@api_view(['PUT'])
+def updateBalance(request, pk, value):
+    user = get_object_or_404(User, pk=pk)
+
+    if request.user != user and not request.user.is_staff:
+        return Response({'error': 'You do not have permission to perform this action'})
+
+    user.balance.value += Decimal(value)
+    user.balance.save()
+    serializer = UserSerializer(user)
+    return Response(serializer.data)
+
 
 class EventList(generics.ListCreateAPIView):
     queryset = Event.objects.all()

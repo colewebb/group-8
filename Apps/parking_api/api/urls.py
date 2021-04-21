@@ -20,6 +20,7 @@ urlpatterns = [
     # path('users/<int:id>/reservations/', views.UserReservationList.as_view()),
     path('events/<int:pk>/lots/', views.lotsOfEventList),
     path('users/<int:pk>/reservations/', views.reservationsOfUserList),
+    path('users/<int:pk>/updatebalance/value=<str:value>', views.updateBalance),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
