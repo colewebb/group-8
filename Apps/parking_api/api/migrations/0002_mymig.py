@@ -49,12 +49,6 @@ def populate_db(apps, schema_editor):
                )
     e2.save()
 
-    superuser = User.objects.create_superuser(username='jeremy',
-            email='young.a.jeremy@gmail.com',
-            password='password',
-            last_login=datetime.datetime.now())
-    superuser.save()
-
     # set up some lots
     from api.models import ParentLot
     p1 = ParentLot(owner=superuser,
@@ -127,11 +121,6 @@ def populate_db(apps, schema_editor):
     )
     r1.save()
 
-    # this step is only necessary in the migrations, performed automatically
-    # upon api call
-    l2.capSmallActual -= 1
-    l2.save()
-
     r2 = Reservation(
         owner=user3,
         lot=l1,
@@ -140,11 +129,6 @@ def populate_db(apps, schema_editor):
         event=l1.event
     )
     r2.save()
-
-    # this step is only necessary in the migrations, performed automatically
-    # upon api call
-    l1.capMediumActual -= 1
-    l1.save()
 
     # create some groups
     from django.contrib.auth.models import Group

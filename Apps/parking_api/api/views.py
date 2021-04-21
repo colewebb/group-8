@@ -10,6 +10,9 @@ from .permissions import IsOwnerOrReadOnly, IsSuperUserOrReadOnly
 
 from django.shortcuts import get_object_or_404
 
+from parking_api.config import UNIVERSITY_FEE_PERCENT
+from decimal import *
+
 
 # Create your views here.
 
@@ -97,17 +100,41 @@ class ReservationList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
         # update the count for the lot associated with the reservation
+        # transfer funds from reservation owner to lot owner and university
         lot = Lot.objects.get(pk=serializer.data['lot'])
+        customer = self.request.user
+        lotowner = lot.owner
+        admin = User.objects.get(username='admin')
         size = serializer.data['size']
         if size == 'small':
             lot.capSmallActual -= 1
+            customer.balance.value -= lot.costSmall
+            customer.balance.save()
+            lotowner.balance.value += Decimal(1 - UNIVERSITY_FEE_PERCENT) * lot.costSmall
+            lotowner.balance.save()
+            admin.balance.value += Decimal(UNIVERSITY_FEE_PERCENT) * lot.costSmall
+            admin.balance.save()
         elif size == 'medium':
             lot.capMediumActual -= 1
+            customer.balance.value -= lot.costMedium
+            customer.balance.save()
+            lotowner.balance.value += Decimal(1 - UNIVERSITY_FEE_PERCENT) * lot.costMedium
+            lotowner.balance.save()
+            admin.balance.value += Decimal(UNIVERSITY_FEE_PERCENT) * lot.costMedium
+            admin.balance.save()
         elif size == 'large':
             lot.capLargeActual -= 1
+            customer.balance.value -= lot.costLarge
+            customer.balance.save()
+            lotowner.balance.value += Decimal(1 - UNIVERSITY_FEE_PERCENT) * lot.costLarge
+            lotowner.balance.save()
+            admin.balance.value += Decimal(UNIVERSITY_FEE_PERCENT) * lot.costLarge
+            admin.balance.save()
 
         lot.save()
-
+        customer.save()
+        lotowner.save()
+        admin.save()
 
 class ReservationDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Reservation.objects.all()
