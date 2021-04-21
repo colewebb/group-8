@@ -6,43 +6,59 @@ from .forms import *
 
 def allowed(user):
     if user.is_staff:
-        print("Staff")
         return True
     if user.groups.filter(name="Owners"):
-        print("Owner")
         return True
     if user.groups.filter(name="Attendants"):
-        print("Attendant")
         return True
     return False
 
 def index(request):
-    return redirect("./manual")
+    if allowed(request.user):
+        return redirect("./manual")
+    else:
+        return render(request, "attendant/403.html")
 
 def confirm(request, reservation_id):
-    reservation = Reservation.objects.get(pk=reservation_id)
-    return render(request, "attendant/confirm.html", {'reservation': reservation})
+    if allowed(request.user):
+        reservation = Reservation.objects.get(pk=reservation_id)
+        return render(request, "attendant/confirm.html", {'reservation': reservation, 'user': request.user})
+    else:
+        return render(request, "attendant/403.html")
 
 def deny(request):
-    return render(request, "attendant/deny.html")
+    if allowed(request.user):
+        return render(request, "attendant/deny.html", {'user': request.user})
+    else:
+        return render(request, "attendant/403.html")
 
 def manual(request):
-    if request.method == "GET":
-        form = ManualInput()
-        return render(request, 'attendant/manual.html', {'form': form})
+    if allowed(request.user):
+        if request.method == "GET":
+            form = ManualInput()
+            return render(request, 'attendant/manual.html', {'form': form, 'user': request.user})
+        else:
+            try:
+                reservation = Reservation.objects.get(pk=request.POST['reservationID'])
+                if reservation.consumed:
+                    return redirect("../deny/")
+                return redirect("../confirm/" + str(reservation.id))
+            except Reservation.DoesNotExist:
+                return redirect("../deny/")
     else:
+        return render(request, "attendant/403.html")
+
+def get(request, reservation_id):
+    if allowed(request.user):
         try:
-            reservation = Reservation.objects.get(pk=request.POST['reservationID'])
+            reservation = Reservation.objects.get(pk=reservation_id)
+            if reservation.consumed:
+                    return redirect("../deny/")
             return redirect("../confirm/" + str(reservation.id))
         except Reservation.DoesNotExist:
             return redirect("../deny/")
-
-def get(request, reservation_id):
-    try:
-        reservation = Reservation.objects.get(pk=reservation_id)
-        return redirect("../confirm/" + str(reservation.id))
-    except Reservation.DoesNotExist:
-        return redirect("../deny/")
+    else:
+        return render(request, "attendant/403.html")
 
 def login(request):
     if request.user.is_authenticated:
@@ -64,4 +80,10 @@ def logout(request):
     return render(request, 'attendant/logout.html')
 
 def checkin(request, reservation_id):
-    return HttpResponse("Check in #" + str(reservation_id))
+    if allowed(request.user):
+        reservation = Reservation.objects.get(pk=reservation_id)
+        reservation.consumed = True
+        reservation.save()
+        return render(request, "attendant/checkin.html", {'user': request.user})
+    else:
+        return render(request, "attendant/403.html")

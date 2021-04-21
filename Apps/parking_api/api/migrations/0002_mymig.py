@@ -16,6 +16,8 @@ def populate_db(apps, schema_editor):
     user4 = User.objects.create_user(username='LotOwner', email='iownlots@gmail.com', password='password',
                 last_login=datetime.datetime.now())
     user4.save()
+    user5 = User.objects.create_user(username="attendant", email="attend@gmail.com", password="password", last_login=datetime.datetime.now())
+    user5.save() 
     superuser = User.objects.create_superuser(username="admin", email="admin@fake.com", password="admin", last_login=datetime.datetime.now())
     superuser.save()
 
@@ -132,7 +134,10 @@ def populate_db(apps, schema_editor):
     from django.contrib.auth.models import Group
     owners = Group(id=1, name="Owners")
     owners.save()
+    attendants = Group(id=2, name="Attendants")
+    attendants.save()
     user4.groups.add(owners)
+    user5.groups.add(attendants)
 
 class Migration(migrations.Migration):
 
