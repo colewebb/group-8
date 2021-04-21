@@ -18,6 +18,7 @@ export default function Cart(props) {
   const [events, setEvents] = useState([]);
   const [size, setSize] = useState(getSpotSize(currentUrl));
   const [price, setPrice] = useState(items.costSmall);
+  const [lot, setLot] = useState(items.costSmall);
 
 
 
@@ -91,32 +92,32 @@ export default function Cart(props) {
     return re.exec(url)[0];
   }
 
-  function purchase(){
-    fetch(`http://localhost:8000/api/lots/${getLotId(currentUrl)}/`, {
-            headers: {
-              Authorization: `JWT ${localStorage.getItem('token')}`
-            }
-          })
+  function purchase(data){
+    console.log('data');
+    console.log(JSON.stringify(data));
+    console.log('data');
+
+    fetch('http://localhost:8000/api/reservations/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `JWT ${localStorage.getItem('token')}`
+      },
+      body: JSON.stringify(data)
+    })
       .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
-          updateSize(getSpotSize(currentUrl));
-          if(size == 'Small'){
-            setPrice(result.costSmall);
-          }else if(size == 'Medium'){
-            setPrice(result.costMedium);
-          }else if(size == 'Large'){
-            setPrice(result.costLarge);
-          }
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
+      .then(json => {
+        if(json.id){
+          window.location = `/reservation/${json.id}/`;
         }
-      )
-  }
+      },
+      (error) => {
+        localStorage.setItem('token', '');
+        localStorage.setItem('username', '');
+        localStorage.setItem('id', '');
+        window.location = "/loggedout";
+      });
+    }
 
 
   return (
@@ -182,11 +183,11 @@ export default function Cart(props) {
               <p class="cart-total-text">TOTAL</p>
               <p class="cart-total-text">${price}</p>
             </div>
-            <a class="cart-purchase-button-container" href="/reservation/1/">
-              <a class="cart-purchase-button">
-                <a href="/reservation/1/" class="cart-purchase-button-text">Purchase</a>
-              </a>
-            </a>
+            <div class="cart-purchase-button-container" onClick={() => purchase({event: getEventId(currentUrl), lot: getLotId(currentUrl), size: size.toLowerCase()})}>
+              <div class="cart-purchase-button">
+                <div class="cart-purchase-button-text">Purchase</div>
+              </div>
+            </div>
             <div>
               <p className="cart-additional-info-text">This purchase is for parking only and does not include entry into the event.</p>
             </div>

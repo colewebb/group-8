@@ -84,7 +84,7 @@ export default function Reservation(props) {
             <p class="reservation-title-text">Your Reservation:</p>
             <div class="reservation-options-row">
               <div class="reservation-option-active">
-                <QRCode value="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO" />
+                <QRCode value={`http://localhost:8000/attendant/get/${getReservationId(currentUrl)}`} />
               </div>
             </div>
             <p class="reservation-title-sub-text">Show this QR code to the lot attendant</p>
