@@ -9,8 +9,8 @@
             <h1>Big Blue Parking Genie Lot Attendant</h1>
         </header>
         <form action="./login" method="post">
-            {{ form.as_p }}
             {% csrf_token %}
+            {{ form.as_p }}
             <button type="submit" name="submit">Submit</button>
         </form>
     </body>

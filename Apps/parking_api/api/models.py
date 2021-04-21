@@ -60,6 +60,7 @@ class Reservation(models.Model):
     size = models.CharField(choices=SPOT_SIZES, max_length=30)
     event = models.ForeignKey(Event, related_name='reservations', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
+    consumed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.owner.username + "\n" + str(self.event) + "\n" + "(" + str(self.lot) + ")"

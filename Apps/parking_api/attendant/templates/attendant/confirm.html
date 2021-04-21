@@ -13,9 +13,10 @@
         <ul>
             <li>Lot: {{ reservation.lot.parentLot.name }}</li>
             <li>Event: {{ reservation.event.name }}</li>
-            <li> Spot size: {{ reservation.size }}</li>
-            <li> Valid only on {{ reservation.date }}, from {{ reservation.lot.openTime }} to {{ reservation.lot.closeTime }}</li>
+            <li>Spot size: {{ reservation.size }}</li>
+            <li>Valid only on {{ reservation.date }}, from {{ reservation.lot.openTime }} to {{ reservation.lot.closeTime }}</li>
+            <li>Used? {{ reservation.consumed }}</li>
         </ul>
-        <a href="./">Back</a>
+        <a href="./checkin/{{ reservation.id }}">Check in</a>
     </body>
 </html>

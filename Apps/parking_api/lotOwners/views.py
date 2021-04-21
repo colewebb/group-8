@@ -85,7 +85,7 @@ def login(request):
         return render(request, 'lotOwners/login.html', {'form': form})
     elif request.method == "POST":
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
-        if user is not None:
+        if user is not None and user.groups.filter(name="Owners").exists:
             auth_login(request, user)
             return redirect('./')
         else:
