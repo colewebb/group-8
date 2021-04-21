@@ -19,17 +19,19 @@ def populate_db(apps, schema_editor):
     superuser = User.objects.create_superuser(username="admin", email="admin@fake.com", password="admin", last_login=datetime.datetime.now())
     superuser.save()
 
-    from api.models import Balance
-    b1 = Balance(owner=user1, value=50)
-    b1.save()
-    b2 = Balance(owner=user2, value=50)
-    b2.save()
-    b3 = Balance(owner=user3, value=50)
-    b3.save()
-    b4 = Balance(owner=user4, value=50)
-    b4.save()
-    b5 = Balance(owner=superuser, value=250)
-    b5.save()
+    # Now performed automatically by signals
+    
+    # from api.models import Balance
+    # b1 = Balance(owner=user1, value=50)
+    # b1.save()
+    # b2 = Balance(owner=user2, value=50)
+    # b2.save()
+    # b3 = Balance(owner=user3, value=50)
+    # b3.save()
+    # b4 = Balance(owner=user4, value=50)
+    # b4.save()
+    # b5 = Balance(owner=superuser, value=250)
+    # b5.save()
 
     # set up some events
     from api.models import Event
