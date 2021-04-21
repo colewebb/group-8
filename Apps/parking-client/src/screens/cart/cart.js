@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Steps from '../steps/steps';
 import "./cart.styles.css";
 import Menu from '../../navigation/menu';
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
@@ -121,6 +122,7 @@ export default function Cart(props) {
   return (
     <div class="cart-view-root-1">
       <Menu />
+      <Steps step={3}/>
       <Breadcrumbs name={events.name} address={events.address} date={events.startTime}/>
       <div class="cart-view-root">
           <div class="cart-options-container">

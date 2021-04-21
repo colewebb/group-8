@@ -1,4 +1,5 @@
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
+import Steps from '../steps/steps';
 import React, { useState, useEffect } from 'react'
 import reactDom from "react-dom";
 import Menu from '../../navigation/menu';
@@ -86,6 +87,7 @@ export default function Lots(props) {
   return (
     <div class="events-view-root">
       <Menu />
+      <Steps step={2}/>
       <Breadcrumbs name={events.name} address={events.address} date={events.startTime}/>
       <h2 class="lot-title-text">Parking Options:</h2>
       <div class="grid-view-root">

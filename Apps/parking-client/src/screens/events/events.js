@@ -1,4 +1,5 @@
 import Breadcrumbs from '../breadcrumbs/breadcrumbs';
+import Steps from '../steps/steps';
 import React, { useState, useEffect } from 'react'
 import reactDom from "react-dom";
 import Menu from '../../navigation/menu';
@@ -69,6 +70,7 @@ export default function Events(props) {
   return (
     <div class="events-view-root">
       <Menu />
+      <Steps step={1}/>
       <h2 class="events-title-text">Utah State Events</h2>
       <div class="grid-view-root">
         <div class="grid-view">
