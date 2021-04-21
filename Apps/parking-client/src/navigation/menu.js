@@ -1,6 +1,7 @@
 import React, { useState, useEffect }  from "react";
 import './menu.css';
 import menuIcon from '../assets/images/menu_icon.png';
+import logo from "../assets/images/usu_logo_white.png";
 
 export default function Menu(props) {
   let [menuWidth, openMenu] = useState(0);
@@ -28,6 +29,10 @@ export default function Menu(props) {
         </div>
       </div>
       <div id="mySidenav" class="sidenav" style={{width: menuWidth}}>
+        <div className="image-container-menu">
+          <img className="login_image" src={logo} alt="Utah State logo" />
+        </div>
+        <h2 className="card-login-title-menu">Event Parking</h2>
         <div class="credits-container">
           <div class="credits-container-top">
             <h2 class="name-text">{`${localStorage.getItem('username')}`}</h2>

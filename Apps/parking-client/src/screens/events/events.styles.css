@@ -1,6 +1,7 @@
 .grid-view-root {
   justify-content: center;
   display: flex;
+
 }
 
 .grid-view {
@@ -12,6 +13,7 @@
 
 .events-view-root {
   background-color: #e3e3e3;
+  min-height: 1000px;
 }
 
 .events-title-text {

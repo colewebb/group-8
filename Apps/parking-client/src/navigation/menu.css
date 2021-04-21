@@ -184,3 +184,19 @@
   display: flex;
   justify-content: center;
 }
+
+.image-container-menu {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -20px;
+  margin-top: -50px;
+}
+
+.card-login-title-menu {
+  color: #FFF;
+  padding: 20px;
+  margin-top: -40px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 28px;
+}
