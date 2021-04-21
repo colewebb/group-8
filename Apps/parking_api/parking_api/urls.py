@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import include, path
 from api.views import RegisterView
 
+from rest_framework_jwt.views import obtain_jwt_token
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     path('api/', include('api.urls')),
@@ -26,4 +28,5 @@ urlpatterns = [
     path('university/', include('university.urls')),
     path('attendant/', include('attendant.urls')),
     path('api-auth/register/', RegisterView.as_view()),
+    path('token-auth/', obtain_jwt_token),
 ]
