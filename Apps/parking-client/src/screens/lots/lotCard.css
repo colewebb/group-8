@@ -139,3 +139,11 @@
 .lot-card-info-action {
   margin-top: 0px;
 }
+
+.lot-card-option-title-text-sold-out {
+  color: #FFF;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}

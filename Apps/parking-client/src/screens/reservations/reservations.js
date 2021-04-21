@@ -28,11 +28,7 @@ export default function Reservations(props) {
 
 
   useEffect(() => {
-    fetch(`http://localhost:8000/api/users/${localStorage.getItem('id')}/reservations/`, {
-            headers: {
-              Authorization: `JWT ${localStorage.getItem('token')}`
-            }
-          })
+    fetch(`http://localhost:8000/api/users/${localStorage.getItem('id')}/reservations/`)
       .then(res => res.json())
       .then(
         (result) => {
@@ -45,10 +41,10 @@ export default function Reservations(props) {
           }
         },
         (error) => {
-          // localStorage.setItem('token', '');
-          // localStorage.setItem('username', '');
-          // localStorage.setItem('id', '');
-          // window.location = "/";
+          localStorage.setItem('token', '');
+          localStorage.setItem('username', '');
+          localStorage.setItem('id', '');
+          window.location = "/";
         }
       )
   }, [])

@@ -76,3 +76,9 @@
   textAlign: center;
 
 }
+
+.event-card-no-text {
+  text-align: center;
+  color: #0F2439;
+  font-size: 30px;
+}

@@ -11,7 +11,10 @@ export default function ReservationCard(props) {
   const [startTime, setStartTime] = useState('');
 
   useEffect(() => {
+    console.log('props');
     console.log(props);
+    console.log('props');
+
     fetch(`http://localhost:8000/api/events/${props.eventId}/`, {
             headers: {
               Authorization: `JWT ${localStorage.getItem('token')}`
@@ -28,10 +31,10 @@ export default function ReservationCard(props) {
           setStartTime(result.startTime);
         },
         (error) => {
-          // localStorage.setItem('token', '');
-          // localStorage.setItem('username', '');
-          // localStorage.setItem('id', '');
-          // window.location = "/";
+          localStorage.setItem('token', '');
+          localStorage.setItem('username', '');
+          localStorage.setItem('id', '');
+          window.location = "/";
         }
       )
   }, [])
@@ -42,24 +45,28 @@ export default function ReservationCard(props) {
 
   return (
     <div className="event-card-container">
-      <div className="event-card">
-        <div className="event-card-top">
-          <h2 className="event-card-title-text">{name}</h2>
-        </div>
-        <div className="event-card-info-row">
-          <div className="event-card-info">
-            <p className="event-card-info-sub-text">Date:</p>
-            <p className="event-card-date-text">{Moment(dt).format('MMMM Do YYYY, h:mm:ss a')}</p>
-            <p className="event-card-info-sub-text">Location:</p>
-            <p className="event-card-location-text">{address}</p>
+    {props.eventId ?
+        <div className="event-card">
+          <div className="event-card-top">
+            <h2 className="event-card-title-text">{name}</h2>
           </div>
-          <a className="event-card-info-action" href={path}>
-            <div className="event-card-info-action-button">
-              <p className="event-card-action-button-text">See Reservation</p>
+          <div className="event-card-info-row">
+            <div className="event-card-info">
+              <p className="event-card-info-sub-text">Date:</p>
+              <p className="event-card-date-text">{Moment(dt).format('MMMM Do YYYY, h:mm:ss a')}</p>
+              <p className="event-card-info-sub-text">Location:</p>
+              <p className="event-card-location-text">{address}</p>
             </div>
-          </a>
+            <a className="event-card-info-action" href={path}>
+              <div className="event-card-info-action-button">
+                <p className="event-card-action-button-text">See Reservation</p>
+              </div>
+            </a>
+          </div>
         </div>
-      </div>
+      :
+          <h2 className="event-card-no-text">You don't have any reservations</h2>
+    }
     </div>
   );
 }
