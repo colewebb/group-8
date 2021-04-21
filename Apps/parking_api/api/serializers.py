@@ -25,7 +25,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     reservations = serializers.PrimaryKeyRelatedField(many=True, queryset=Reservation.objects.all())
     lots = serializers.PrimaryKeyRelatedField(many=True, queryset=Lot.objects.all())
-    balance = serializers.PrimaryKeyRelatedField(many=False, queryset=Balance.objects.all())
+    balance = serializers.ReadOnlyField(source='balance.value')
 
     class Meta:
         model = User

@@ -66,5 +66,5 @@ class Reservation(models.Model):
         return self.owner.username + "\n" + str(self.event) + "\n" + "(" + str(self.lot) + ")"
 
 class Balance(models.Model):
-    owner = models.ForeignKey('auth.User', related_name='balance', on_delete=models.CASCADE)
+    owner = models.OneToOneField('auth.User', related_name='balance', on_delete=models.CASCADE)
     value = models.DecimalField(max_digits=100, decimal_places=2)
