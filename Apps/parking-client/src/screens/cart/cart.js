@@ -130,7 +130,7 @@ export default function Cart(props) {
       <div class="cart-view-root">
           <div class="cart-options-container">
             <div class="cart-options-row">
-            {items.capSmallActual < items.capSmallMax  ?
+            {items.capSmallActual > 0  ?
               <div class={`cart-option${size == 'Small' ? "-active" : ""}`} onClick={() => updateSize("Small")}>
                 <img className={`cart-options-icon-small${size == 'Small' ? "-active" : ""}`} src={smallIcon} alt="rv icon" />
                 <p class={`cart-option-title-text${size == 'Small' ? "-active" : ""}`}>Small</p>
@@ -139,7 +139,7 @@ export default function Cart(props) {
             :
             <div />
             }
-            {items.capMediumActual < items.capMediumMax  ?
+            {items.capMediumActual > 0  ?
               <div class={`cart-option${size == 'Medium' ? "-active" : ""}`} onClick={() => updateSize("Medium")}>
                 <img className={`cart-options-icon-medium${size == 'Medium' ? "-active" : ""}`} src={mediumIcon} alt="rv icon" />
                 <p class={`cart-option-title-text${size == 'Medium' ? "-active" : ""}`}>Medium</p>
@@ -148,7 +148,7 @@ export default function Cart(props) {
             :
             <div />
             }
-            {items.capLargeActual < items.capLargeMax  ?
+            {items.capLargeActual > 0  ?
               <div class={`cart-option${size == 'Large' ? "-active" : ""}`} onClick={() => updateSize("Large")}>
                 <img className={`cart-options-icon-large${size == 'Large' ? "-active" : ""}`} src={largeIcon} alt="rv icon" />
                 <p class={`cart-option-title-text${size == 'Large' ? "-active" : ""}`}>Large</p>

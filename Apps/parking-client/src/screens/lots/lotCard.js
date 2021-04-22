@@ -15,7 +15,7 @@ export default function lotCard(props) {
       <div className="lot-card-container">
         <div className="lot-card-sub-container">
 
-        {props.capSmallActual < props.capSmallMax  ?
+        {props.capSmallActual > 0  ?
           <a className="lot-card-price-container" href={`${path}/?size=Small`}>
             <img className="lot-otions-icon-small" src={smallIcon} alt="rv icon" />
             <p className="lot-card-option-title-text">Small</p>
@@ -24,7 +24,7 @@ export default function lotCard(props) {
         :
           <div />
         }
-        {props.capMediumActual < props.capMediumMax  ?
+        {props.capMediumActual > 0  ?
           <a className="lot-card-price-container" href={`${path}/?size=Medium`}>
             <img className="lot-otions-icon" src={mediumIcon} alt="rv icon" />
             <p className="lot-card-option-title-text">Medium</p>
@@ -33,7 +33,7 @@ export default function lotCard(props) {
         :
           <div />
         }
-        {props.capLargeActual < props.capLargeMax  ?
+        {props.capLargeActual > 0  ?
           <a className="lot-card-price-container" href={`${path}/?size=Large`}>
             <img className="lot-otions-icon" src={largeIcon} alt="rv icon" />
             <p className="lot-card-option-title-text">Large</p>
