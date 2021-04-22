@@ -30,9 +30,9 @@ Make sure you are using python3.
 Check the output to see where it is running on localhost
 
 
-## REACT CLIENT
+## React Client
 
-## SETUP AND RUN
+## Setup and Run
 
 ```$ npm install```
 
@@ -88,6 +88,7 @@ The workspace is organized as follows:
 
  - Documentation is contained in the ```docs/``` folder.
  - Videos are in ```docs/video```.
+ - The PowerPoint is also in ```docs/```.
  - Source code is contained in the ```Apps/``` folder, and each project (client
    side, server side, test suites etc.) are in their own folders.
 
