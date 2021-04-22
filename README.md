@@ -31,7 +31,8 @@ Check the output to see where it is running on localhost
 
 
 ## REACT CLIENT
-##SETUP AND RUN
+
+## SETUP AND RUN
 
 ```$ npm install```
 
