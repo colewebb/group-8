@@ -94,9 +94,6 @@ export default function Cart(props) {
   }
 
   function purchase(data){
-    if( localStorage.getItem('balance') < price){
-      setErrorMessage("Insufficient balance")
-    }else{
       fetch('http://localhost:8000/api/reservations/', {
         method: 'POST',
         headers: {
@@ -117,8 +114,6 @@ export default function Cart(props) {
           localStorage.setItem('id', '');
           window.location = "/loggedout";
         });
-    }
-
     }
 
 
