@@ -17,6 +17,8 @@ you will need to run the parking_api django server and the parking-client react 
 
 
 ## Running instructions
+make sure you are using python3
+
 ```$ python manage.py makemigrations```
 ```$ python manage.py runserver```
 
@@ -26,14 +28,11 @@ you will need to run the parking_api django server and the parking-client react 
  ## REACT CLIENT
  ##SETUP AND RUN
 
- 1. npm install
- 2. yarn start
+```$ npm install```
+```$ yarn start```
 
  use path /login to log into the system once running
  use path /register to create a user and log into the system once running
-
-
-
 
 
 
