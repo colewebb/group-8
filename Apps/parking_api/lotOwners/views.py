@@ -22,7 +22,7 @@ def index(request):
         context = {'lots': lots, 'user': request.user, 'events': events, 'balance': balance}
         return render(request, 'lotOwners/index.html', context)
     else:
-        return HttpResponse("You do not have authorization to view this page.")
+        return render(request, "lotOwners/403.html")
 
 def lotDetail(request, lot_id):
     if not request.user.is_authenticated:
@@ -32,7 +32,7 @@ def lotDetail(request, lot_id):
         context = {'lot': lot, 'user': request.user, 'safeAddress': urlEncodeAddress(lot.address)}
         return render(request, 'lotOwners/lot.html', context)
     else:
-        return HttpResponse("You do not have authorization to view this page.")
+        return render(request, "lotOwners/403.html")
 
 
 def addNew(request):
@@ -43,7 +43,7 @@ def addNew(request):
             form = NewLotForm()
             return render(request, "lotOwners/add-new.html", {'form': form, 'user': request.user})
         else:
-            return HttpResponse("You do not have authorization to view this page.")
+            return render(request, "lotOwners/403.html")
     if request.method == "POST":
         if not request.user.is_authenticated:
             return redirect('../login')
@@ -60,7 +60,7 @@ def addNew(request):
             newLot.save()
             return redirect("./lot/" + str(newLot.id))
         else:
-            return HttpResponse("You do not have authorization to view this page.")
+            return render(request, "lotOwners/403.html")
 
 
 def help(request):
@@ -69,7 +69,7 @@ def help(request):
     if request.user.groups.filter(name="Owners"):
         return render(request, 'lotOwners/help.html', {'user': request.user})
     else:
-        return HttpResponse("You do not have authorization to view this page.")
+        return render(request, "lotOwners/403.html")
 
 
 def logout(request):
@@ -112,7 +112,7 @@ def modifyLot(request, lot_id):
             }
             return render(request, 'lotOwners/modify.html', context)
         else:
-            return HttpResponse("You do not have authorization to view this page.")
+            return render(request, "lotOwners/403.html")
     if request.method == "POST":
         if not request.user.is_authenticated:
             return redirect('../login')
@@ -125,7 +125,7 @@ def modifyLot(request, lot_id):
             lot.save()
             return redirect("../lot/" + str(lot_id))
         else:
-            return HttpResponse("You do not have authorization to view this page.")
+            return render(request, "lotOwners/403.html")
 
 
 def associate(request, lot_id):
@@ -142,7 +142,7 @@ def associate(request, lot_id):
             })
             return render(request, 'lotOwners/associate.html', {'user': request.user, 'lot': lot, 'events': events, 'form': form})
         else:
-            return HttpResponse("You do not have authorization to view this page.")
+            return render(request, "lotOwners/403.html")
     if request.method == "POST":
         if not request.user.is_authenticated:
             return redirect('../login')
@@ -169,7 +169,7 @@ def associate(request, lot_id):
             a.save()
             return redirect("../")
         else:
-            return HttpResponse("You do not have authorization to view this page.")
+            return render(request, "lotOwners/403.html")
 
 
 def transferBalance(request):
@@ -180,7 +180,7 @@ def transferBalance(request):
             form = TransferBalance()
             return render(request, 'lotOwners/transfer-balance.html', {'form': form, 'user': request.user})
         else:
-            return HttpResponse("You do not have authorization to view this page.")
+            return render(request, "lotOwners/403.html")
     elif request.method == "POST":
         if request.user.groups.filter(name="Owners"):
             balance = Balance.objects.get(owner=request.user)
@@ -192,4 +192,4 @@ def transferBalance(request):
                 balance.save()
                 return redirect('./')
         else:
-            return HttpResponse("You do not have authorization to view this page.")
+            return render(request, "lotOwners/403.html")

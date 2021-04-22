@@ -128,3 +128,4 @@ npm-debug.log
 .eslintcache
 Apps/parking-client/package-lock.json
 *.lock
+docs/planning/~$Sprint3Burndown.xlsx
