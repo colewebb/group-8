@@ -42,7 +42,7 @@ export default function lotCard(props) {
         :
           <div />
         }
-        {props.capSmallActual >= props.capSmallMax && props.capLargeActual >= props.capLargeMax && props.capMediumActual >= props.capMediumMax ?
+        {props.capSmallActual > 0 && props.capLargeActual > 0 && props.capMediumActual > 0 ?
           <div className="lot-card-price-container">
             <p className="lot-card-option-title-text-sold-out">Sold Out</p>
             <div />
