@@ -19,7 +19,7 @@ you will need to run the parking_api django server and the parking-client react 
 
 
 ## Running instructions
-make sure you are using python3
+Make sure you are using python3.
 
 ```$ python manage.py makemigrations```
 
@@ -27,20 +27,18 @@ make sure you are using python3
 
 ```$ python manage.py runserver```
 
- check the output to see where it is running on localhost
+Check the output to see where it is running on localhost
 
 
- ## REACT CLIENT
- ##SETUP AND RUN
+## REACT CLIENT
+##SETUP AND RUN
 
 ```$ npm install```
 
-```$ yarn start```
+```$ npm start``` or ```yarn start```
 
- use path /login to log into the system once running
- use path /register to create a user and log into the system once running
-
-
+Use path /login to log into the system once running.
+Use path /register to create a user and log into the system once running.
 
 ## Tool Stack Description and Setup Procedure
 
@@ -52,16 +50,26 @@ Django setup Docs:
 [https://docs.djangoproject.com/en/3.1/topics/install/#install-the-django-code](https://docs.djangoproject.com/en/3.1/topics/install/#install-the-django-code).
 
 React setup Docs:
- [https://create-react-app.dev/docs/getting-started/](https://create-react-app.dev/docs/getting-started/).
+[https://create-react-app.dev/docs/getting-started/](https://create-react-app.dev/docs/getting-started/).
 
-## Projects
+### Login Credentials
 
-There are three project boards currently, one will be used for each stage. The others are used as backlogs until we reach that stage.
+Using the default migration in Django, the following users are set up:
 
-## Wiki
+ - Customer account: username ```austin```, password ```password```,
+   logging in at ```localhost:3000/login```.
+ - Attendant account: username ```attendant```, password ```password```,
+   logging in at ```127.0.0.1:8000/attendant/login```.
+ - Lot owner account: username ```LotOwner```, password ```password```,
+   logging in at ```127.0.0.1:8000/lot-owners/login```.
+ - University admin account: username ```admin```, password ```admin```,
+   logging in at ```127.0.0.1:8000/university/login``` or at 
+   ```127.0.0.1:8000/admin```.
 
-There is a GitHub Wiki initialized, but it is currently empty. Perhaps eventually
-it will be used for documentation and other customer-facing information.
+If you get a notification that you're not authorized for a page, try logging
+out (using ```./logout``` if needed) and then logging in as the correct user
+type. We are still chasing a weird bug in lot-owners, if you get a CRFS error
+try the same thing.
 
 ## Requirements
 
@@ -69,7 +77,6 @@ it will be used for documentation and other customer-facing information.
  - Actors: parkers, lot owners, lot attendants, University, supervisor
  - All lots have attendants
  - Prices set by lot owners
- - Prices set by lot owner
  - Phone friendly, no app required
  - Different sizes of parking spots (mobile homes, large sites for tailgating, etc.)
  - QR codes required for authentication on the spot
@@ -78,21 +85,12 @@ it will be used for documentation and other customer-facing information.
 
 The workspace is organized as follows:
 
- - Documentation is contained in the ```docs/``` folder
+ - Documentation is contained in the ```docs/``` folder.
+ - Videos are in ```docs/video```.
  - Source code is contained in the ```Apps/``` folder, and each project (client
    side, server side, test suites etc.) are in their own folders.
 
 ## Version Control
-
-### Version Numbering
-
-All version control numbers are of the following format:
-
-v0.1.2b
-
-The last digit, 2b, signifies that this version contains the second small
-feature update (2) and the second iteration (b) of the first major version
-update (1) of the first major version (0) of the app.
 
 ### Collaboration
 
@@ -117,25 +115,3 @@ correctly, and so on.
    stays changed, and that untouched information remains the same.
  - Login as each of the user groups and ensure that the correct interface is shown
    for each.
-
-## Prototypes
-
-Prototype 1, located at [/Apps/prototype1](https://github.com/colewebb/group-8/tree/master/Apps/prototype1),
-is a low-fidelity design rendered by Austin in Adobe XD. This prototype shows a
-possible customer interface, designed to work equally well on mobile and desktop
-devices. The root is located at
-[/Apps/prototype1/Splash.png](https://github.com/colewebb/group-8/tree/master/Apps/prototype1/Splash.png).
-
-Prototype 2, located at [/Apps/prototype2](https://github.com/colewebb/group-8/tree/master/Apps/prototype2),
-is a high-fidelity design rendered by Cole in HTML/CSS. This prototype suggests
-an interface for adding a new lot to the website from lot owner/administrator
-perspective. This prototype contains experimental support for dark mode (to
-enable, switch from ```assets/styles.css``` to ```assets/styles-dark.css```).
-The root is located at
-[/Apps/prototype2/index.html](https://github.com/colewebb/group-8/tree/master/Apps/prototype2/index.html).
-
-Prototype 3, located at [/Apps/prototype3](https://github.com/colewebb/group-8/tree/master/Apps/prototype3),
-is a low-fidelity design rendered by Cole in ASCII art. This prototype is an
-alternative design for the customer interface, focused on a mobile interface
-with notes on adaptivity for other form factors. The root is located at
-[/Apps/prototype3/index.md](https://github.com/colewebb/group-8/tree/master/Apps/prototype3/index.md).
