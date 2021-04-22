@@ -13,6 +13,8 @@ you will need to run the parking_api django server and the parking-client react 
 
 ```$ pip install djangorestframework```
 
+```$ pip install djangorestframework_jwt```
+
 ```$ pip install django-cors-headers```
 
 
@@ -20,6 +22,7 @@ you will need to run the parking_api django server and the parking-client react 
 make sure you are using python3
 
 ```$ python manage.py makemigrations```
+```$ python manage.py migrate```
 ```$ python manage.py runserver```
 
  check the output to see where it is running on localhost
